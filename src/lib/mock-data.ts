@@ -1,0 +1,293 @@
+import { ECharacterElementType, ECharacterWeaponType } from "./enum"
+
+export const mockGuides = [
+  {
+    id: 1,
+    title: "Rover quick guide",
+    category: "New",
+    date: "2 days ago",
+    image: "/placeholder.svg?height=100&width=150&text=Rover",
+  },
+  {
+    id: 2,
+    title: "Advanced combat techniques",
+    category: "Combat",
+    date: "1 week ago",
+    image: "/placeholder.svg?height=100&width=150&text=Combat",
+  },
+  {
+    id: 3,
+    title: "Character progression tips",
+    category: "Progression",
+    date: "2 weeks ago",
+    image: "/placeholder.svg?height=100&width=150&text=Character",
+  },
+  {
+    id: 4,
+    title: "Legendary weapons guide",
+    category: "Equipment",
+    date: "3 weeks ago",
+    image: "/placeholder.svg?height=100&width=150&text=Weapons",
+  },
+]
+
+export const mockUpdates = [
+  {
+    id: 1,
+    version: "4.0 new update",
+    date: "ADDED",
+    description: "New character Rover added to the roster with unique abilities",
+  },
+  {
+    id: 2,
+    version: "3.9 balance patch",
+    date: "FIXED",
+    description: "Fixed issues with character abilities and improved performance",
+  },
+  {
+    id: 3,
+    version: "3.8 content update",
+    date: "ADDED",
+    description: "New story chapter and seasonal event with exclusive rewards",
+  },
+]
+
+export const elements = [
+  { name: "Spectro", icon: "/elements_icon/Spectro.png", bgColor: "bg-yellow-500/20", code: ECharacterElementType.SPECTRO },
+  { name: "Havoc", icon: "/elements_icon/Havoc.png", bgColor: "bg-red-500/20", code: ECharacterElementType.HAVOC },
+  { name: "Glacio", icon: "/elements_icon/Glacio.png", bgColor: "bg-blue-400/20", code: ECharacterElementType.GLACIO },
+  { name: "Aero", icon: "/elements_icon/Aero.png", bgColor: "bg-green-400/20", code: ECharacterElementType.AERO },
+  { name: "Fusion", icon: "/elements_icon/Fusion.png", bgColor: "bg-red-600/20", code: ECharacterElementType.FUSION },
+  { name: "Electro", icon: "/elements_icon/Electro.png", bgColor: "bg-purple-500/20", code: ECharacterElementType.ELECTRO },
+]
+
+export const weapons = [
+  { name: "Sword", icon: "/weapons_icon/sword.png", code: ECharacterWeaponType.SWORD },
+  { name: "Rectifier", icon: "/weapons_icon/rectifier.png", code: ECharacterWeaponType.RECTIFIER },
+  { name: "Broadblade", icon: "/weapons_icon/broadblade.png", code: ECharacterWeaponType.BROAD_BLADE },
+  { name: "Pistols", icon: "/weapons_icon/pistols.png", code: ECharacterWeaponType.PISTOLS },
+  { name: "Gauntlets", icon: "/weapons_icon/gauntlets.png", code: ECharacterWeaponType.GAUNTLETS },
+]
+
+
+export const mockCharacters = [
+  {
+    id: 1,
+    name: "Anaxa",
+    level: 42,
+    element: "Wind",
+    weaponType: "Sword",
+    rarity: 6,
+    image: "/characters/image/lingyang.png",
+  },
+  {
+    id: 2,
+    name: "Castorice",
+    level: 38,
+    element: "Dark",
+    weaponType: "Staff",
+    rarity: 6,
+    image: "/placeholder.svg?height=300&width=200&text=Castorice",
+  },
+  {
+    id: 3,
+    name: "Mydei",
+    level: 35,
+    element: "Light",
+    weaponType: "Bow",
+    rarity: 6,
+    image: "/placeholder.svg?height=300&width=200&text=Mydei",
+  },
+  {
+    id: 4,
+    name: "Tribbie",
+    level: 40,
+    element: "Dark",
+    weaponType: "Spear",
+    rarity: 6,
+    image: "/placeholder.svg?height=300&width=200&text=Tribbie",
+  },
+  {
+    id: 5,
+    name: "Aglaea",
+    level: 37,
+    element: "Light",
+    weaponType: "Sword",
+    rarity: 6,
+    image: "/placeholder.svg?height=300&width=200&text=Aglaea",
+  },
+  {
+    id: 6,
+    name: "The Herta",
+    level: 39,
+    element: "Dark",
+    weaponType: "Staff",
+    rarity: 6,
+    image: "/placeholder.svg?height=300&width=200&text=Herta",
+  },
+  {
+    id: 7,
+    name: "Trailblazer",
+    level: 45,
+    element: "Water",
+    weaponType: "Sword",
+    rarity: 6,
+    image: "/placeholder.svg?height=300&width=200&text=Trailblazer1",
+  },
+  {
+    id: 8,
+    name: "Trailblazer",
+    level: 45,
+    element: "Water",
+    weaponType: "Fist",
+    rarity: 6,
+    image: "/placeholder.svg?height=300&width=200&text=Trailblazer2",
+  },
+  {
+    id: 9,
+    name: "Fugue",
+    level: 36,
+    element: "Fire",
+    weaponType: "Bow",
+    rarity: 5,
+    image: "/placeholder.svg?height=300&width=200&text=Fugue",
+  },
+  {
+    id: 10,
+    name: "Sunday",
+    level: 34,
+    element: "Light",
+    weaponType: "Spear",
+    rarity: 5,
+    image: "/placeholder.svg?height=300&width=200&text=Sunday",
+  },
+  {
+    id: 11,
+    name: "Rappa",
+    level: 33,
+    element: "Fire",
+    weaponType: "Axe",
+    rarity: 5,
+    image: "/placeholder.svg?height=300&width=200&text=Rappa",
+  },
+  {
+    id: 12,
+    name: "Lingsha",
+    level: 32,
+    element: "Fire",
+    weaponType: "Sword",
+    rarity: 5,
+    image: "/placeholder.svg?height=300&width=200&text=Lingsha",
+  },
+  {
+    id: 13,
+    name: "Yanqing",
+    level: 30,
+    element: "Wind",
+    weaponType: "Sword",
+    rarity: 5,
+    image: "/placeholder.svg?height=300&width=200&text=Yanqing",
+  },
+  {
+    id: 14,
+    name: "Bailu",
+    level: 29,
+    element: "Dark",
+    weaponType: "Staff",
+    rarity: 5,
+    image: "/placeholder.svg?height=300&width=200&text=Bailu",
+  },
+  {
+    id: 15,
+    name: "Jingliu",
+    level: 28,
+    element: "Fire",
+    weaponType: "Sword",
+    rarity: 5,
+    image: "/placeholder.svg?height=300&width=200&text=Jingliu",
+  },
+  {
+    id: 16,
+    name: "Qingque",
+    level: 27,
+    element: "Dark",
+    weaponType: "Spear",
+    rarity: 5,
+    image: "/placeholder.svg?height=300&width=200&text=Qingque",
+  },
+  {
+    id: 17,
+    name: "Topaz",
+    level: 26,
+    element: "Light",
+    weaponType: "Bow",
+    rarity: 5,
+    image: "/placeholder.svg?height=300&width=200&text=Topaz",
+  },
+  {
+    id: 18,
+    name: "Seele",
+    level: 25,
+    element: "Dark",
+    weaponType: "Sword",
+    rarity: 5,
+    image: "/placeholder.svg?height=300&width=200&text=Seele",
+  },
+]
+
+export const charactersGuide = [
+  {
+    id: 1,
+    name: "Albedo",
+    image: "/placeholder.svg?height=128&width=128",
+    quickGuideRating: 4.6,
+    extendedGuideRating: 4.0,
+    weaponType: ECharacterWeaponType.BROAD_BLADE,
+    elementType: ECharacterElementType.AERO
+  },
+  {
+    id: 2,
+    name: "Alhaitham",
+    image: "/placeholder.svg?height=128&width=128",
+    quickGuideRating: 4.7,
+    extendedGuideRating: 3.8,
+    weaponType: ECharacterWeaponType.GAUNTLETS,
+    elementType: ECharacterElementType.ELECTRO
+  },
+  {
+    id: 3,
+    name: "Aloy",
+    image: "/placeholder.svg?height=128&width=128",
+    quickGuideRating: 4.5,
+    extendedGuideRating: 2.4,
+    weaponType: ECharacterWeaponType.SWORD,
+    elementType: ECharacterElementType.GLACIO
+  },
+  {
+    id: 4,
+    name: "Amber",
+    image: "/placeholder.svg?height=128&width=128",
+    quickGuideRating: 5.4,
+    extendedGuideRating: 2.6,
+    weaponType: ECharacterWeaponType.SWORD,
+    elementType: ECharacterElementType.FUSION
+  },
+  {
+    id: 5,
+    name: "Anemo Traveler",
+    image: "/placeholder.svg?height=128&width=128",
+    quickGuideRating: 4.2,
+    extendedGuideRating: 3.0,
+    weaponType: ECharacterWeaponType.BROAD_BLADE,
+    elementType: ECharacterElementType.HAVOC
+  },
+  {
+    id: 6,
+    name: "Arlecchino",
+    image: "/placeholder.svg?height=128&width=128",
+    quickGuideRating: 5.1,
+    extendedGuideRating: 4.3,
+    weaponType: ECharacterWeaponType.RECTIFIER,
+    elementType: ECharacterElementType.SPECTRO
+  },
+]
