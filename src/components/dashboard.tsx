@@ -9,7 +9,7 @@ export function Dashboard() {
   return (
     <div className="space-y-8 pb-10">
       {/* Hero Banner */}
-      <div className="relative h-64 md:h-80 rounded-xl overflow-hidden">
+      <div className="relative h-64 md:h-80 rounded-[20px] overflow-hidden">
         <Image src="/placeholder.svg?height=400&width=1200" alt="Resonator Hero Banner" fill className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/80 to-transparent flex flex-col justify-end p-6">
           <h1 className="text-3xl md:text-4xl font-bold mb-2">Optimized Guide</h1>
