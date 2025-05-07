@@ -28,11 +28,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex min-h-screen">
+          <div className="flex min-h-screen justify-center">
             <div className="max-[600px]:hidden">
               <Sidebar />
             </div>
-            <main className="flex-1 ml-16 p-4 transition-all duration-300 ease-in-out max-[600px]:ml-0">
+            <main className="flex-1 ml-16 p-4 transition-all duration-300 ease-in-out max-w-[1388px] max-[600px]:ml-0">
               {children}
             </main>
           </div>
