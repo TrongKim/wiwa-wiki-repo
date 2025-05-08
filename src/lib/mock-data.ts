@@ -29,6 +29,27 @@ export const mockGuides = [
     date: "3 weeks ago",
     image: "/placeholder.svg?height=100&width=150&text=Weapons",
   },
+  {
+    id: 5,
+    title: "Advanced combat techniques",
+    category: "Combat",
+    date: "1 week ago",
+    image: "/placeholder.svg?height=100&width=150&text=Combat",
+  },
+  {
+    id: 6,
+    title: "Character progression tips",
+    category: "Progression",
+    date: "2 weeks ago",
+    image: "/placeholder.svg?height=100&width=150&text=Character",
+  },
+  {
+    id: 7,
+    title: "Legendary weapons guide",
+    category: "Equipment",
+    date: "3 weeks ago",
+    image: "/placeholder.svg?height=100&width=150&text=Weapons",
+  },
 ]
 
 export const mockUpdates = [
@@ -46,6 +67,24 @@ export const mockUpdates = [
   },
   {
     id: 3,
+    version: "3.8 content update",
+    date: "ADDED",
+    description: "New story chapter and seasonal event with exclusive rewards",
+  },
+  {
+    id: 4,
+    version: "4.0 new update",
+    date: "ADDED",
+    description: "New character Rover added to the roster with unique abilities",
+  },
+  {
+    id: 5,
+    version: "3.9 balance patch",
+    date: "FIXED",
+    description: "Fixed issues with character abilities and improved performance",
+  },
+  {
+    id: 6,
     version: "3.8 content update",
     date: "ADDED",
     description: "New story chapter and seasonal event with exclusive rewards",
@@ -239,7 +278,7 @@ export const charactersGuide = [
   {
     id: 1,
     name: "Albedo",
-    image: "/placeholder.svg?height=128&width=128",
+    image: "/characters/avatar/shorekeeper.png",
     quickGuideRating: 4.6,
     extendedGuideRating: 4.0,
     weaponType: ECharacterWeaponType.BROAD_BLADE,
@@ -248,7 +287,7 @@ export const charactersGuide = [
   {
     id: 2,
     name: "Alhaitham",
-    image: "/placeholder.svg?height=128&width=128",
+    image: "/characters/avatar/shorekeeper.png",
     quickGuideRating: 4.7,
     extendedGuideRating: 3.8,
     weaponType: ECharacterWeaponType.GAUNTLETS,
@@ -283,6 +322,60 @@ export const charactersGuide = [
   },
   {
     id: 6,
+    name: "Arlecchino",
+    image: "/placeholder.svg?height=128&width=128",
+    quickGuideRating: 5.1,
+    extendedGuideRating: 4.3,
+    weaponType: ECharacterWeaponType.RECTIFIER,
+    elementType: ECharacterElementType.SPECTRO
+  },
+  {
+    id: 7,
+    name: "Albedo",
+    image: "/characters/avatar/shorekeeper.png",
+    quickGuideRating: 4.6,
+    extendedGuideRating: 4.0,
+    weaponType: ECharacterWeaponType.BROAD_BLADE,
+    elementType: ECharacterElementType.AERO
+  },
+  {
+    id: 8,
+    name: "Alhaitham",
+    image: "/characters/avatar/shorekeeper.png",
+    quickGuideRating: 4.7,
+    extendedGuideRating: 3.8,
+    weaponType: ECharacterWeaponType.GAUNTLETS,
+    elementType: ECharacterElementType.ELECTRO
+  },
+  {
+    id: 9,
+    name: "Aloy",
+    image: "/placeholder.svg?height=128&width=128",
+    quickGuideRating: 4.5,
+    extendedGuideRating: 2.4,
+    weaponType: ECharacterWeaponType.SWORD,
+    elementType: ECharacterElementType.GLACIO
+  },
+  {
+    id: 10,
+    name: "Amber",
+    image: "/placeholder.svg?height=128&width=128",
+    quickGuideRating: 5.4,
+    extendedGuideRating: 2.6,
+    weaponType: ECharacterWeaponType.SWORD,
+    elementType: ECharacterElementType.FUSION
+  },
+  {
+    id: 11,
+    name: "Anemo Traveler",
+    image: "/placeholder.svg?height=128&width=128",
+    quickGuideRating: 4.2,
+    extendedGuideRating: 3.0,
+    weaponType: ECharacterWeaponType.BROAD_BLADE,
+    elementType: ECharacterElementType.HAVOC
+  },
+  {
+    id: 12,
     name: "Arlecchino",
     image: "/placeholder.svg?height=128&width=128",
     quickGuideRating: 5.1,

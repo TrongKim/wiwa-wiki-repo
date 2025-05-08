@@ -1,0 +1,9 @@
+.top-nav-client {
+    transition: all 200ms;
+}
+
+.nav-side-bar-container:has(.side-bar-client:hover) > .top-nav-client {
+    width: calc(100% - 256.2px);
+    left: 256.2px;
+    transition-delay: 40ms;
+}

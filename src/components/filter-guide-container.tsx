@@ -64,10 +64,20 @@ export function FilterGuideContainer() {
         setIsFilter(false);
     }, [filterByElement, filterByWeapon, searchString]);
 
+    const handleUIIcon = (element: ECharacterElementType) => {
+        switch (element) {
+            case ECharacterElementType.ELECTRO:
+                return 'scale-[1.2] object-left';
+            case ECharacterElementType.SPECTRO:
+                return 'scale-[1.1]';
+            default:
+                return '';
+        }
+    };
 
     return (
         <div>
-            <div className="mb-8">
+            <div className="mb-6">
                 <SearchGuide />
             </div>
 
@@ -76,12 +86,14 @@ export function FilterGuideContainer() {
                 <CardContent className="p-0">
                     <div className="flex flex-col md:flex-row justify-between gap-[10px]">
                         {/* Elements Section */}
-                        <div className="w-fit bg-[#1a3759] p-4 border-[#4d647e] border-[1px] rounded-[20px]">
-                            <div className="flex items-center justify-start flex-wrap">
+                        <div className="w-fit bg-[#1a3759] p-[5px] border-[#4d647e] border-[1px] rounded-[20px] overflow-hidden max-[1020px]:flex-1 max-[1020px]:w-full">
+                            <div className="flex items-center  flex-wrap justify-center">
                                 {elements.map((element) => (
-                                    <button key={element.name} onClick={() => onSelectElement(element.code)} className={`flex w-[70px] flex-col items-center justify-center gap-2 p-2 rounded-[5px] cursor-pointer pointer-events-auto ${filterByElement?.code === element.code && 'bg-[#334d6c]'}`}>
+                                    <button key={element.name} onClick={() => onSelectElement(element.code)} className={`flex w-[70px] flex-col items-center justify-center gap-2 p-2 cursor-pointer pointer-events-auto rounded-[16px] ${filterByElement?.code === element.code && 'bg-[#334d6c]'}`}>
                                         <div className={`w-10 h-10 rounded-full flex items-center justify-center`}>
-                                            <Image src={element.icon} alt="element" width={35} height={35} />
+                                            <Image src={element.icon} alt="element" width={35} height={35} className={`${handleUIIcon(element.code)}`} style={ element.code === ECharacterElementType.ELECTRO ? {
+                                                objectPosition: '2px'
+                                            } : {}} />
                                         </div>
                                         <span className="text-xs text-center">{element.name}</span>
                                     </button>
@@ -90,12 +102,12 @@ export function FilterGuideContainer() {
                         </div>
 
                         {/* Weapons Section */}
-                        <div className="w-fit bg-[#1a3759] p-4 border-[#4d647e] border-[1px] rounded-[20px]">
-                            <div className="flex items-center justify-start flex-wrap">
+                        <div className="w-fit bg-[#1a3759] p-[5px] border-[#4d647e] border-[1px] rounded-[20px] overflow-hidden max-[1020px]:flex-1 max-[1020px]:w-full">
+                            <div className="flex items-center flex-wrap justify-center">
                                 {weapons.map((weapon) => (
-                                    <button key={weapon.name} onClick={() => onSelectWeapon(weapon.code)} className={`flex w-[70px] px-[10px] py-[5px] flex-col items-center justify-center gap-2 p-2 rounded-[5px] cursor-pointer pointer-events-auto ${filterByWeapon?.code === weapon.code && 'bg-[#334d6c]'}`}>
+                                    <button key={weapon.name} onClick={() => onSelectWeapon(weapon.code)} className={`flex w-[70px] flex-col items-center justify-center gap-2 p-2 cursor-pointer pointer-events-auto rounded-[16px] ${filterByWeapon?.code === weapon.code && 'bg-[#334d6c]'}`}>
                                         <div className="w-10 h-10 flex items-center justify-center">
-                                            <Image src={weapon.icon} alt="element" width={35} height={35} />
+                                            <Image src={weapon.icon} alt="element" width={35} height={45} className="h-[46.666px] object-contain" />
                                         </div>
                                         <span className="text-xs text-center">{weapon.name}</span>
                                     </button>
@@ -107,8 +119,8 @@ export function FilterGuideContainer() {
             </Card>
 
             {/* Character Selection */}
-            <div className="space-y-4">
-                <h2 className="text-xl font-bold">Characters</h2>
+            <div className="space-y-4 mt-2">
+                {/* <h2 className="text-xl font-bold">Characters</h2> */}
                 <CharacterGuideGallery guides={listGuide} guides_search={listGuideCache} stateSearch={isFilter} />
             </div>
         </div>

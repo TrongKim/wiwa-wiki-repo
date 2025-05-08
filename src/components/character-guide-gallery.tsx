@@ -26,7 +26,7 @@ export default function CharacterGuideGallery({ guides, guides_search, stateSear
 
     return (
         <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-3 max-[1024px]:grid-cols-2 max-[768px]:grid-cols-1">
                 {displayList.map((character) => (
                     <div key={character.id} className="cursor-pointer pointer-events-auto">
                         <CharacterGuideCard character={character} />
