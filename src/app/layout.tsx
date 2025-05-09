@@ -5,7 +5,6 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Sidebar } from "@/components/sidebar"
 import { Footer } from "@/components/footer";
-import { ScrollTopIcon } from "@/components/scroll-top-icon";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,18 +30,15 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="flex min-h-screen justify-center">
-            <div className="max-[600px]:hidden">
-              <Sidebar />
-            </div>
-
-            <main className="flex-1 transition-all duration-300 ease-in-out max-w-[1100px]">
-              <div className="max-[1440px]:ml-16 max-[601px]:ml-0 p-4 max-[1230px]:pr-17 max-[1230px]:pl-17 max-[421px]:pr-2 max-[421px]:pl-2 max-[421px]:box-border mt-[52px]">
-                {children}
-              </div>
-              <Footer />
-            </main>
+            <Sidebar>
+              <main className="flex-1 transition-all duration-300 ease-in-out max-w-[1100px]">
+                <div className="max-[601px]:ml-0 p-4 max-[1230px]:pr-17 max-[1230px]:pl-17 max-[421px]:pr-2 max-[421px]:pl-2 max-[421px]:box-border mt-[52px] max-[301px]:w-full">
+                  {children}
+                </div>
+                <Footer />
+              </main>
+            </Sidebar>
           </div>
-          <ScrollTopIcon />
         </ThemeProvider>
       </body>
     </html>

@@ -1,20 +1,16 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
-export function ScrollTopIcon() {
-    const [stateShowIcon, setStateShowIcon] = useState<boolean>(false);
-
-    useEffect(() => {
-        const toggleVisibility = () => {
-            setStateShowIcon(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', toggleVisibility);
-        return () => window.removeEventListener('scroll', toggleVisibility);
-    }, []);
+interface Props {
+    stateShowIcon: boolean;
+    onClick: () => void;
+}
+export function ScrollTopIcon({ stateShowIcon, onClick }: Props) {
 
     const onClickScrollTop = (): void => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (!onClick) return;
+        onClick();
+        
     }
 
     return (
@@ -28,7 +24,6 @@ export function ScrollTopIcon() {
                     </svg>
                 </button>
             }
-
         </>
     )
 }

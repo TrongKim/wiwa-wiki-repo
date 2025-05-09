@@ -85,7 +85,7 @@ export function FilterGuideContainer() {
             <Card className="border-0">
                 <CardContent className="p-0">
                     <div className="flex flex-col md:flex-row justify-between gap-[10px]">
-                        {/* Elements Section */}
+                        
                         <div className="w-fit bg-[#1a3759] p-[5px] border-[#4d647e] border-[1px] rounded-[20px] overflow-hidden max-[1020px]:flex-1 max-[1020px]:w-full">
                             <div className="flex items-center  flex-wrap justify-center">
                                 {elements.map((element) => (
@@ -101,7 +101,6 @@ export function FilterGuideContainer() {
                             </div>
                         </div>
 
-                        {/* Weapons Section */}
                         <div className="w-fit bg-[#1a3759] p-[5px] border-[#4d647e] border-[1px] rounded-[20px] overflow-hidden max-[1020px]:flex-1 max-[1020px]:w-full">
                             <div className="flex items-center flex-wrap justify-center">
                                 {weapons.map((weapon) => (
@@ -120,7 +119,6 @@ export function FilterGuideContainer() {
 
             {/* Character Selection */}
             <div className="space-y-4 mt-2">
-                {/* <h2 className="text-xl font-bold">Characters</h2> */}
                 <CharacterGuideGallery guides={listGuide} guides_search={listGuideCache} stateSearch={isFilter} />
             </div>
         </div>

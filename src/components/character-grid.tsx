@@ -1,27 +1,31 @@
 import Image from "next/image"
 import { mockCharacters } from "@/lib/mock-data"
+import type { ICharacter } from "@/lib/interface";
 
-export function CharacterGrid() {
+interface Props {
+  characters: ICharacter[];
+}
+export function CharacterGrid({ characters }: Props) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-      {mockCharacters.map((character) => (
+    <div className="grid grid-cols-2 max-[475px]:grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+      {characters.map((character) => (
         <div
           key={character.id}
           className="bg-slate-800/50 rounded-lg overflow-hidden cursor-pointer transition-transform hover:scale-[1.02]"
         >
           <div className="relative h-48 sm:h-56 md:h-64">
-            <div className="absolute top-2 left-2 z-10">
+            {/* <div className="absolute top-2 left-2 z-10">
               <ElementIcon element={character.element} />
             </div>
             <div className="absolute top-2 right-2 z-10">
               <WeaponIcon type={character.weaponType} />
-            </div>
+            </div> */}
             <Image src={character.image || "/placeholder.svg"} alt={character.name} fill className="object-cover" />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
               <h3 className="text-center font-medium">{character.name}</h3>
-              <div className="flex justify-center mt-1">
+              {/* <div className="flex justify-center mt-1">
                 <StarRating rating={character.rarity} />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

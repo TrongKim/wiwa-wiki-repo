@@ -1,30 +1,77 @@
 'use client';
 import Link from "next/link"
-import { Home, Book, Settings, Bell, Users, Search } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import './../styles/sidebar.css'
+import { ScrollTopIcon } from "./scroll-top-icon";
+import { usePathname } from "next/navigation";
 
-export function Sidebar() {
-  const [activeRouteIndex, setActiveRouteIndex] = useState<number>(0);
+export function Sidebar({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  const pathname = usePathname();
+  const [activeRouteIndex, setActiveRouteIndex] = useState<number>(-1);
+  const refParentElement = useRef<HTMLDivElement>(null);
+  const [stateShowIcon, setStateShowIcon] = useState<boolean>(false);
+  const [showSidebar, setShowSidebar] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!refParentElement) return;
+    const reference = refParentElement.current;
+    if (!reference) return;
+    const toggleVisibility = () => {
+      setStateShowIcon(reference.scrollTop > 300);
+    };
+
+    reference.addEventListener('scroll', toggleVisibility);
+    return () => reference.removeEventListener('scroll', toggleVisibility);
+  }, []);
+
+  useEffect(() => {
+    switch (pathname) {
+      case '/':
+        setActiveRouteIndex(0);
+        break;
+      case '/characters':
+        setActiveRouteIndex(1);
+        break;
+      case '/guides':
+        setActiveRouteIndex(2);
+        break;
+      default:
+        setActiveRouteIndex(-1);
+    }
+  }, [pathname]);
+
+  const onClickScrollToTop = () => {
+    if (!refParentElement) return;
+    const reference = refParentElement.current;
+    if (!reference) return;
+    reference.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  const onClickChangeStateSidebar = () => {
+    setShowSidebar(!showSidebar);
+  }
 
   return (
-    <div className="flex items-start w-full h-full nav-side-bar-container">
-      <aside className="fixed z-[999] left-0 top-0 w-13 h-full hover:w-64 bg-[#1a3759] border-[#4d647e] border-r flex flex-col transition-all duration-300 group side-bar-client">
-        <div className="p-4 border-b border-slate-700 flex items-center h-16">
-          <h1 className="text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute">
+    <div className="flex items-start w-full h-full nav-side-bar-container fixed top-0 left-0 z-1000">
+      <aside className={`h-full bg-[#1a3759] border-[#4d647e] border-r flex flex-col transition-all duration-300 group max-[600px]:hidden ${showSidebar ? 'w-64' : 'w-12'}`}>
+        <div className="p-4 flex items-center h-fit pt-[10px]">
+          <h1 className={`text-xl font-bold transition-opacity duration-300 absolute ${showSidebar ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
             Resonator
           </h1>
-          <span className="text-xl font-bold group-hover:opacity-0 transition-opacity duration-300">R</span>
+          <span className={`text-xl font-bold transition-opacity duration-300 ${showSidebar ? 'opacity-0' : 'opacity-100'}`}>R</span>
         </div>
-
         <nav className="flex-1 p-2">
           <ul className="space-y-2">
             <li>
               <Link
                 href="/"
                 className={cn(
-                  "flex items-center p-2 rounded-md hover:bg-slate-700 text-slate-300 hover:text-white transition-colors",
+                  `flex items-center p-2 rounded-md ${showSidebar ? 'bg-slate-700 text-white' : ''} text-slate-300 transition-colors`,
                   activeRouteIndex === 0 && "bg-slate-700 text-white",
                 )}
               >
@@ -33,14 +80,14 @@ export function Sidebar() {
                     <path d="M1 6V15H6V11C6 9.89543 6.89543 9 8 9C9.10457 9 10 9.89543 10 11V15H15V6L8 0L1 6Z" fill="#fff" />
                   </svg>
                 </div>
-                <span className="ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap overflow-hidden">
+                <span className={`ml-3 ${showSidebar ? 'opacity-100' : 'opacity-0'} transition-opacity duration-250 whitespace-nowrap overflow-hidden`}>
                   Home
                 </span>
               </Link>
             </li>
             <li>
               <Link
-                href="/"
+                href="/characters"
                 className={cn(
                   "flex items-center p-2 rounded-md hover:bg-slate-700 text-slate-300 hover:text-white transition-colors",
                   activeRouteIndex === 1 && "bg-slate-700 text-white",
@@ -55,7 +102,7 @@ export function Sidebar() {
                     </g>
                   </svg>
                 </div>
-                <span className="ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap overflow-hidden">
+                <span className={`ml-3 ${showSidebar ? 'opacity-100' : 'opacity-0'} transition-opacity duration-250 whitespace-nowrap overflow-hidden`}>
                   Characters
                 </span>
               </Link>
@@ -73,7 +120,7 @@ export function Sidebar() {
                     <path d="M5 0C3.34315 0 2 1.34315 2 3V13C2 14.6569 3.34315 16 5 16H14V14H4V12H14V0H5Z" fill="#fff" />
                   </svg>
                 </div>
-                <span className="ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap overflow-hidden">
+                <span className={`ml-3 ${showSidebar ? 'opacity-100' : 'opacity-0'} transition-opacity duration-250 whitespace-nowrap overflow-hidden`}>
                   Guides
                 </span>
               </Link>
@@ -86,61 +133,26 @@ export function Sidebar() {
               <path d="M18.59 5.88997C17.36 5.31997 16.05 4.89997 14.67 4.65997C14.5 4.95997 14.3 5.36997 14.17 5.69997C12.71 5.47997 11.26 5.47997 9.83001 5.69997C9.69001 5.36997 9.49001 4.95997 9.32001 4.65997C7.94001 4.89997 6.63001 5.31997 5.40001 5.88997C2.92001 9.62997 2.25001 13.28 2.58001 16.87C4.23001 18.1 5.82001 18.84 7.39001 19.33C7.78001 18.8 8.12001 18.23 8.42001 17.64C7.85001 17.43 7.31001 17.16 6.80001 16.85C6.94001 16.75 7.07001 16.64 7.20001 16.54C10.33 18 13.72 18 16.81 16.54C16.94 16.65 17.07 16.75 17.21 16.85C16.7 17.16 16.15 17.42 15.59 17.64C15.89 18.23 16.23 18.8 16.62 19.33C18.19 18.84 19.79 18.1 21.43 16.87C21.82 12.7 20.76 9.08997 18.61 5.88997H18.59ZM8.84001 14.67C7.90001 14.67 7.13001 13.8 7.13001 12.73C7.13001 11.66 7.88001 10.79 8.84001 10.79C9.80001 10.79 10.56 11.66 10.55 12.73C10.55 13.79 9.80001 14.67 8.84001 14.67ZM15.15 14.67C14.21 14.67 13.44 13.8 13.44 12.73C13.44 11.66 14.19 10.79 15.15 10.79C16.11 10.79 16.87 11.66 16.86 12.73C16.86 13.79 16.11 14.67 15.15 14.67Z" fill="#fff" />
             </svg>
           </div>
-          <span className="whitespace-nowrap opacity-0 group-hover:opacity-100 duration-300 delay-75 capitalize text-slate-300">Vào discord đi</span>
+          <span className={`whitespace-nowrap ${showSidebar ? 'opacity-100' : 'opacity-0'} duration-250 delay-75 capitalize text-slate-300`}>Vào discord đi</span>
         </div>
       </aside>
-      <div className="fixed left-[52px] top-0 z-[1000] flex items-center flex-1 justify-between px-[17px] py-[10px] bg-[#1a3759] border-b border-[#4d647e] w-[calc(100%_-_52px)] top-nav-client">
-        <div className="hidden max-[600px]:block">
-          Wuthering88
+      <div className="w-full h-full flex flex-col">
+        <div className="flex items-center justify-between px-[17px] py-[10px] bg-[#1a3759] border-b border-[#4d647e] w-full">
+          <div className="hidden max-[600px]:block">
+            Wuthering88
+          </div>
+          <button onClick={onClickChangeStateSidebar} className="cursor-pointer pointer-events-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+              <path d="M4 6H20M4 12H20M4 18H20" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
         </div>
-        <button className="cursor-pointer pointer-events-auto">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
-            <path d="M4 6H20M4 12H20M4 18H20" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
+        <div ref={refParentElement} className="flex-1 overflow-auto flex justify-center items-start">
+          {children}
+          {refParentElement && <ScrollTopIcon key={'reference-state' + stateShowIcon} onClick={onClickScrollToTop} stateShowIcon={stateShowIcon} />}
+        </div>
       </div>
     </div>
   )
 }
-
-const navItems = [
-  {
-    title: "Home",
-    url: "/",
-    icon: Home,
-    active: false,
-  },
-  {
-    title: "Characters",
-    url: "/characters",
-    icon: Users,
-    active: false,
-  },
-  {
-    title: "Guides",
-    url: "#",
-    icon: Book,
-    active: false,
-  },
-
-  // {
-  //   title: "Notifications",
-  //   url: "#",
-  //   icon: Bell,
-  //   active: false,
-  // },
-  // {
-  //   title: "Community",
-  //   url: "#",
-  //   icon: Users,
-  //   active: false,
-  // },
-  // {
-  //   title: "Settings",
-  //   url: "#",
-  //   icon: Settings,
-  //   active: false,
-  // },
-]
-
 

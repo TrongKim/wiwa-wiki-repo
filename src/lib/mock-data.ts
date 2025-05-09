@@ -296,7 +296,7 @@ export const charactersGuide = [
   {
     id: 3,
     name: "Aloy",
-    image: "/placeholder.svg?height=128&width=128",
+    image: "/characters/avatar/shorekeeper.png",
     quickGuideRating: 4.5,
     extendedGuideRating: 2.4,
     weaponType: ECharacterWeaponType.SWORD,
@@ -305,7 +305,7 @@ export const charactersGuide = [
   {
     id: 4,
     name: "Amber",
-    image: "/placeholder.svg?height=128&width=128",
+    image: "/characters/avatar/shorekeeper.png",
     quickGuideRating: 5.4,
     extendedGuideRating: 2.6,
     weaponType: ECharacterWeaponType.SWORD,
@@ -314,7 +314,7 @@ export const charactersGuide = [
   {
     id: 5,
     name: "Anemo Traveler",
-    image: "/placeholder.svg?height=128&width=128",
+    image: "/characters/avatar/shorekeeper.png",
     quickGuideRating: 4.2,
     extendedGuideRating: 3.0,
     weaponType: ECharacterWeaponType.BROAD_BLADE,
@@ -323,7 +323,7 @@ export const charactersGuide = [
   {
     id: 6,
     name: "Arlecchino",
-    image: "/placeholder.svg?height=128&width=128",
+    image: "/characters/avatar/shorekeeper.png",
     quickGuideRating: 5.1,
     extendedGuideRating: 4.3,
     weaponType: ECharacterWeaponType.RECTIFIER,
@@ -350,7 +350,7 @@ export const charactersGuide = [
   {
     id: 9,
     name: "Aloy",
-    image: "/placeholder.svg?height=128&width=128",
+    image: "/characters/avatar/shorekeeper.png",
     quickGuideRating: 4.5,
     extendedGuideRating: 2.4,
     weaponType: ECharacterWeaponType.SWORD,
@@ -359,7 +359,7 @@ export const charactersGuide = [
   {
     id: 10,
     name: "Amber",
-    image: "/placeholder.svg?height=128&width=128",
+    image: "/characters/avatar/shorekeeper.png",
     quickGuideRating: 5.4,
     extendedGuideRating: 2.6,
     weaponType: ECharacterWeaponType.SWORD,
@@ -368,7 +368,7 @@ export const charactersGuide = [
   {
     id: 11,
     name: "Anemo Traveler",
-    image: "/placeholder.svg?height=128&width=128",
+    image: "/characters/avatar/shorekeeper.png",
     quickGuideRating: 4.2,
     extendedGuideRating: 3.0,
     weaponType: ECharacterWeaponType.BROAD_BLADE,
@@ -377,7 +377,7 @@ export const charactersGuide = [
   {
     id: 12,
     name: "Arlecchino",
-    image: "/placeholder.svg?height=128&width=128",
+    image: "/characters/avatar/shorekeeper.png",
     quickGuideRating: 5.1,
     extendedGuideRating: 4.3,
     weaponType: ECharacterWeaponType.RECTIFIER,

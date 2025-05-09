@@ -14,3 +14,8 @@ export enum ECharacterElementType {
     FUSION = 'Fu',
     AERO = 'ae'
 }
+
+export enum ECharacterRare {
+    FOUR_STAR = 'R4',
+    FIVE_STAR = 'R5'
+}

@@ -27,7 +27,7 @@ export default function SearchGuide() {
             </div>
 
             {/* Search form */}
-            <form onSubmit={handleSearch} className="relative p-4 outline-0 w-full flex justify-center">
+            <form onSubmit={handleSearch} className="relative p-4 outline-0 w-full flex justify-center max-[260px]:w-auto">
                 <div className="relative flex items-center justify-center bg-black/90 rounded-full w-[60%] px-2 pr-4 max-[600px]:w-full">
                     <div className="text-gray-400">
                         <Search size={20} />
@@ -37,7 +37,8 @@ export default function SearchGuide() {
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         placeholder="Search..."
-                        className="flex-1 py-3 pl-2 pr-1 text-white border-none focus:outline-none"
+                        className="flex-1 py-3 pl-2 pr-1 text-white border-none focus:outline-none max-[240px]:w-[inherit]"
+
                     />
                 </div>
             </form>
