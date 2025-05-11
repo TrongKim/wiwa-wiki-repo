@@ -31,9 +31,11 @@ export default function RootLayout({
         >
           <div className="flex min-h-screen justify-center">
             <Sidebar>
-              <main className="flex-1 transition-all duration-300 ease-in-out max-w-[1100px]">
-                <div className="max-[601px]:ml-0 p-4 max-[1230px]:pr-17 max-[1230px]:pl-17 max-[421px]:pr-2 max-[421px]:pl-2 max-[421px]:box-border mt-[52px] max-[301px]:w-full">
-                  {children}
+              <main className="flex-1 transition-all duration-300 ease-in-out flex flex-col items-center">
+                <div className="max-w-[1100px] w-full">
+                  <div className="max-[601px]:ml-0 p-4 max-[1230px]:pr-17 max-[1230px]:pl-17 max-[421px]:pr-2 max-[421px]:pl-2 max-[421px]:box-border mt-[52px] max-[301px]:w-full">
+                    {children}
+                  </div>
                 </div>
                 <Footer />
               </main>

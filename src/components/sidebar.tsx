@@ -33,14 +33,18 @@ export function Sidebar({
     switch (pathname) {
       case '/':
         setActiveRouteIndex(0);
+        setShowSidebar(false)
         break;
       case '/characters':
+        setShowSidebar(false)
         setActiveRouteIndex(1);
         break;
       case '/guides':
+        setShowSidebar(false)
         setActiveRouteIndex(2);
         break;
       default:
+        setShowSidebar(false);
         setActiveRouteIndex(-1);
     }
   }, [pathname]);
@@ -56,9 +60,10 @@ export function Sidebar({
     setShowSidebar(!showSidebar);
   }
 
+
   return (
     <div className="flex items-start w-full h-full nav-side-bar-container fixed top-0 left-0 z-1000">
-      <aside className={`h-full bg-[#1a3759] border-[#4d647e] border-r flex flex-col transition-all duration-300 group max-[600px]:hidden ${showSidebar ? 'w-64' : 'w-12'}`}>
+      <aside className={`h-full bg-[#1a3759] border-[#4d647e] border-r flex flex-col transition-all origin-left max-[600px]:scale-x-0 duration-300 group top-0 left-0 z-1000 ${showSidebar ? 'w-64 max-[600px]:fixed max-[600px]:scale-x-100' : 'w-12 max-[600px]:invisible max-[600px]:absolute'}`}>
         <div className="p-4 flex items-center h-fit pt-[10px]">
           <h1 className={`text-xl font-bold transition-opacity duration-300 absolute ${showSidebar ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
             Resonator
@@ -152,6 +157,7 @@ export function Sidebar({
           {refParentElement && <ScrollTopIcon key={'reference-state' + stateShowIcon} onClick={onClickScrollToTop} stateShowIcon={stateShowIcon} />}
         </div>
       </div>
+      <button onClick={() => setShowSidebar(false)} className={`fixed top-0 left-0 w-full h-[100vh] z-999 bg-[#0000005c] transition-all duration-250 opacity-0 invisible ${showSidebar ? 'max-[600px]:opacity-100 max-[600px]:visible' : ''}`}></button>
     </div>
   )
 }

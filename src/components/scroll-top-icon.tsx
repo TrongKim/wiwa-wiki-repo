@@ -10,7 +10,6 @@ export function ScrollTopIcon({ stateShowIcon, onClick }: Props) {
     const onClickScrollTop = (): void => {
         if (!onClick) return;
         onClick();
-        
     }
 
     return (

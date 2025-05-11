@@ -7,7 +7,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { cn } from "@/lib/utils"
 import Image from 'next/image'
 import { ECharacterElementType, ECharacterRare, ECharacterWeaponType } from "@/lib/enum"
-import { Filter } from "lucide-react"
 
 interface IFilter {
     rarity: string;
@@ -31,32 +30,17 @@ interface IFilterT {
 }
 
 interface Props {
-    isOpen: boolean;
-    onClickChangeState: (value: boolean) => void;
+    readonly isOpen: boolean;
+    readonly onClickChangeState: (value: boolean) => void;
 }
 
 export default function FilterPopup({ isOpen, onClickChangeState }: Props) {
-    const [filters, setFilters] = useState<IFilter>({
-        rarity: "all",
-        type: "all",
-        element: "all",
-        specialStat: "all",
-        region: "all",
-        bodyType: "all",
-    });
     const [filtersT, setFiltersT] = useState<IFilterT>({
         rarity: [],
         type: [],
         element: [],
         bodyType: []
     });
-
-    const handleFilterChange = (category: keyof IFilter, value: string) => {
-        setFilters((prev) => ({
-            ...prev,
-            [category]: prev[category] === value ? "all" : value,
-        }));
-    }
 
     const onClickFilterChange = (category: keyof IFilterT, value: IFilterT[typeof category][number]) => {
         if (category === 'rarity' && isInstanceOfRarity(value, category)) {
@@ -99,12 +83,12 @@ export default function FilterPopup({ isOpen, onClickChangeState }: Props) {
 
     return (
         <Dialog open={isOpen} onOpenChange={onClickChangeState}>
-            <DialogContent className="sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] p-0 gap-0 bg-[#002147] border-[#334d6c] text-white max-h-[80vh] flex flex-col overflow-hidden pb-[20px]">
+            <DialogContent className="sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] p-0 gap-0 bg-[#002147] border-[#334d6c] text-white max-h-[80vh] flex flex-col overflow-hidden">
                 <DialogHeader className="p-4 border-b border-[#1a3759] flex flex-row items-center justify-between bg-[#1a3759]">
-                    <DialogTitle className="text-2xl font-bold text-white">Filter</DialogTitle>
+                    <DialogTitle className="text-2xl font-bold text-white mx-auto">Filter</DialogTitle>
                 </DialogHeader>
 
-                <div className="p-5 overflow-y-auto">
+                <div className="p-5 py-6 overflow-y-auto">
                     {/* Rarity */}
                     <FilterSection maxLength={2} title="Rarity" filters={filtersT} keyFilter="rarity" handleFilterChange={() => setFiltersT({ ...filtersT, rarity: [] })}>
                         <FilterButton
@@ -183,7 +167,7 @@ export default function FilterPopup({ isOpen, onClickChangeState }: Props) {
                         </FilterButton>
                     </FilterSection>
 
-                    <FilterSection title="Element" filters={filtersT} keyFilter="element" maxLength={6} handleFilterChange={() => setFiltersT({ ...filtersT, element: [] })}>
+                    <FilterSection title="Element" filters={filtersT} notMb={true} keyFilter="element" maxLength={6} handleFilterChange={() => setFiltersT({ ...filtersT, element: [] })}>
                         <FilterButton
                             active={filtersT.element.some(item => item.code === ECharacterElementType.AERO)}
                             onClick={() => onClickFilterChange("element", { code: ECharacterElementType.AERO, name: 'aero' })}
@@ -273,11 +257,12 @@ interface FilterSectionProps {
     readonly handleFilterChange: (valueOne: keyof IFilterT, value: IFilterT[typeof valueOne][]) => void
     readonly filters: IFilterT
     readonly maxLength: number
+    readonly notMb?: boolean
 }
 
-function FilterSection({ title, keyFilter, children, filters, handleFilterChange, maxLength }: FilterSectionProps) {
+function FilterSection({ title, keyFilter, children, filters, notMb, handleFilterChange, maxLength }: FilterSectionProps) {
     return (
-        <div className="mb-6">
+        <div className={notMb ? '': "mb-6"}>
             <div className="flex items-center gap-[10px] mb-2">
                 <h3 className="text-lg font-semibold text-white">{title}</h3>
                 <FilterAllButton
@@ -319,9 +304,9 @@ function FilterAllButton({
         <button
             onClick={onClick}
             className={cn(
-                "px-3 rounded-lg text-sm font-medium transition-all duration-200 flex items-center cursor-pointer pointer-events-auto",
+                "px-3 py-[2px] rounded-lg text-sm font-medium transition-all duration-200 flex items-center cursor-pointer pointer-events-auto",
                 active
-                    ? `bg-[${activeColor}] text-white ring-2 ring-[#667a91] ring-offset-1 ring-offset-[#002147]`
+                    ? `bg-[${activeColor}] text-white bg-[#667a91]`
                     : `bg-[${baseColor}] text-white/90 hover:bg-[#4d647e]`,
                 className,
             )}
@@ -347,7 +332,7 @@ function FilterButton({
             className={cn(
                 `px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center cursor-pointer pointer-events-auto ${fixedWidth ? fixedWidth + ' justify-center' : ''} ${fixedHeight ? ' ' + fixedHeight + ' items-center' : ''}`,
                 active
-                    ? `bg-[${activeColor}] text-white ring-2 ring-[#667a91] ring-offset-1 ring-offset-[#002147]`
+                    ? `bg-[${activeColor}] text-white bg-[#667a91]`
                     : `bg-[${baseColor}] text-white/90 hover:bg-[#4d647e]`,
                 className,
             )}

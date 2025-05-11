@@ -1,18 +1,18 @@
 export enum ECharacterWeaponType {
-    RECTIFIER = 'RECTIFIER',
-    SWORD = 'SWORD',
-    GAUNTLETS = 'GAUNTLETS',
-    BROAD_BLADE = 'BROAD BLADE',
-    PISTOLS = 'PISTOLS'
+    RECTIFIER = 'Rectifier',
+    SWORD = 'Sword',
+    GAUNTLETS = 'Gauntlets',
+    BROAD_BLADE = 'Broadblade',
+    PISTOLS = 'Pistols'
 }
 
 export enum ECharacterElementType {
-    GLACIO = 'Gl',
-    SPECTRO = 'Sp',
-    HAVOC = 'Hv',
-    ELECTRO = 'El',
-    FUSION = 'Fu',
-    AERO = 'ae'
+    GLACIO = 'Glacio',
+    SPECTRO = 'Spectro',
+    HAVOC = 'Havoc',
+    ELECTRO = 'Electro',
+    FUSION = 'Fusion',
+    AERO = 'Aero'
 }
 
 export enum ECharacterRare {

@@ -26,7 +26,7 @@ export function Dashboard() {
               <div className="space-y-4 flex-[1] overflow-auto max-h-[368px] pr-2 max-[550px]:flex max-[550px]:flex-wrap">
                 {mockGuides.map((guide) => (
                   <div key={guide.id} className="flex gap-4 p-2 rounded-lg hover:bg-[#334d6c] cursor-pointer pointer-events-auto transition-colors max-[550px]:flex-col max-[550px]:items-center max-[550px]:w-[calc(100%)]">
-                    <div className="relative w-28 h-24 rounded-md overflow-hidden flex-shrink-0 max-[550px]:w-full max-[550px]:h-26">
+                    <div className="relative w-36 h-24 rounded-md overflow-hidden flex-shrink-0 max-[550px]:w-full max-[550px]:h-26">
                       <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
                     </div>
                     <div className="flex-1">
