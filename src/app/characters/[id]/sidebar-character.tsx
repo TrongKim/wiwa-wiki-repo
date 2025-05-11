@@ -42,7 +42,6 @@ export function SidebarCharacter({ resonator }: Props) {
     if (rank === 5) return [1, 2, 3, 4, 5];
     return [1, 2, 3, 4];
   }
-  console.log(resonator);
 
   return (
     <div>

@@ -1,17 +1,19 @@
 'use client'
 import { Card, CardContent } from '@/components/ui/card'
 import React, { useState } from 'react'
-import { cn } from '@/lib/utils';
-import { Slider } from '@/components/ui/slider';
-import { TableStatCharacter } from './table-stat';
-import type { ICharacterDetail } from '@/lib/interface';
-import { BeautifulStat } from './beautiful-stat';
+import { cn } from '@/lib/utils'
+import { Slider } from '@/components/ui/slider'
+import { TableStatCharacter } from './table-stat'
+import type { ICharacterDetail, TDisplayAscension } from '@/lib/interface'
+import { BeautifulStat } from './beautiful-stat'
+import Image from 'next/image'
 
 interface Props {
     readonly resonator: ICharacterDetail;
+    readonly material: TDisplayAscension[];
 }
 
-export function CharacterStat({ resonator }: Props) {
+export function CharacterStat({ resonator, material }: Props) {
     const [levelCap, setLevelCap] = useState<{ level: number, range: 0 | 1 | 2 | 3 | 4 | 5 | 6 }>({ level: 90, range: 6 });
     const [stateShowStat, setStateShowStat] = useState<boolean>(true);
 
@@ -19,7 +21,7 @@ export function CharacterStat({ resonator }: Props) {
         setStateShowStat(!stateShowStat);
     }
 
-    const handleValueLevelCap = (rawValue: number[]): { level: number, range: 0 | 1 | 2 | 3 | 4 | 5 | 6} => {
+    const handleValueLevelCap = (rawValue: number[]): { level: number, range: 0 | 1 | 2 | 3 | 4 | 5 | 6 } => {
         const value = rawValue?.[0] !== undefined ? (Math.floor((rawValue[0] / 100) * 90)) : 90;
         if (value > 40) {
             if (value > 70) {
@@ -38,6 +40,11 @@ export function CharacterStat({ resonator }: Props) {
             }
         } else if (value < 21) return { level: value, range: 0 };
         return { level: value, range: 1 };
+    }
+
+    const getRangeUpgrade = (range: number) => {
+        if (range === 6) return 5;
+        return range;
     }
 
     return (
@@ -91,24 +98,24 @@ export function CharacterStat({ resonator }: Props) {
                         </div>
                     </div>
                     <div className="flex justify-center gap-4 mt-4 mb-4 max-[350px]:flex-wrap">
-                        <div className="bg-[#334d6c] rounded-md p-2 flex flex-col items-center w-20 border border-[#4d647e]">
-                            <div className="text-orange-500 mb-1">★</div>
-                            <span className="text-lg font-bold">60</span>
-                        </div>
-                        <div className="bg-[#334d6c] rounded-md p-2 flex flex-col items-center w-20 border border-[#4d647e]">
-                            <div className="text-yellow-500 mb-1">◆</div>
-                            <span className="text-lg font-bold">6</span>
-                        </div>
-                        <div className="bg-[#334d6c] rounded-md p-2 flex flex-col items-center w-20 border border-[#4d647e]">
-                            <div className="text-red-500 mb-1">♦</div>
-                            <span className="text-lg font-bold">24</span>
-                        </div>
+                        {
+                            (material[getRangeUpgrade(levelCap.range)]?.items ?? []).map((item, index) => {
+                                return (
+                                    <div key={index + (item?.name ?? '') + 'icon upgrade'} className="bg-[#334d6c] rounded-md p-2 flex flex-col items-center w-20 border border-[#4d647e]">
+                                        <div className="text-orange-500 mb-1">
+                                            <Image src={item?.icon ?? ''} width={32} height={32} alt="material" />
+                                        </div>
+                                        <span className="text-lg font-bold">{item.quantity}</span>
+                                    </div>
+                                )
+                            })
+                        }
                     </div>
-                    <div className="flex items-center justify-center gap-2">
+                    {/* <div className="flex items-center justify-center gap-2">
                         <span>Required:</span>
                         <span className="text-yellow-400">●</span>
                         <span className="text-yellow-400 font-bold">120000</span>
-                    </div>
+                    </div> */}
                 </CardContent>
             </Card>
         </div>

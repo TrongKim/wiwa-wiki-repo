@@ -23,25 +23,18 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-[#002147] text-white antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div className="flex min-h-screen justify-center">
-            <Sidebar>
-              <main className="flex-1 transition-all duration-300 ease-in-out flex flex-col items-center">
-                <div className="max-w-[1100px] w-full">
-                  <div className="max-[601px]:ml-0 p-4 max-[1230px]:pr-17 max-[1230px]:pl-17 max-[421px]:pr-2 max-[421px]:pl-2 max-[421px]:box-border mt-[52px] max-[301px]:w-full">
-                    {children}
-                  </div>
+        <div className="flex min-h-screen justify-center">
+          <Sidebar>
+            <main className="flex-1 transition-all duration-300 ease-in-out flex flex-col items-center">
+              <div className="max-w-[1100px] w-full">
+                <div className="max-[601px]:ml-0 p-4 max-[1230px]:pr-17 max-[1230px]:pl-17 max-[421px]:pr-2 max-[421px]:pl-2 max-[421px]:box-border mt-[52px] max-[301px]:w-full">
+                  {children}
                 </div>
-                <Footer />
-              </main>
-            </Sidebar>
-          </div>
-        </ThemeProvider>
+              </div>
+              <Footer />
+            </main>
+          </Sidebar>
+        </div>
       </body>
     </html>
   );

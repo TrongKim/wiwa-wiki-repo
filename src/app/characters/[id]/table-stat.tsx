@@ -67,10 +67,10 @@ function DialogTableDetailStat({ stats, isOpen, onClickChangeState }: { readonly
                         <table className="w-full max-w-2xl text-sm text-center rounded-lg overflow-hidden">
                             <thead className="bg-[#1a3759] text-white">
                                 <tr>
-                                    <th className="p-3">Level</th>
-                                    <th className="p-3">HP</th>
-                                    <th className="p-3">Attack</th>
-                                    <th className="p-3">Defense</th>
+                                    <th className="p-3 max-[364px]:p-1">Level</th>
+                                    <th className="p-3 max-[364px]:p-1">HP</th>
+                                    <th className="p-3 max-[364px]:p-1">Attack</th>
+                                    <th className="p-3 max-[364px]:p-1">Defense</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -81,10 +81,10 @@ function DialogTableDetailStat({ stats, isOpen, onClickChangeState }: { readonly
                                                 key={indexStr.toString() + i + groupKey + value.Life}
                                                 className={i % 2 === 0 ? 'bg-[#334d6c]' : 'bg-[#4d647e]'}
                                             >
-                                                <td className="p-3">{indexStr}</td>
-                                                <td className="p-3">{Math.floor(value.Life)}</td>
-                                                <td className="p-3">{Math.floor(value.Atk)}</td>
-                                                <td className="p-3">{Math.floor(value.Def)}</td>
+                                                <td className="p-3 max-[364px]:p-1">{indexStr}</td>
+                                                <td className="p-3 max-[364px]:p-1">{Math.floor(value.Life)}</td>
+                                                <td className="p-3 max-[364px]:p-1">{Math.floor(value.Atk)}</td>
+                                                <td className="p-3 max-[364px]:p-1">{Math.floor(value.Def)}</td>
                                             </tr>
                                         ))
                                     )}
