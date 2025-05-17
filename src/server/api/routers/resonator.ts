@@ -19,17 +19,6 @@ export const resonatorRouter = createTRPCRouter({
         .input(z.object({ id: z.number() }))
         .query(async ({ input }) => {
             const { data: resonator }: PostgrestMaybeSingleResponse<ICharacterDetail> = await supabase.from('resonators').select('*').eq('id', input.id).single();
-            // if (!resonator) return null;
-            const { datas }: any = await supabase
-                .from("items")
-                .select("*")
-                .in("tag", [
-                    "Resonator Ascension Material",
-                    "Weapon and Skill Material",
-                    "Ascension Material",
-                    "Universal Currency",
-                ]);
-            console.log(datas);
             return resonator;
         }),
     

@@ -1,0 +1,164 @@
+.ProseMirror {
+  outline: none;
+}
+
+.ProseMirror p {
+  margin-bottom: 1em;
+}
+
+.ProseMirror h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+  border-bottom: 1px solid #4b5563;
+  padding-bottom: 0.25em;
+}
+
+.ProseMirror h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+.ProseMirror ul {
+  list-style-type: disc;
+  padding-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal;
+  padding-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.375rem;
+}
+
+.ProseMirror table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  margin: 1em 0;
+  overflow: hidden;
+}
+
+.ProseMirror th {
+  background-color: #374151;
+  font-weight: bold;
+  text-align: left;
+  padding: 0.5rem;
+}
+
+.ProseMirror td {
+  border-top: 1px solid #4b5563;
+  padding: 0.5rem;
+}
+
+.ProseMirror blockquote {
+  border-left: 3px solid #4b5563;
+  padding-left: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  font-style: italic;
+}
+
+.ProseMirror hr {
+  border: none;
+  border-top: 2px solid #4b5563;
+  margin: 2em 0;
+}
+
+.ProseMirror .tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+.ProseMirror .tag-blue {
+  background-color: rgba(30, 64, 175, 0.5);
+  color: #bfdbfe;
+}
+
+.ProseMirror .tag-yellow {
+  background-color: rgba(161, 98, 7, 0.5);
+  color: #fef08a;
+}
+
+.ProseMirror .tag-green {
+  background-color: rgba(22, 101, 52, 0.5);
+  color: #bbf7d0;
+}
+
+.ProseMirror .tag-red {
+  background-color: rgba(153, 27, 27, 0.5);
+  color: #fecaca;
+}
+
+.ProseMirror .tag-purple {
+  background-color: rgba(88, 28, 135, 0.5);
+  color: #e9d5ff;
+}
+
+.ProseMirror .tag-orange {
+  background-color: rgba(154, 52, 18, 0.5);
+  color: #fed7aa;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: #6b7280;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.ProseMirror [style*="color"] {
+  color: var(--text-color);
+}
+
+.ProseMirror .has-text-color {
+  color: attr(data-color);
+}
+
+/* Add specific color classes for common colors */
+.ProseMirror .text-red {
+  color: #ef4444;
+}
+
+.ProseMirror .text-blue {
+  color: #3b82f6;
+}
+
+.ProseMirror .text-green {
+  color: #22c55e;
+}
+
+.ProseMirror .text-yellow {
+  color: #eab308;
+}
+
+.ProseMirror .text-purple {
+  color: #a855f7;
+}
+
+.ProseMirror .text-orange {
+  color: #f97316;
+}
