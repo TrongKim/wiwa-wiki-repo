@@ -153,8 +153,10 @@ export function Sidebar({
           </button>
         </div>
         <div ref={refParentElement} className="flex-1 overflow-auto flex justify-center items-start">
-          {children}
-          {refParentElement && <ScrollTopIcon key={'reference-state' + stateShowIcon} onClick={onClickScrollToTop} stateShowIcon={stateShowIcon} />}
+            {children}
+            {refParentElement && <ScrollTopIcon key={'reference-state' + stateShowIcon} onClick={onClickScrollToTop} stateShowIcon={stateShowIcon} />}
+          {/* <TRPCReactProvider>
+          </TRPCReactProvider> */}
         </div>
       </div>
       <button onClick={() => setShowSidebar(false)} className={`fixed top-0 left-0 w-full h-[100vh] z-999 bg-[#0000005c] transition-all duration-250 opacity-0 invisible ${showSidebar ? 'max-[600px]:opacity-100 max-[600px]:visible' : ''}`}></button>

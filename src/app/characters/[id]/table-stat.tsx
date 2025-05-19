@@ -12,7 +12,7 @@ export function TableStatCharacter({ stats }: Props) {
 
     const getLastChild = (group: THashIndexStatList): { key: number, value: IStatCharacter | undefined } | undefined => {
         const keys = Object.keys(group);
-        const lastKey = Number(keys[keys.length - 1]);
+        const lastKey = Number(keys[keys.length - 1]) as keyof THashIndexStatList;
         if (!lastKey) return;
         return { key: lastKey, value: group[lastKey] };
     };

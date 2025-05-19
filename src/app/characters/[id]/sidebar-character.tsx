@@ -21,10 +21,10 @@ export function SidebarCharacter({ resonator }: Props) {
       case 'profile':
         setIndexTab(0);
         break;
-      case 'talent':
+      case 'forte':
         setIndexTab(1);
         break;
-      case '/guides':
+      case 'resonance-chain':
         setIndexTab(0);
         break;
       default:
@@ -34,7 +34,7 @@ export function SidebarCharacter({ resonator }: Props) {
 
   const onClickChangeIndexTab = (index: number, mode: string) => {
     setIndexTab(index);
-    const newUrl = `${window.location.pathname}?mode=${mode}`;
+    const newUrl = `${window.location.pathname}?mode=${mode.replace(' ', '-')}`;
     router.replace(newUrl, { scroll: false });
   }
 
@@ -67,7 +67,7 @@ export function SidebarCharacter({ resonator }: Props) {
         <CardContent className="p-3 flex flex-col">
           <div className="p-0">
             <nav>
-              {["Profile", "Talent", "Constellation", "Ascension", "Guides", "Story", "Quotes"].map((item, index) => (
+              {["Profile", "Forte", "Resonance Chain", "Guides", "Back Story", "Voice"].map((item, index) => (
                 <button
                   onClick={() => onClickChangeIndexTab(index, item.toLowerCase())}
                   key={item}

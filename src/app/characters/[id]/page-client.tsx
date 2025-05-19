@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { SidebarCharacter } from "./sidebar-character";
 import { ResonatorOverview } from './resonator-overview';
 import { useSearchParams } from 'next/navigation';
@@ -28,10 +28,10 @@ export const PageCharacterDetailClient = ({ resonator, items: itemsMaterial }: P
             case 'profile':
                 setPageDetail(<ResonatorOverview resonator={resonator} />);
                 break;
-            case 'talent':
+            case 'forte':
                 setPageDetail(<CharacterTalent />);
                 break;
-            case '/guides':
+            case 'resonance-chain':
                 setPageDetail(<ResonatorOverview resonator={resonator} />);
                 break;
             default:
@@ -48,7 +48,9 @@ export const PageCharacterDetailClient = ({ resonator, items: itemsMaterial }: P
             <Image src={resonator.card} width={500} height={100} alt={resonator.name} className="h-auto w-full opacity-[0.7] hidden fixed top-1/2 left-1/2 z-[-1] -translate-1/2 -mt-10 max-[600px]:block" />
             {/* Right - Stats and Details */}
             <div className="flex-5">
-                {pageDetail}
+                <Suspense fallback={<div>Đang tải kỹ năng...</div>}>
+                    {pageDetail}
+                </Suspense>
             </div>
         </div>
     )

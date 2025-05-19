@@ -6,7 +6,7 @@ import {
     publicProcedure,
 } from "@/server/api/trpc";
 import { supabase } from "@/utils/supabase/server";
-import type { ICharacter, ICharacterDetail } from "@/lib/interface";
+import type { ICharacter, ICharacterDetail, IResonatorSkill } from "@/lib/interface";
 import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js";
 
 export const resonatorRouter = createTRPCRouter({
@@ -21,5 +21,11 @@ export const resonatorRouter = createTRPCRouter({
             const { data: resonator }: PostgrestMaybeSingleResponse<ICharacterDetail> = await supabase.from('resonators').select('*').eq('id', input.id).single();
             return resonator;
         }),
-    
+    getSkill: publicProcedure
+        .input(z.object({ id: z.number() }))
+        .query(async ({ input }) => {
+            console.log(input);
+            const { data: skills }: PostgrestMaybeSingleResponse<IResonatorSkill[]> = await supabase.from('skill').select('*').eq('resonator_id', input.id);
+            return skills;
+        }),
 });

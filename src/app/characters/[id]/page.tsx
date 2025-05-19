@@ -2,7 +2,6 @@ import type React from "react"
 import { PageCharacterDetailClient } from "./page-client";
 import { api } from "@/trpc/server";
 
-
 interface PageProps {
   readonly params: { id: string };
 }

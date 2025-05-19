@@ -45,6 +45,35 @@ export interface ICharacterDetail extends ICharacter {
   ascensions: IHashIndex<RangeNumberArray<0, 7>, IKeyValue[]>;
 }
 
+export interface IResonatorSkillAttribute {
+  attributeId: string;
+  attributeName: string;
+  values: string[];
+  Description: string;
+}
+
+export interface ISkillConsume {
+  Key: number;
+  Value: number;
+  Icon: string;
+  QualityId: number;
+}
+export interface IResonatorSkillConsume {
+  SkillId: number;
+  Consume: ISkillConsume[];
+}
+
+export interface IResonatorSkill {
+  id: string;
+  resonator_id: string;
+  type: string;
+  name: string;
+  description: string;
+  icon: string;
+  attributes: IResonatorSkillAttribute[];
+  consumes: IResonatorSkillConsume[];
+}
+
 export interface IKeyValue {
   Key: number;
   Value: number;
