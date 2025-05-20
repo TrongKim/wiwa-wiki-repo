@@ -50,7 +50,7 @@ export function ResonatorOverview({ resonator }: Props) {
             </div>
             <div className="max-[600px]:relative">
                 <CharacterStat resonator={resonator} material={ascensionDisplayData} />
-                <Card className="bg-[#1a3759] border-[#4d647e] mb-4 max-w-[335px] max-[875px]:w-full">
+                <Card className="bg-[#1f293780] border-[#374151] mb-4 max-w-[335px] max-[875px]:w-full">
                     <CardContent className="p-6 flex flex-col">
                         <div className="space-y-3">
                             <DetailItem label="Element" value={resonator.element} icon={<ElementIcon element={resonator.element} classCSS="w-5 h-5" />} />

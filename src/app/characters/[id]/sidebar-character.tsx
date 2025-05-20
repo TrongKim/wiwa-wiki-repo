@@ -46,7 +46,7 @@ export function SidebarCharacter({ resonator }: Props) {
   return (
     <div>
       {/* Character name and stars */}
-      <Card className="bg-[#1a3759] border-[#4d647e] mb-4">
+      <Card className="bg-[#1f293780] border-[#374151] mb-4">
         <CardContent className="p-6 flex flex-col">
           <div className="flex items-center gap-2 mb-2">
             <div className="bg-[#334d6c] rounded-full p-1">
@@ -63,7 +63,7 @@ export function SidebarCharacter({ resonator }: Props) {
       </Card>
 
       {/* Navigation menu */}
-      <Card className="bg-[#1a3759] border-[#4d647e] mb-4">
+      <Card className="bg-[#1f293780] border-[#374151] mb-4">
         <CardContent className="p-3 flex flex-col">
           <div className="p-0">
             <nav>
@@ -81,7 +81,7 @@ export function SidebarCharacter({ resonator }: Props) {
         </CardContent>
       </Card>
       {/* Advertisement */}
-      <Card className="bg-[#1a3759] border-[#4d647e] mb-4">
+      <Card className="bg-[#1f293780] border-[#374151] mb-4">
         <CardContent className="p-6 flex flex-col">
           <h2 className="text-xl mb-2">Advertisement</h2>
           <div className="bg-[#334d6c] rounded p-2 flex items-center justify-between border border-[#4d647e]">

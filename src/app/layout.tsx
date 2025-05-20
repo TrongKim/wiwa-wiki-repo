@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.className} bg-[#002147] text-white antialiased`}
+        className={`${inter.className} bg-[#0d0d0d] text-gray-200 antialiased`}
       >
         <div className="flex min-h-screen justify-center">
           <Sidebar>

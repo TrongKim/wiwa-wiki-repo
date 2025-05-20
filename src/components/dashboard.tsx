@@ -20,7 +20,7 @@ export function Dashboard() {
       <div className="flex items-stretch gap-6 max-[768px]:flex-col mb-6">
 
         <div className="flex-4">
-          <Card className="bg-[#1a3759] border-[#4d647e]">
+          <Card className="bg-[#1a2234] border-[#4d647e]">
             <CardContent className="p-6 flex flex-col">
               <h2 className="text-xl font-bold mb-4 text-[25px]">What's New</h2>
               <div className="space-y-4 flex-[1] overflow-auto max-h-[368px] pr-2 max-[550px]:flex max-[550px]:flex-wrap">
@@ -48,7 +48,7 @@ export function Dashboard() {
         </div>
 
         <div className="flex-2 h-auto">
-          <Card className="bg-[#1a3759] border-[#4d647e] h-full">
+          <Card className="bg-[#1a2234] border-[#4d647e] h-full">
             <CardContent className="p-6 flex flex-col">
               <h2 className="text-xl font-bold mb-4 text-[25px]">Update</h2>
               <div className="space-y-4 flex-[1] overflow-auto max-h-[368px] pr-2">

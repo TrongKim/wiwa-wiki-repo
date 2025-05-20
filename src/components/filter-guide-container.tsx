@@ -86,7 +86,7 @@ export function FilterGuideContainer() {
                 <CardContent className="p-0">
                     <div className="flex flex-col md:flex-row justify-between gap-[10px]">
                         
-                        <div className="w-fit bg-[#1a3759] p-[5px] border-[#4d647e] border-[1px] rounded-[20px] overflow-hidden max-[1020px]:flex-1 max-[1020px]:w-full">
+                        <div className="w-fit bg-[#1a2234] border-[#4d647e] p-[5px] border-[1px] rounded-[20px] overflow-hidden max-[1020px]:flex-1 max-[1020px]:w-full">
                             <div className="flex items-center  flex-wrap justify-center">
                                 {elements.map((element) => (
                                     <button key={element.name} onClick={() => onSelectElement(element.code)} className={`flex w-[70px] flex-col items-center justify-center gap-2 p-2 cursor-pointer pointer-events-auto rounded-[16px] ${filterByElement?.code === element.code && 'bg-[#334d6c]'}`}>
@@ -101,7 +101,7 @@ export function FilterGuideContainer() {
                             </div>
                         </div>
 
-                        <div className="w-fit bg-[#1a3759] p-[5px] border-[#4d647e] border-[1px] rounded-[20px] overflow-hidden max-[1020px]:flex-1 max-[1020px]:w-full">
+                        <div className="w-fit bg-[#1a2234] border-[#4d647e] p-[5px] border-[1px] rounded-[20px] overflow-hidden max-[1020px]:flex-1 max-[1020px]:w-full">
                             <div className="flex items-center flex-wrap justify-center">
                                 {weapons.map((weapon) => (
                                     <button key={weapon.name} onClick={() => onSelectWeapon(weapon.code)} className={`flex w-[70px] flex-col items-center justify-center gap-2 p-2 cursor-pointer pointer-events-auto rounded-[16px] ${filterByWeapon?.code === weapon.code && 'bg-[#334d6c]'}`}>

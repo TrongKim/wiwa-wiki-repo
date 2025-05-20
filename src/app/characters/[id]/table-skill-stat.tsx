@@ -12,15 +12,19 @@ export const TableSkillStat = ({ skill }: Props) => {
         return url_split[0] + '.png';
     }
 
+    const handleDescription = (description: string) => {
+        return description.replaceAll(`<br><br>`, '<br>').replaceAll('text-3xl', 'text-[17px]');
+    }
+
     return (
-        <div className="p-4 bg-[#334d6c]">
+        <div className="p-4 bg-[#1a2234] border-[#1e2230]">
             {/* Table View */}
             <div className="bg-[#4d647e] rounded-full py-2 px-6 text-center mb-4">
                 <span className="font-bold">Talent Info</span>
             </div>
 
             <div className="mb-4">
-                <div dangerouslySetInnerHTML={{ __html: skill.description }}>
+                <div dangerouslySetInnerHTML={{ __html: handleDescription(skill.description) }}>
                 </div>
             </div>
 

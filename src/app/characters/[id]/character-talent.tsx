@@ -25,25 +25,19 @@ export default function CharacterTalent() {
     getSkill();
   }, [])
 
-  const handleValueLevelCap = (rawValue?: number[]): number => {
-    const value = rawValue?.[0] !== undefined ? (Math.floor((rawValue[0] / 100) * 9)) : 9;
-    return value;
-  };
-
-  const handleWrongURL = (url: string): string => {
-    const url_split = url.split('.');
-    return url_split[0] + '.png';
+  const handleDescription = (description: string) => {
+    return description.replaceAll(`<br><br>`, '<br>').replaceAll('text-3xl', 'text-[17px]');
   }
 
   return (
-    <div className="min-h-screen bg-[#002147] text-white font-sans p-4">
+    <div className="min-h-screen bg-[#1f293780] border-[#374151] border rounded-[20px] text-white font-sans p-4">
       <div className="container mx-auto">
         <h1 className="text-4xl font-bold mb-6">Forte</h1>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {
             skills.map((skill: IResonatorSkill, index: number) => {
               return (
-                <div key={skill.id + index} className={`bg-[#1a3759] rounded-lg overflow-hidden border border-[#4d647e] col-span-2`}>
+                <div key={skill.id + index + Math.random()} className={`bg-[#1a2234] border-[#1e2230] rounded-lg overflow-hidden border col-span-2`}>
                   {/* Talent Header */}
                   <div className="p-4 flex items-center gap-4">
                     <div className="w-16 h-16 bg-[#334d6c] rounded-full flex items-center justify-center border-2 border-[#667a91]">
@@ -56,7 +50,7 @@ export default function CharacterTalent() {
 
                   {/* Talent Content */}
                   {!showForeignBlazeTable ? (
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 bg-[#334d6c]">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 bg-[#1a2234] border-[#1e2230]">
                       {/* Left Column - Talent Info */}
                       <div>
                         <div className="bg-[#4d647e] rounded-full py-2 px-6 text-center mb-4">
@@ -66,7 +60,7 @@ export default function CharacterTalent() {
                         <div className="space-y-6">
                           <div>
                             <h3 className="text-yellow-300 font-bold mb-1">{skill.type}</h3>
-                            <div dangerouslySetInnerHTML={{ __html: skill.description }}></div>
+                            <div dangerouslySetInnerHTML={{ __html: handleDescription(skill.description) }}></div>
                           </div>
                         </div>
                       </div>
@@ -81,7 +75,7 @@ export default function CharacterTalent() {
 
                   {/* Toggle Buttons */}
                   {
-                    skill.attributes.length > 0 && <div className="p-4 bg-[#1a3759] flex gap-4">
+                    skill.attributes.length > 0 && <div className="p-4 bg-[#1a2234] border-[#1e2230] flex gap-4">
                       <label className="flex items-center gap-2 cursor-pointer">
                         <input
                           type="checkbox"
