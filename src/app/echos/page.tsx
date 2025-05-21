@@ -9,13 +9,14 @@ export const metadata = {
 
 export default async function EchosPage() {
     const echos = await api.echo.getAll();
+    const echoSets = await api.echoSet.getAll();
+
     return (
         <main className="flex-1 transition-all duration-300 ease-in-out pb-4">
-            <div className="min-h-screen bg-[#1a2234] border-[#4d647e] text-white rounded-[20px] max-[421px]:mx-auto">
+            <div className="min-h-screen bg-[#1f293780] border-[#374151] border text-white rounded-[20px] max-[421px]:mx-auto">
                 <div className="container mx-auto px-4 py-6">
-                    <EchoHeader />
                     {
-                        echos && echos.length > 0 && <EchoGrid echos={echos} />
+                        echos && echos.length > 0 && <EchoGrid echoSets={echoSets ?? []} echos={echos} />
                     }
                 </div>
             </div>

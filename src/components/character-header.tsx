@@ -3,13 +3,40 @@ import { Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import FilterPopup from "./filter-popup"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import type { IFilterT } from "@/lib/interface"
 
-export function CharacterHeader() {
-  const [isOpenFilterPopup, setIsOpenFilterPopup] = useState<boolean>(false);
-  
+interface Props {
+  onChangeFilter: (value: IFilterT & { name?: string; }) => void;
+}
+
+export function CharacterHeader({ onChangeFilter }: Props) {
+  const [isOpenFilterPopup, setIsOpenFilterPopup] = useState<boolean>(false)
+  const [searchString, setSearchString] = useState<string | undefined>(undefined)
+  const [filter, setFilter] = useState<IFilterT>({
+    rarity: [],
+    type: [],
+    element: [],
+    bodyType: [],
+    rarity_weapon: [],
+    echo: []
+  });
+
+  useEffect(() => {
+    onChangeFilter({
+      ...filter,
+      name: searchString
+    })
+  }, [filter, searchString])
+
   const onClickChangeStateFilterPopup = (value: boolean) => {
     setIsOpenFilterPopup(value);
+  }
+
+  const onChangeInputSearch = (element: React.ChangeEvent<HTMLInputElement>) => {
+    const target = element.target;
+    const value = target.value;
+    setSearchString(value.trim());
   }
 
   return (
@@ -18,7 +45,7 @@ export function CharacterHeader() {
         <h1 className="text-2xl font-bold mb-4">Archive / Characters</h1>
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex">
-           
+
             <Button
               onClick={() => onClickChangeStateFilterPopup(true)}
               variant="outline"
@@ -36,12 +63,13 @@ export function CharacterHeader() {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
             <Input
               placeholder="Search..."
+              onChange={onChangeInputSearch}
               className="pl-10 bg-slate-800 border-slate-700 focus-visible:ring-slate-500 h-10"
             />
           </div>
         </div>
       </div>
-      <FilterPopup isOpen={isOpenFilterPopup} onClickChangeState={onClickChangeStateFilterPopup} />
+      <FilterPopup isOpen={isOpenFilterPopup} onClickChangeState={onClickChangeStateFilterPopup} onChangeFilter={(value) => setFilter(value)} />
     </>
   )
 }

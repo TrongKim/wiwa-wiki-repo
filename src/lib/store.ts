@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { IItem } from "@/lib/interface";
+import type { IEchoSet, IItem } from "@/lib/interface";
 
 type ItemStore = {
   items: IItem[];
@@ -10,3 +10,14 @@ export const useItemStore = create<ItemStore>((set) => ({
   items: [],
   setItems: (items) => set({ items }),
 }));
+
+
+type EchoSetStore = {
+  echosets: IEchoSet[];
+  setEchoSets: (sets: IEchoSet[]) => void;
+}
+
+export const useEchoSetStore = create<EchoSetStore>((set) => ({
+  echosets: [],
+  setEchoSets: (echosets) => set({ echosets }),
+}))

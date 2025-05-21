@@ -1,69 +1,78 @@
-'use client';
+'use client'
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { useEffect, useRef, useState } from "react"
 import './../styles/sidebar.css'
-import { ScrollTopIcon } from "./scroll-top-icon";
-import { usePathname } from "next/navigation";
+import { ScrollTopIcon } from "./scroll-top-icon"
+import { usePathname } from "next/navigation"
+import Image from 'next/image'
 
 export function Sidebar({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
-  const pathname = usePathname();
-  const [activeRouteIndex, setActiveRouteIndex] = useState<number>(-1);
-  const refParentElement = useRef<HTMLDivElement>(null);
-  const [stateShowIcon, setStateShowIcon] = useState<boolean>(false);
-  const [showSidebar, setShowSidebar] = useState<boolean>(false);
+  const pathname = usePathname()
+  const [activeRouteIndex, setActiveRouteIndex] = useState<number>(-1)
+  const refParentElement = useRef<HTMLDivElement>(null)
+  const [stateShowIcon, setStateShowIcon] = useState<boolean>(false)
+  const [showSidebar, setShowSidebar] = useState<boolean>(false)
 
   useEffect(() => {
-    if (!refParentElement) return;
-    const reference = refParentElement.current;
-    if (!reference) return;
+    if (!refParentElement) return
+    const reference = refParentElement.current
+    if (!reference) return
     const toggleVisibility = () => {
-      setStateShowIcon(reference.scrollTop > 300);
-    };
+      setStateShowIcon(reference.scrollTop > 300)
+    }
 
-    reference.addEventListener('scroll', toggleVisibility);
-    return () => reference.removeEventListener('scroll', toggleVisibility);
-  }, []);
+    reference.addEventListener('scroll', toggleVisibility)
+    return () => reference.removeEventListener('scroll', toggleVisibility)
+  }, [])
 
   useEffect(() => {
     switch (pathname) {
       case '/':
-        setActiveRouteIndex(0);
+        setActiveRouteIndex(0)
         setShowSidebar(false)
-        break;
+        break
       case '/characters':
         setShowSidebar(false)
-        setActiveRouteIndex(1);
-        break;
+        setActiveRouteIndex(1)
+        break
       case '/guides':
         setShowSidebar(false)
-        setActiveRouteIndex(2);
-        break;
+        setActiveRouteIndex(2)
+        break
+      case '/weapons':
+        setShowSidebar(false)
+        setActiveRouteIndex(3)
+        break
+      case '/echos':
+        setShowSidebar(false)
+        setActiveRouteIndex(4)
+        break
       default:
-        setShowSidebar(false);
-        setActiveRouteIndex(-1);
+        setShowSidebar(false)
+        setActiveRouteIndex(-1)
     }
-  }, [pathname]);
+  }, [pathname])
 
   const onClickScrollToTop = () => {
-    if (!refParentElement) return;
-    const reference = refParentElement.current;
-    if (!reference) return;
-    reference.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!refParentElement) return
+    const reference = refParentElement.current
+    if (!reference) return
+    reference.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const onClickChangeStateSidebar = () => {
-    setShowSidebar(!showSidebar);
+    setShowSidebar(!showSidebar)
   }
 
 
   return (
     <div className="flex items-start w-full h-full nav-side-bar-container fixed top-0 left-0 z-1000">
-      <aside className={`h-full bg-[#1a3759] border-[#4d647e] border-r flex flex-col transition-all origin-left max-[600px]:scale-x-0 duration-300 group top-0 left-0 z-1000 ${showSidebar ? 'w-64 max-[600px]:fixed max-[600px]:scale-x-100' : 'w-12 max-[600px]:invisible max-[600px]:absolute'}`}>
+      <aside className={`h-full bg-[#1f293780] border-[#374151] border-r flex flex-col transition-all origin-left max-[600px]:scale-x-0 duration-300 group top-0 left-0 z-1000 ${showSidebar ? 'w-64 max-[600px]:fixed max-[600px]:scale-x-100' : 'w-12 max-[600px]:invisible max-[600px]:absolute'}`}>
         <div className="p-4 flex items-center h-fit pt-[10px]">
           <h1 className={`text-xl font-bold transition-opacity duration-300 absolute ${showSidebar ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
             Resonator
@@ -130,6 +139,34 @@ export function Sidebar({
                 </span>
               </Link>
             </li>
+            <li>
+              <Link
+                href="/weapons"
+                className={cn(
+                  "flex items-center p-2 rounded-md hover:bg-slate-700 text-slate-300 hover:text-white transition-colors",
+                  activeRouteIndex === 3 && "bg-slate-700 text-white",
+                )}
+              >
+                <Image src="/weapons_icon/broadblade.png" width={18} height={18} className="min-w-[20px] min-h-[20px]" alt="icon" />
+                <span className={`ml-3 ${showSidebar ? 'opacity-100' : 'opacity-0'} transition-opacity duration-250 whitespace-nowrap overflow-hidden`}>
+                  Weapons
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/echos"
+                className={cn(
+                  "flex items-center p-2 rounded-md hover:bg-slate-700 text-slate-300 hover:text-white transition-colors",
+                  activeRouteIndex === 4 && "bg-slate-700 text-white",
+                )}
+              >
+                <Image src="/echo.png" width={18} height={18} className="min-w-[20px] min-h-[20px]" alt="icon" />
+                <span className={`ml-3 ${showSidebar ? 'opacity-100' : 'opacity-0'} transition-opacity duration-250 whitespace-nowrap overflow-hidden`}>
+                  Echos
+                </span>
+              </Link>
+            </li>
           </ul>
         </nav>
         <div className="p-4 flex w-full overflow-hidden cursor-pointer pointer-events-auto">
@@ -142,7 +179,7 @@ export function Sidebar({
         </div>
       </aside>
       <div className="w-full h-full flex flex-col">
-        <div className="flex items-center justify-between px-[17px] py-[10px] bg-[#1a3759] border-b border-[#4d647e] w-full">
+        <div className="flex items-center justify-between px-[17px] py-[10px] bg-[#1f293780] border-[#374151] border-b w-full">
           <div className="hidden max-[600px]:block">
             Wuthering88
           </div>
@@ -153,10 +190,8 @@ export function Sidebar({
           </button>
         </div>
         <div ref={refParentElement} className="flex-1 overflow-auto flex justify-center items-start">
-            {children}
-            {refParentElement && <ScrollTopIcon key={'reference-state' + stateShowIcon} onClick={onClickScrollToTop} stateShowIcon={stateShowIcon} />}
-          {/* <TRPCReactProvider>
-          </TRPCReactProvider> */}
+          {children}
+          {refParentElement && <ScrollTopIcon key={'reference-state' + stateShowIcon} onClick={onClickScrollToTop} stateShowIcon={stateShowIcon} />}
         </div>
       </div>
       <button onClick={() => setShowSidebar(false)} className={`fixed top-0 left-0 w-full h-[100vh] z-999 bg-[#0000005c] transition-all duration-250 opacity-0 invisible ${showSidebar ? 'max-[600px]:opacity-100 max-[600px]:visible' : ''}`}></button>

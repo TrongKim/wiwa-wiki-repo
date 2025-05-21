@@ -39,10 +39,6 @@ export function ResonatorOverview({ resonator }: Props) {
         )
     }, [resonator.ascensions, items]);
 
-    useEffect(() => {
-        console.log(ascensionDisplayData);
-    }, []);
-
     return (
         <div className="flex items-start justify-between gap-y-[10px] max-[875px]:flex-col max-[875px]:items-center max-[1122px]:flex-wrap max-[1122px]:justify-center max-[600px]:relative">
             <div className="w-fit max-[340px]:w-full max-[600px]:fixed max-[600px]:hidden">

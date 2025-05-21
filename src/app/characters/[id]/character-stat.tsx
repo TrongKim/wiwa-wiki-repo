@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { Slider } from '@/components/ui/slider'
 import { TableStatCharacter } from './table-stat'
-import type { ICharacterDetail, IHashIndex, TDisplayAscension, THashIndexStatList } from '@/lib/interface'
+import type { ICharacterDetail, IStatCharacter, TDisplayAscension, THashIndexStatList } from '@/lib/interface'
 import { BeautifulStat } from './beautiful-stat'
 import Image from 'next/image'
 
@@ -91,7 +91,7 @@ export function CharacterStat({ resonator, material }: Props) {
                             </div>
                             <div className="space-y-3">
                                 {
-                                    stateShowStat ? <BeautifulStat stat={resonator.stats[levelCap.range][levelCap.level as keyof THashIndexStatList]} /> : <TableStatCharacter stats={resonator.stats} />
+                                    stateShowStat ? <BeautifulStat stat={resonator.stats[levelCap.range][levelCap.level as keyof THashIndexStatList<IStatCharacter>]} /> : <TableStatCharacter stats={resonator.stats} />
                                 }
                             </div>
 

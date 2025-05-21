@@ -7,40 +7,49 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 interface Props {
-  readonly resonator: ICharacterDetail;
+  readonly resonator: ICharacterDetail
 }
 
 export function SidebarCharacter({ resonator }: Props) {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const [indexTab, setIndexTab] = useState<number>(-1);
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const [indexTab, setIndexTab] = useState<number>(-1)
 
   useEffect(() => {
-    const mode = searchParams.get('mode');
+    const mode = searchParams.get('mode')
     switch (mode) {
       case 'profile':
-        setIndexTab(0);
-        break;
+        setIndexTab(0)
+        break
       case 'forte':
-        setIndexTab(1);
-        break;
+        setIndexTab(1)
+        break
       case 'resonance-chain':
-        setIndexTab(0);
-        break;
+        setIndexTab(2)
+        break
+      case 'guides':
+        setIndexTab(3)
+        break
+      case 'backstory':
+        setIndexTab(4)
+        break
+      case 'voice':
+        setIndexTab(5)
+        break
       default:
-        setIndexTab(0);
+        setIndexTab(0)
     }
-  }, [searchParams]);
+  }, [searchParams])
 
   const onClickChangeIndexTab = (index: number, mode: string) => {
-    setIndexTab(index);
-    const newUrl = `${window.location.pathname}?mode=${mode.replace(' ', '-')}`;
-    router.replace(newUrl, { scroll: false });
+    setIndexTab(index)
+    const newUrl = `${window.location.pathname}?mode=${mode.replace(' ', '-')}`
+    router.replace(newUrl, { scroll: false })
   }
 
   const handleStar = (rank: number) => {
-    if (rank === 5) return [1, 2, 3, 4, 5];
-    return [1, 2, 3, 4];
+    if (rank === 5) return [1, 2, 3, 4, 5]
+    return [1, 2, 3, 4]
   }
 
   return (
@@ -67,7 +76,7 @@ export function SidebarCharacter({ resonator }: Props) {
         <CardContent className="p-3 flex flex-col">
           <div className="p-0">
             <nav>
-              {["Profile", "Forte", "Resonance Chain", "Guides", "Back Story", "Voice"].map((item, index) => (
+              {["Profile", "Forte", "Resonance Chain", "Guides", "Backstory", "Voice"].map((item, index) => (
                 <button
                   onClick={() => onClickChangeIndexTab(index, item.toLowerCase())}
                   key={item}

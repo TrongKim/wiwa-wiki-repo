@@ -5,7 +5,7 @@ import {
     publicProcedure,
 } from "@/server/api/trpc";
 import { supabase } from "@/utils/supabase/server";
-import type { ICharacterDetail, IWeapon } from "@/lib/interface";
+import type { ICharacterDetail, IWeapon, IWeaponDetail } from "@/lib/interface";
 import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js";
 
 export const weaponRouter = createTRPCRouter({
@@ -17,8 +17,8 @@ export const weaponRouter = createTRPCRouter({
     getDetail: publicProcedure
         .input(z.object({ id: z.number() }))
         .query(async ({ input }) => {
-            const { data: resonator }: PostgrestMaybeSingleResponse<ICharacterDetail> = await supabase.from('resonators').select('*').eq('id', input.id).single();
-            return resonator;
+            const { data: weapon }: PostgrestMaybeSingleResponse<IWeaponDetail> = await supabase.from('weapons').select('*').eq('id', input.id).single();
+            return weapon;
         }),
     
 });

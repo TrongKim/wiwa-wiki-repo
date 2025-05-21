@@ -5,7 +5,7 @@ import { Facebook, Github, Instagram, Linkedin, Twitter } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="bg-[#0A2A52] text-white w-full">
+    <footer className="bg-[#1f293780] border-[#374151] text-white w-full">
       <div className="mx-auto px-20 py-12 max-[500px]:px-6 max-w-[1100px]">
         {/* Top section with logo, links and newsletter */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-8">

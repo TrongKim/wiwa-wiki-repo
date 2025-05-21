@@ -55,7 +55,7 @@ interface CharacterGuideCardProps {
 
 export default function CharacterGuideCard({ character }: CharacterGuideCardProps) {
   return (
-    <div className="bg-[#1a2234] border-[#4d647e] border rounded-xl overflow-hidden flex items-center flex-row p-4 shadow-lg h-[160px]">
+    <div className="bg-[#1f293780] border-[#374151] border rounded-xl overflow-hidden flex items-center flex-row p-4 shadow-lg h-[160px]">
       <div className="relative min-w-12 h-auto flex-shrink-0 rounded-md flex-2">
         <div className="absolute inset-0 flex items-center justify-center">
           <Image src={character.image} alt="character" width={96} height={96} />

@@ -4,15 +4,15 @@ import React, { useState } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
 interface Props {
-    readonly stats?: IAllStat;
+    readonly stats?: IAllStat<IStatCharacter>;
 }
 
 export function TableStatCharacter({ stats }: Props) {
     const [isOpenPopupDetail, setIsOpenPopupDetail] = useState<boolean>(false);
 
-    const getLastChild = (group: THashIndexStatList): { key: number, value: IStatCharacter | undefined } | undefined => {
+    const getLastChild = (group: THashIndexStatList<IStatCharacter>): { key: number, value: IStatCharacter | undefined } | undefined => {
         const keys = Object.keys(group);
-        const lastKey = Number(keys[keys.length - 1]) as keyof THashIndexStatList;
+        const lastKey = Number(keys[keys.length - 1]) as keyof THashIndexStatList<IStatCharacter>;
         if (!lastKey) return;
         return { key: lastKey, value: group[lastKey] };
     };
@@ -55,7 +55,7 @@ export function TableStatCharacter({ stats }: Props) {
     )
 }
 
-function DialogTableDetailStat({ stats, isOpen, onClickChangeState }: { readonly isOpen: boolean, readonly onClickChangeState: (value: boolean) => void; } & Props) {
+function DialogTableDetailStat({ stats, isOpen, onClickChangeState }: { readonly isOpen: boolean; stats?: IAllStat<IStatCharacter>; readonly onClickChangeState: (value: boolean) => void; } & Props) {
     return (
         <Dialog open={isOpen} onOpenChange={onClickChangeState}>
             <DialogContent className="sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] p-0 gap-0 bg-[#002147] border-[#334d6c] text-white max-h-[80vh] flex flex-col overflow-hidden">
@@ -75,7 +75,7 @@ function DialogTableDetailStat({ stats, isOpen, onClickChangeState }: { readonly
                             </thead>
                             <tbody>
                                 {stats &&
-                                    (Object.entries(stats) as Array<[string, THashIndexStatList]>).flatMap(([groupKey, group]) =>
+                                    (Object.entries(stats) as Array<[string, THashIndexStatList<IStatCharacter>]>).flatMap(([groupKey, group]) =>
                                         (Object.entries(group) as Array<[string, IStatCharacter]>).map(([indexStr, value], i) => (
                                             <tr
                                                 key={indexStr.toString() + i + groupKey + value.Life}

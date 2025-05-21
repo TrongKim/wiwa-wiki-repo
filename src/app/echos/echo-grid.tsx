@@ -1,48 +1,68 @@
+'use client'
 import Image from "next/image"
-import type { IEcho } from "@/lib/interface";
+import type { IEcho, IEchoSet, IFilterT } from "@/lib/interface";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { EchoHeader } from "./echo-header";
+import { useEchoSetStore } from "@/lib/store";
 
 interface Props {
   readonly echos: IEcho[];
+  readonly echoSets: IEchoSet[];
 }
-export function EchoGrid({ echos }: Props) {
+export function EchoGrid({ echos, echoSets }: Props) {
+  const [echoFilted, setEchoFilted] = useState<IEcho[]>(echos);
+  const { echosets, setEchoSets } = useEchoSetStore();
 
-  // const handleStar = (rank: number) => {
-  //   if (rank === 5) return [1, 2, 3, 4, 5];
-  //   return [1, 2, 3, 4];
-  // }
+  useEffect(() => {
+    setEchoSets(echoSets);
+  }, []);
+
+  const onChangeFilter = (value: IFilterT & { name?: string }) => {
+    const filtered = echos.filter((echo) => {
+
+      const matchCost =
+        value.echo.length === 0 ||
+        value.echo.some((e) => e.code === echo.intensity);
+      
+      const matchSet =
+        value.set.length === 0 ||
+        value.set.some((e) => echo.set_ids.includes(e.code));
+
+      const matchName =
+        !value.name || echo.name.toLowerCase().includes(value.name.toLowerCase());
+
+      return matchCost && matchName && matchSet;
+    });
+
+    setEchoFilted(filtered);
+  };
   return (
-    <div className="grid grid-cols-2 max-[475px]:grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-      {echos.map((echo) => (
-        <Link
-          href={'/echos/' + echo.id}
-          key={echo.id}
-          className="bg-slate-800/50 rounded-lg overflow-hidden cursor-pointer transition-transform hover:scale-[1.02]"
-        >
-          <div className="relative h-48 sm:h-56 md:h-48">
-            {/* <div className="absolute top-2 left-2 z-10">
+    <>
+      <EchoHeader onChangeFilter={onChangeFilter} />
+      <div className="grid grid-cols-5 max-[260px]:grid-cols-1 max-[360px]:grid-cols-2 max-[690px]:grid-cols-3 max-[760px]:grid-cols-4 lg:grid-cols-7 xl:grid-cols-7 gap-4">
+        {echoFilted.map((echo) => (
+          <Link
+            href={'/echos/' + echo.id}
+            key={echo.id}
+            className="bg-slate-800/50 rounded-lg overflow-hidden cursor-pointer transition-transform hover:scale-[1.02] border border-[#374151]"
+          >
+            <div className="relative h-36 sm:h-56 md:h-36">
+              {/* <div className="absolute top-2 left-2 z-10">
               <ElementIcon element={character.element} />
             </div> */}
-            {/* <div className="absolute top-2 right-2 z-10">
+              {/* <div className="absolute top-2 right-2 z-10">
               <echoIcon type={echo.type} />
             </div> */}
-            <Image src={echo.icon || "/placeholder.svg"} alt={echo.name} fill className="object-cover" />
-            <div className={`absolute bottom-0 left-0 right-0 ${echo.intensity === 'Overlord Class' ? 'bg-[linear-gradient(0deg,_#c9ac67c8_0%,_#c9ac6700_100%)]' : 'bg-[linear-gradient(0deg,_#b567c9c8_0%,_#aa67c900_100%)]'} p-4`}>
-              <h3 className="text-center text-shadow-[#050505b8] text-shadow-lg font-bold">{echo.name}</h3>
-              {/* <div className="flex justify-center mt-1">
-                {handleStar(echo.rarity).map((item, index) => {
-                  return (
-                    <svg key={index + 'icon star detail'} xmlns="http://www.w3.org/2000/svg" width="14" height="14" aria-hidden="true" data-icon="Star" viewBox="0 0 15 15" className="h-5 w-5 fill-current text-yellow-300 drop-shadow-special filter">
-                      <path fill="currentColor" d="M7.5 0C6.429 4.286 5.357 6.429 0 7.5c5.357 1.071 6.429 3.214 7.5 7.5 1.071-4.286 2.143-6.429 7.5-7.5C9.643 6.429 8.571 4.286 7.5 0Z"></path>
-                    </svg>
-                  )
-                })}
-              </div> */}
+              <Image src={echo.icon || "/placeholder.svg"} alt={echo.name} fill className="object-contain" />
+              <div className={`absolute bottom-0 left-0 right-0 p-4`}>
+                <h3 className="text-center text-shadow-[#050505b8] text-[14px] text-shadow-lg font-bold truncate overflow-hidden text-wrap max-h-[48px]">{echo.name}</h3>
+              </div>
             </div>
-          </div>
-        </Link>
-      ))}
-    </div>
+          </Link>
+        ))}
+      </div>
+    </>
   )
 }
 

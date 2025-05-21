@@ -2,10 +2,22 @@ import type { AppRouter } from "@/server/api/root"; // hoặc đường dẫn đ
 import { httpBatchLink, createTRPCClient } from "@trpc/client";
 import superjson from "superjson";
 
+function getBaseUrl() {
+  if (typeof window !== 'undefined') {
+    return '';
+  }
+
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+
+  return 'http://localhost:3000';
+}
+
 export const client = createTRPCClient<AppRouter>({
   links: [
     httpBatchLink({
-      url: 'http://localhost:3000/api/trpc',
+      url: `${getBaseUrl()}/api/trpc`,
       transformer: superjson
     }),
   ],

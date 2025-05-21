@@ -62,7 +62,7 @@ export function WeaponIcon({ type, classCSS }: { readonly type: string; readonly
   }
 
   return (
-    <div className={`flex items-center justify-center rounded-full relative ${colors[type]}  ${classCSS ?? 'h-6 w-6' }`}>
+    <div className={`flex items-center justify-center rounded-full relative ${colors[type]}  ${classCSS ?? 'h-8 w-8' }`}>
       {getIconCase(type)}
     </div>
   )

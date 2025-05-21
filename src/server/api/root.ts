@@ -4,6 +4,7 @@ import { createCallerFactory, createTRPCRouter } from "@/server/api/trpc";
 import { itemRouter } from "./routers/item";
 import { weaponRouter } from "./routers/weapon";
 import { echoRouter } from "./routers/echo";
+import { echoSetRouter } from "./routers/echo-set";
 
 /**
  * This is the primary router for your server.
@@ -15,7 +16,8 @@ export const appRouter = createTRPCRouter({
   resonator: resonatorRouter,
   item: itemRouter,
   weapon: weaponRouter,
-  echo: echoRouter
+  echo: echoRouter,
+  echoSet: echoSetRouter
 });
 
 // export type definition of API

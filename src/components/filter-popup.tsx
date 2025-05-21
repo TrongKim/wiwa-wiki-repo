@@ -1,46 +1,32 @@
 "use client"
 
 import type React from "react"
-
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { cn } from "@/lib/utils"
 import Image from 'next/image'
 import { ECharacterElementType, ECharacterRare, ECharacterWeaponType } from "@/lib/enum"
-
-interface IFilter {
-    rarity: string;
-    type: string;
-    element: string;
-    specialStat: string;
-    region: string;
-    bodyType: string;
-}
-
-interface TFilter<T> {
-    code: T | 0,
-    name: string;
-}
-
-interface IFilterT {
-    rarity: TFilter<ECharacterRare>[];
-    type: TFilter<ECharacterWeaponType>[];
-    element: TFilter<ECharacterElementType>[];
-    bodyType: TFilter<2 | 3 | 4>[];
-}
+import type { IFilterT, TFilter } from "@/lib/interface"
+import { FilterButton, FilterSection } from "./ui/filter-button"
 
 interface Props {
     readonly isOpen: boolean;
     readonly onClickChangeState: (value: boolean) => void;
+    readonly onChangeFilter: (filter: IFilterT) => void;
 }
 
-export default function FilterPopup({ isOpen, onClickChangeState }: Props) {
+export default function FilterPopup({ isOpen, onClickChangeState, onChangeFilter }: Props) {
     const [filtersT, setFiltersT] = useState<IFilterT>({
         rarity: [],
         type: [],
         element: [],
-        bodyType: []
+        bodyType: [],
+        rarity_weapon: [],
+        echo: []
     });
+
+    useEffect(() => {
+        onChangeFilter({...filtersT})
+    }, [filtersT]);
 
     const onClickFilterChange = (category: keyof IFilterT, value: IFilterT[typeof category][number]) => {
         if (category === 'rarity' && isInstanceOfRarity(value, category)) {
@@ -247,97 +233,5 @@ export default function FilterPopup({ isOpen, onClickChangeState }: Props) {
                 </div>
             </DialogContent>
         </Dialog>
-    )
-}
-
-interface FilterSectionProps {
-    readonly title: string
-    readonly keyFilter: keyof IFilterT
-    readonly children: React.ReactNode
-    readonly handleFilterChange: (valueOne: keyof IFilterT, value: IFilterT[typeof valueOne][]) => void
-    readonly filters: IFilterT
-    readonly maxLength: number
-    readonly notMb?: boolean
-}
-
-function FilterSection({ title, keyFilter, children, filters, notMb, handleFilterChange, maxLength }: FilterSectionProps) {
-    return (
-        <div className={notMb ? '': "mb-6"}>
-            <div className="flex items-center gap-[10px] mb-2">
-                <h3 className="text-lg font-semibold text-white">{title}</h3>
-                <FilterAllButton
-                    active={filters[keyFilter].length === maxLength || filters[keyFilter].length === 0}
-                    onClick={() => handleFilterChange(keyFilter, [])}
-                    baseColor="#334d6c"
-                    activeColor="#4d647e"
-                >
-                    All
-                </FilterAllButton>
-            </div>
-            <div className="flex flex-wrap gap-2">{children}</div>
-        </div>
-    )
-}
-
-interface FilterButtonProps {
-    readonly active: boolean
-    readonly onClick: () => void
-    readonly className?: string
-    readonly children: React.ReactNode
-    readonly baseColor?: string
-    readonly activeColor?: string
-    readonly fixedWidth?: string
-    readonly fixedHeight?: string
-}
-
-function FilterAllButton({
-    active,
-    onClick,
-    className,
-    children,
-    baseColor = "#334d6c",
-    activeColor = "#4d647e",
-    fixedWidth,
-    fixedHeight
-}: FilterButtonProps) {
-    return (
-        <button
-            onClick={onClick}
-            className={cn(
-                "px-3 py-[2px] rounded-lg text-sm font-medium transition-all duration-200 flex items-center cursor-pointer pointer-events-auto",
-                active
-                    ? `bg-[${activeColor}] text-white bg-[#667a91]`
-                    : `bg-[${baseColor}] text-white/90 hover:bg-[#4d647e]`,
-                className,
-            )}
-        >
-            {children}
-        </button>
-    )
-}
-
-function FilterButton({
-    active,
-    onClick,
-    className,
-    children,
-    baseColor = "#334d6c",
-    activeColor = "#4d647e",
-    fixedWidth,
-    fixedHeight
-}: FilterButtonProps) {
-    return (
-        <button
-            onClick={onClick}
-            className={cn(
-                `px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center cursor-pointer pointer-events-auto ${fixedWidth ? fixedWidth + ' justify-center' : ''} ${fixedHeight ? ' ' + fixedHeight + ' items-center' : ''}`,
-                active
-                    ? `bg-[${activeColor}] text-white bg-[#667a91]`
-                    : `bg-[${baseColor}] text-white/90 hover:bg-[#4d647e]`,
-                className,
-            )}
-        >
-            {children}
-        </button>
     )
 }

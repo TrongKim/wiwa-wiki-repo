@@ -16,6 +16,20 @@ export enum ECharacterElementType {
 }
 
 export enum ECharacterRare {
-    FOUR_STAR = 'R4',
-    FIVE_STAR = 'R5'
+    FOUR_STAR = 4,
+    FIVE_STAR = 5,
+}
+
+export enum EWeaponRare {
+    FOUR_STAR = 4,
+    FIVE_STAR = 5,
+    ONE_STAR = 1,
+    TWO_STAR = 2,
+    THREE_STAR = 3
+}
+
+export enum EEchoCost {
+    COST_ONE = 'Common Class',
+    COST_FOUR = 'Overlord Class',
+    COST_THREE = 'Elite Class'
 }

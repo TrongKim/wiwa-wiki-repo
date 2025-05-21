@@ -1,17 +1,39 @@
-import type { ECharacterWeaponType } from "./enum";
+import type { ECharacterElementType, ECharacterRare, ECharacterWeaponType, EEchoCost, EWeaponRare } from "./enum";
 
-export interface IEcho {
-  id: string;
+export interface IEchoSet {
+  id: number;
   name: string;
-  intensity: string;
   icon: string;
 }
+
+export interface IEcho {
+  id: number;
+  name: string;
+  intensity: EEchoCost;
+  icon: string;
+  set_ids: number[];
+}
+
+export interface IEchoDetail extends IEcho {
+  skill_desc: string;
+  skill_simple_desc: string;
+  skill_icon: string;
+}
+
 export interface IWeapon {
-  id: string;
+  id: number;
   name: string;
   icon: string;
   rarity: number;
   type: ECharacterWeaponType;
+}
+
+export interface IWeaponDetail extends IWeapon {
+  description: string;
+  effect_name: string;
+  effect: string;
+  ascensions: IHashIndex<RangeNumberArray<0, 5>, IKeyValue[]>;
+  stats: IAllStat<IHashIndex<[0, 1], IStatWeapon>>;
 }
 
 export interface ICharacter {
@@ -41,7 +63,7 @@ export interface ICharacterDetail extends ICharacter {
   cv_en: string;
   cv_jp: string;
   cv_ko: string;
-  stats: IAllStat;
+  stats: IAllStat<IStatCharacter>;
   ascensions: IHashIndex<RangeNumberArray<0, 7>, IKeyValue[]>;
 }
 
@@ -63,8 +85,17 @@ export interface IResonatorSkillConsume {
   Consume: ISkillConsume[];
 }
 
+export interface IResonatorChain {
+  id: number;
+  resonator_id: number;
+  index: number;
+  name: string;
+  description: string;
+  icon: string;
+}
+
 export interface IResonatorSkill {
-  id: string;
+  id: number;
   resonator_id: string;
   type: string;
   name: string;
@@ -79,28 +110,36 @@ export interface IKeyValue {
   Value: number;
 }
 
-export interface IAllStat {
-  0: IHashIndex<RangeNumberArray<0, 21>, IStatCharacter>;
-  1: IHashIndex<RangeNumberArray<21, 41>, IStatCharacter>;
-  2: IHashIndex<RangeNumberArray<41, 51>, IStatCharacter>;
-  3: IHashIndex<RangeNumberArray<51, 61>, IStatCharacter>;
-  4: IHashIndex<RangeNumberArray<61, 71>, IStatCharacter>;
-  5: IHashIndex<RangeNumberArray<71, 81>, IStatCharacter>;
-  6: IHashIndex<RangeNumberArray<81, 91>, IStatCharacter>;
+export type IAllStat<T extends Object> = {
+  0: IHashIndex<RangeNumberArray<0, 21>, T>;
+  1: IHashIndex<RangeNumberArray<21, 41>, T>;
+  2: IHashIndex<RangeNumberArray<41, 51>, T>;
+  3: IHashIndex<RangeNumberArray<51, 61>, T>;
+  4: IHashIndex<RangeNumberArray<61, 71>, T>;
+  5: IHashIndex<RangeNumberArray<71, 81>, T>;
+  6: IHashIndex<RangeNumberArray<81, 91>, T>;
 }
 
-export type THashIndexStatList =
-  IHashIndex<RangeNumberArray<0, 21>, IStatCharacter> |
-  IHashIndex<RangeNumberArray<21, 41>, IStatCharacter> |
-  IHashIndex<RangeNumberArray<41, 51>, IStatCharacter> |
-  IHashIndex<RangeNumberArray<51, 61>, IStatCharacter> |
-  IHashIndex<RangeNumberArray<61, 71>, IStatCharacter> |
-  IHashIndex<RangeNumberArray<71, 81>, IStatCharacter> |
-  IHashIndex<RangeNumberArray<81, 91>, IStatCharacter>;
+export type THashIndexStatList<T extends Object> =
+  IHashIndex<RangeNumberArray<0, 21>, T> |
+  IHashIndex<RangeNumberArray<21, 41>, T> |
+  IHashIndex<RangeNumberArray<41, 51>, T> |
+  IHashIndex<RangeNumberArray<51, 61>, T> |
+  IHashIndex<RangeNumberArray<61, 71>, T> |
+  IHashIndex<RangeNumberArray<71, 81>, T> |
+  IHashIndex<RangeNumberArray<81, 91>, T>;
+
 export interface IStatCharacter {
   Life: number;
   Atk: number;
   Def: number;
+}
+
+export interface IStatWeapon {
+  IsPercent: boolean;
+  isRatio: boolean;
+  Name: string;
+  Value: number;
 }
 
 export type IHashIndex<N extends number[], T extends Object> = {
@@ -134,7 +173,33 @@ export type TDisplayAscension = {
   }[];
 };
 
+export interface IFilter {
+  rarity: string;
+  type: string;
+  element: string;
+  specialStat: string;
+  region: string;
+  bodyType: string;
+}
 
+export interface TFilter<T> {
+  code: T | 0,
+  name: string;
+}
+
+export interface IFilterWeapon {
+
+}
+
+export interface IFilterT {
+  element: TFilter<ECharacterElementType>[];
+  bodyType: TFilter<2 | 3 | 4>[];
+  rarity: TFilter<ECharacterRare>[];
+  rarity_weapon: TFilter<EWeaponRare>[];
+  type: TFilter<ECharacterWeaponType>[];
+  echo: TFilter<EEchoCost>[];
+  set: TFilter<number>[];
+}
 
 export type TypeGetObjectKeyOfType<Obj extends Object, Type> = {
   [Key in keyof Obj as Obj[Key] extends Type ? Key : never]: Obj[Key];
