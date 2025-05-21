@@ -72,12 +72,24 @@ export function Sidebar({
 
   return (
     <div className="flex items-start w-full h-full nav-side-bar-container fixed top-0 left-0 z-1000">
-      <aside className={`h-full bg-[#1f293780] border-[#374151] border-r flex flex-col transition-all origin-left max-[600px]:scale-x-0 duration-300 group top-0 left-0 z-1000 ${showSidebar ? 'w-64 max-[600px]:fixed max-[600px]:scale-x-100' : 'w-12 max-[600px]:invisible max-[600px]:absolute'}`}>
+      <aside className={`h-full bg-[#1f293780] border-[#374151] border-r flex flex-col transition-all origin-left max-[600px]:scale-x-0 duration-300 group top-0 left-0 z-1000 ${showSidebar ? 'w-64 max-[600px]:fixed max-[600px]:scale-x-100' : 'w-13 max-[600px]:invisible max-[600px]:absolute'}`}>
         <div className="p-4 flex items-center h-fit pt-[10px]">
-          <h1 className={`text-xl font-bold transition-opacity duration-300 absolute ${showSidebar ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-            Resonator
-          </h1>
-          <span className={`text-xl font-bold transition-opacity duration-300 ${showSidebar ? 'opacity-0' : 'opacity-100'}`}>R</span>
+          <div className={`font-bold transition-opacity duration-300 absolute flex items-center ${showSidebar ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 792" width={32} height={32} className="scale-[1.3]">
+              <defs>
+              </defs>
+              <path fill="#fff" strokeWidth="0" d="m498.71,155.16l28.74-33.1v-3.48l-1.32-.77-143.86,99.46-19.26-11.25s7.38-27.44,7.38-30.44.44-33.44.44-33.44c0,0-29.27,13.21-52.69,49.02,0,0-84.39-5.42-141.68,56.13-57.29,61.55-53.23,127.74-53.23,127.74,0,0-.39,61.94,24.19,90l1.35-.87s-22.65-77.71,23.42-137.71c0,0-20.71,70.45,25.74,120.77,46.45,50.32,100.65,49.55,132.77,64.45,32.13,14.9,62.9,40.45,78.29,92.03l2.1-.16s8.65-47.35-5.87-82.97c-14.52-35.61-29.42-50.71-65.81-72.39l-46.58-22.77s-59.1-24.26-61.61-89.87c0,0-2.13-35.03,29.81-67.26,0,0-18.19,49.65,15.29,81.39s68.13,21.16,68.13,21.16l6.84.13,73.42,32.39,6.26,4.87,5.81,6.48,6.48,7.16,4.74,4.06,5.52,2.03,12.48-.1,4-.42,5.52-.81,7.87-1.16,4.74-1.74,5.19-4.74,15.74-28.63,1.03-3.11.13-10.58s-22.84-33.77-41.71-55.74c-18.87-21.97-40.84-55.74-40.84-55.74l-10.94-16.65,38.52-43.45,43.45-49.94Zm-16.9,220.19c5.42,1.74,8.58,9.03,8.58,9.03,0,0,0,5.16-.45,6.84-.45,1.68-3.29,1.42-3.29,1.42,0,0-5.55-4.84-8-8.26-2.45-3.42,3.16-9.03,3.16-9.03Zm-101.74-81.81c0-.39-21.77-21.97-21.77-21.97l34.94,4.26c7.84,6.97,14.61,24.39,14.61,24.39-3-2.61-27.77-6.29-27.77-6.68Z" />
+              <path fill="#fff" strokeWidth="0" d="m171.61,500.84s8.71,36.19,38.13,55.35,25.55,19.55,80.71,30,86.13,52.65,86.13,52.65l1.35,2.13h1.55s.39-30.77-21.1-54.97-42.58-37.74-96.77-46.26-90-38.9-90-38.9Z" />
+            </svg>
+            WuwaBeacon
+          </div>
+          <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 792" width={32} height={32} className={`scale-[1.3] ${showSidebar ? 'opacity-0' : 'opacity-100'}`}>
+            <defs>
+            </defs>
+            <path fill="#fff" strokeWidth="0" d="m498.71,155.16l28.74-33.1v-3.48l-1.32-.77-143.86,99.46-19.26-11.25s7.38-27.44,7.38-30.44.44-33.44.44-33.44c0,0-29.27,13.21-52.69,49.02,0,0-84.39-5.42-141.68,56.13-57.29,61.55-53.23,127.74-53.23,127.74,0,0-.39,61.94,24.19,90l1.35-.87s-22.65-77.71,23.42-137.71c0,0-20.71,70.45,25.74,120.77,46.45,50.32,100.65,49.55,132.77,64.45,32.13,14.9,62.9,40.45,78.29,92.03l2.1-.16s8.65-47.35-5.87-82.97c-14.52-35.61-29.42-50.71-65.81-72.39l-46.58-22.77s-59.1-24.26-61.61-89.87c0,0-2.13-35.03,29.81-67.26,0,0-18.19,49.65,15.29,81.39s68.13,21.16,68.13,21.16l6.84.13,73.42,32.39,6.26,4.87,5.81,6.48,6.48,7.16,4.74,4.06,5.52,2.03,12.48-.1,4-.42,5.52-.81,7.87-1.16,4.74-1.74,5.19-4.74,15.74-28.63,1.03-3.11.13-10.58s-22.84-33.77-41.71-55.74c-18.87-21.97-40.84-55.74-40.84-55.74l-10.94-16.65,38.52-43.45,43.45-49.94Zm-16.9,220.19c5.42,1.74,8.58,9.03,8.58,9.03,0,0,0,5.16-.45,6.84-.45,1.68-3.29,1.42-3.29,1.42,0,0-5.55-4.84-8-8.26-2.45-3.42,3.16-9.03,3.16-9.03Zm-101.74-81.81c0-.39-21.77-21.97-21.77-21.97l34.94,4.26c7.84,6.97,14.61,24.39,14.61,24.39-3-2.61-27.77-6.29-27.77-6.68Z" />
+            <path fill="#fff" strokeWidth="0" d="m171.61,500.84s8.71,36.19,38.13,55.35,25.55,19.55,80.71,30,86.13,52.65,86.13,52.65l1.35,2.13h1.55s.39-30.77-21.1-54.97-42.58-37.74-96.77-46.26-90-38.9-90-38.9Z" />
+          </svg>
+          {/* <span className={`text-xl font-bold transition-opacity duration-300 }>R</span> */}
         </div>
         <nav className="flex-1 p-2">
           <ul className="space-y-2">
@@ -147,7 +159,7 @@ export function Sidebar({
                   activeRouteIndex === 3 && "bg-slate-700 text-white",
                 )}
               >
-                <Image src="/weapons_icon/broadblade.png" width={18} height={18} className="min-w-[20px] min-h-[20px]" alt="icon" />
+                <Image src="/weapons_icon/broadblade.png" width={18} height={18} className="min-w-[20px] min-h-[20px] object-cover" alt="icon" />
                 <span className={`ml-3 ${showSidebar ? 'opacity-100' : 'opacity-0'} transition-opacity duration-250 whitespace-nowrap overflow-hidden`}>
                   Weapons
                 </span>
@@ -161,7 +173,7 @@ export function Sidebar({
                   activeRouteIndex === 4 && "bg-slate-700 text-white",
                 )}
               >
-                <Image src="/echo.png" width={18} height={18} className="min-w-[20px] min-h-[20px]" alt="icon" />
+                <Image src="/echo.png" width={18} height={18} className="min-w-[20px] min-h-[20px] object-cover" alt="icon" />
                 <span className={`ml-3 ${showSidebar ? 'opacity-100' : 'opacity-0'} transition-opacity duration-250 whitespace-nowrap overflow-hidden`}>
                   Echos
                 </span>
@@ -180,8 +192,14 @@ export function Sidebar({
       </aside>
       <div className="w-full h-full flex flex-col">
         <div className="flex items-center justify-between px-[17px] py-[10px] bg-[#1f293780] border-[#374151] border-b w-full">
-          <div className="hidden max-[600px]:block">
-            Wuthering88
+          <div className="hidden max-[600px]:flex items-center font-bold">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 792" width={32} height={32}>
+              <defs>
+              </defs>
+              <path fill="#fff" strokeWidth="0" d="m498.71,155.16l28.74-33.1v-3.48l-1.32-.77-143.86,99.46-19.26-11.25s7.38-27.44,7.38-30.44.44-33.44.44-33.44c0,0-29.27,13.21-52.69,49.02,0,0-84.39-5.42-141.68,56.13-57.29,61.55-53.23,127.74-53.23,127.74,0,0-.39,61.94,24.19,90l1.35-.87s-22.65-77.71,23.42-137.71c0,0-20.71,70.45,25.74,120.77,46.45,50.32,100.65,49.55,132.77,64.45,32.13,14.9,62.9,40.45,78.29,92.03l2.1-.16s8.65-47.35-5.87-82.97c-14.52-35.61-29.42-50.71-65.81-72.39l-46.58-22.77s-59.1-24.26-61.61-89.87c0,0-2.13-35.03,29.81-67.26,0,0-18.19,49.65,15.29,81.39s68.13,21.16,68.13,21.16l6.84.13,73.42,32.39,6.26,4.87,5.81,6.48,6.48,7.16,4.74,4.06,5.52,2.03,12.48-.1,4-.42,5.52-.81,7.87-1.16,4.74-1.74,5.19-4.74,15.74-28.63,1.03-3.11.13-10.58s-22.84-33.77-41.71-55.74c-18.87-21.97-40.84-55.74-40.84-55.74l-10.94-16.65,38.52-43.45,43.45-49.94Zm-16.9,220.19c5.42,1.74,8.58,9.03,8.58,9.03,0,0,0,5.16-.45,6.84-.45,1.68-3.29,1.42-3.29,1.42,0,0-5.55-4.84-8-8.26-2.45-3.42,3.16-9.03,3.16-9.03Zm-101.74-81.81c0-.39-21.77-21.97-21.77-21.97l34.94,4.26c7.84,6.97,14.61,24.39,14.61,24.39-3-2.61-27.77-6.29-27.77-6.68Z" />
+              <path fill="#fff" strokeWidth="0" d="m171.61,500.84s8.71,36.19,38.13,55.35,25.55,19.55,80.71,30,86.13,52.65,86.13,52.65l1.35,2.13h1.55s.39-30.77-21.1-54.97-42.58-37.74-96.77-46.26-90-38.9-90-38.9Z" />
+            </svg>
+            WuwaBeacon
           </div>
           <button onClick={onClickChangeStateSidebar} className="cursor-pointer pointer-events-auto">
             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">

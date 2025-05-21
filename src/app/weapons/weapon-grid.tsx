@@ -60,21 +60,21 @@ export function WeaponGrid({ weapons }: Props) {
   return (
     <>
       <WeaponHeader onChangeFilter={onChangeFilter} />
-      <div className="grid grid-cols-5 max-[260px]:grid-cols-1 max-[360px]:grid-cols-2 max-[690px]:grid-cols-3 max-[760px]:grid-cols-4 lg:grid-cols-7 xl:grid-cols-7 gap-[15px]">
+      <div className="flex flex-wrap items-center justify-center gap-4">
         {weaponFilted.map((weapon) => (
           <Link
             href={'/weapons/' + weapon.id}
             key={weapon.id}
-            className="bg-slate-800/50 rounded-lg overflow-hidden cursor-pointer transition-transform hover:scale-[1.02] border border-[#374151]"
+            className="bg-slate-800/50 rounded-lg overflow-hidden cursor-pointer transition-transform hover:scale-[1.02] border border-[#374151] w-[112px] h-[157px]"
           >
-            <div className="relative h-38 sm:h-56 md:h-38">
+            <div className="relative w-full h-full">
               {/* <div className="absolute top-2 left-2 z-10">
               <ElementIcon element={character.element} />
             </div> */}
               <div className="absolute top-2 right-2 z-11">
                 <WeaponIcon type={weapon.type} />
               </div>
-              <Image src={weapon.icon || "/placeholder.svg"} alt={weapon.name} height={18} width={18} className="object-cover relative z-10 w-[100%] h-full" />
+              <Image src={weapon.icon || "/placeholder.svg"} alt={weapon.name} height={18} width={18} className="object-contain relative z-10 w-[100%] h-full" />
               <div className={`absolute bottom-0 left-0 right-0 z-0 p-4 h-[40%] ${getGradiant(weapon.rarity)} p-4`}></div>
               <div className={`absolute bottom-0 left-0 right-0 p-4 pt-6 pb-2 z-11`}>
                 <h3 className="text-center text-shadow-[#050505b8] text-[14px] text-shadow-lg font-bold truncate overflow-hidden text-wrap max-h-[48px]">{weapon.name}</h3>

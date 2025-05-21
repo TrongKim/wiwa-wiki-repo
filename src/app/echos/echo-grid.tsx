@@ -40,14 +40,14 @@ export function EchoGrid({ echos, echoSets }: Props) {
   return (
     <>
       <EchoHeader onChangeFilter={onChangeFilter} />
-      <div className="grid grid-cols-5 max-[260px]:grid-cols-1 max-[360px]:grid-cols-2 max-[690px]:grid-cols-3 max-[760px]:grid-cols-4 lg:grid-cols-7 xl:grid-cols-7 gap-4">
+      <div className="flex flex-wrap items-center justify-center gap-4">
         {echoFilted.map((echo) => (
           <Link
             href={'/echos/' + echo.id}
             key={echo.id}
-            className="bg-slate-800/50 rounded-lg overflow-hidden cursor-pointer transition-transform hover:scale-[1.02] border border-[#374151]"
+            className="bg-slate-800/50 rounded-lg overflow-hidden cursor-pointer transition-transform hover:scale-[1.02] border border-[#374151] w-[112px] h-[140px]"
           >
-            <div className="relative h-36 sm:h-56 md:h-36">
+            <div className="relative h-full w-full">
               {/* <div className="absolute top-2 left-2 z-10">
               <ElementIcon element={character.element} />
             </div> */}
