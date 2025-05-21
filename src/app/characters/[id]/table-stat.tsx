@@ -25,7 +25,7 @@ export function TableStatCharacter({ stats }: Props) {
         <>
             <div className="max-[875px]:w-full">
                 <table className="w-full max-w-2xl text-sm text-center rounded-lg overflow-hidden">
-                    <thead className="bg-[#1a3759] text-white">
+                    <thead className="bg-[#212937] text-white">
                         <tr>
                             <th className="p-3 max-[875px]:p-1">Level</th>
                             <th className="p-3 max-[875px]:p-1">HP</th>
@@ -38,7 +38,7 @@ export function TableStatCharacter({ stats }: Props) {
                             (Object.entries(stats) as [string, any]).flatMap(([groupKey, group], i) =>
                                 <tr
                                     key={'group key' + i + group}
-                                    className={i % 2 === 0 ? 'bg-[#334d6c]' : 'bg-[#4d647e]'}
+                                    className={i % 2 === 0 ? 'bg-[#4d658696]' : 'bg-[#33435896]'}
                                 >
                                     <td className="p-3 max-[875px]:p-1">{getLastChild(group)?.key}</td>
                                     <td className="p-3 max-[875px]:p-1">{Math.floor(getLastChild(group)?.value?.Life ?? 0)}</td>
@@ -58,14 +58,14 @@ export function TableStatCharacter({ stats }: Props) {
 function DialogTableDetailStat({ stats, isOpen, onClickChangeState }: { readonly isOpen: boolean; stats?: IAllStat<IStatCharacter>; readonly onClickChangeState: (value: boolean) => void; } & Props) {
     return (
         <Dialog open={isOpen} onOpenChange={onClickChangeState}>
-            <DialogContent className="sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] p-0 gap-0 bg-[#002147] border-[#334d6c] text-white max-h-[80vh] flex flex-col overflow-hidden">
-                <DialogHeader className="p-4 border-b border-[#1a3759] flex flex-row items-center justify-between bg-[#1a3759]">
+            <DialogContent className="sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] p-0 gap-0 bg-[#1f293780] border-[#334d6c] text-white max-h-[80vh] flex flex-col overflow-hidden">
+                <DialogHeader className="p-4 border-b border-[#1a3759] flex flex-row items-center justify-between bg-[#1f2937c7]">
                     <DialogTitle className="text-2xl font-bold text-white mx-auto">Filter</DialogTitle>
                 </DialogHeader>
                 <div className="pb-6 h-full flex flex-col overflow-hidden">
                     <div className="p-5 py-6 pb-0 overflow-y-auto h-full flex-1">
                         <table className="w-full max-w-2xl text-sm text-center rounded-lg overflow-hidden">
-                            <thead className="bg-[#1a3759] text-white">
+                            <thead className="bg-[#212937] text-white">
                                 <tr>
                                     <th className="p-3 max-[364px]:p-1">Level</th>
                                     <th className="p-3 max-[364px]:p-1">HP</th>
@@ -79,7 +79,7 @@ function DialogTableDetailStat({ stats, isOpen, onClickChangeState }: { readonly
                                         (Object.entries(group) as Array<[string, IStatCharacter]>).map(([indexStr, value], i) => (
                                             <tr
                                                 key={indexStr.toString() + i + groupKey + value.Life}
-                                                className={i % 2 === 0 ? 'bg-[#334d6c]' : 'bg-[#4d647e]'}
+                                                className={i % 2 === 0 ? 'bg-[#4d658696]' : 'bg-[#33435896]'}
                                             >
                                                 <td className="p-3 max-[364px]:p-1">{indexStr}</td>
                                                 <td className="p-3 max-[364px]:p-1">{Math.floor(value.Life)}</td>

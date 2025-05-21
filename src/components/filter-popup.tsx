@@ -21,7 +21,8 @@ export default function FilterPopup({ isOpen, onClickChangeState, onChangeFilter
         element: [],
         bodyType: [],
         rarity_weapon: [],
-        echo: []
+        echo: [],
+        set: []
     });
 
     useEffect(() => {
@@ -69,8 +70,8 @@ export default function FilterPopup({ isOpen, onClickChangeState, onChangeFilter
 
     return (
         <Dialog open={isOpen} onOpenChange={onClickChangeState}>
-            <DialogContent className="sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] p-0 gap-0 bg-[#002147] border-[#334d6c] text-white max-h-[80vh] flex flex-col overflow-hidden">
-                <DialogHeader className="p-4 border-b border-[#1a3759] flex flex-row items-center justify-between bg-[#1a3759]">
+            <DialogContent className="sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] p-0 gap-0 bg-[#1f293780] border-[#334d6c] text-white max-h-[80vh] flex flex-col overflow-hidden">
+                <DialogHeader className="p-4 border-b border-[#1a3759] flex flex-row items-center justify-between bg-[#1f2937c7]">
                     <DialogTitle className="text-2xl font-bold text-white mx-auto">Filter</DialogTitle>
                 </DialogHeader>
 

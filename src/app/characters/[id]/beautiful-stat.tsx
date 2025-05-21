@@ -26,7 +26,7 @@ function StatItem({ icon, label, value }: { readonly icon: React.ReactNode; read
                 {icon}
                 <span>{label}</span>
             </div>
-            <span className="font-bold">{value}</span>
+            <span>{value}</span>
         </div>
     )
 }

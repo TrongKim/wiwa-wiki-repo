@@ -58,7 +58,7 @@ export function SidebarCharacter({ resonator }: Props) {
       <Card className="bg-[#1f293780] border-[#374151] mb-4">
         <CardContent className="p-6 flex flex-col">
           <div className="flex items-center gap-2 mb-2">
-            <div className="bg-[#334d6c] rounded-full p-1">
+            <div className="bg-[#33435896] rounded-full p-1">
               <ElementIcon element={resonator.element} />
             </div>
             <h1 className="text-2xl font-bold">{resonator.name}</h1>
@@ -80,7 +80,7 @@ export function SidebarCharacter({ resonator }: Props) {
                 <button
                   onClick={() => onClickChangeIndexTab(index, item.toLowerCase())}
                   key={item}
-                  className={`w-full text-left text-[#b5b2ec] hover:text-white px-3 py-2 rounded-[20px] cursor-pointer pointer-events-auto transition-all duration-600 ${index === indexTab ? "bg-[#334d6c]" : "bg-transparent"}`}
+                  className={`w-full text-left px-3 py-2 rounded-[20px] cursor-pointer pointer-events-auto transition-all duration-600 ${index === indexTab ? "bg-[#33435896]" : "bg-transparent"}`}
                 >
                   {item}
                 </button>

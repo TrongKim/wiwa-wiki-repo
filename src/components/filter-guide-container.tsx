@@ -16,7 +16,7 @@ export function FilterGuideContainer() {
     const [searchString, setSearchString] = useState<string>('');
 
     const [filterByElement, setFilterByElement] = useState<{ code: ECharacterElementType } | null>(null);
-    const [filterByWeapon, setFilterByWeapon] = useState<{ code: ECharacterWeaponType } | null>(null);
+    const [filterByWeapon, setFilterByWeapon] = useState<{ code: ECharacterWeaponType | 'Misc' } | null>(null);
     const [isFilter, setIsFilter] = useState<boolean>(false);
 
     useEffect(() => {
@@ -40,7 +40,7 @@ export function FilterGuideContainer() {
         setFilterByElement({ code: element_code });
     }
 
-    const onSelectWeapon = (weapon_code: ECharacterWeaponType | null): void => {
+    const onSelectWeapon = (weapon_code: ECharacterWeaponType | 'Misc' | null): void => {
         if (weapon_code === null) {
             setFilterByWeapon(null);
             return;
@@ -84,13 +84,13 @@ export function FilterGuideContainer() {
             <Card className="border-0">
                 <CardContent className="p-0">
                     <div className="flex flex-col md:flex-row justify-between gap-[10px]">
-                        
+
                         <div className="w-fit bg-[#1f293780] border-[#374151] p-[5px] border-[1px] rounded-[20px] overflow-hidden max-[1020px]:flex-1 max-[1020px]:w-full">
                             <div className="flex items-center  flex-wrap justify-center">
                                 {elements.map((element) => (
-                                    <button key={element.name} onClick={() => onSelectElement(element.code)} className={`flex w-[70px] flex-col items-center justify-center gap-2 p-2 cursor-pointer pointer-events-auto rounded-[16px] ${filterByElement?.code === element.code && 'bg-[#334d6c]'}`}>
+                                    <button key={element.name} onClick={() => onSelectElement(element.code)} className={`flex w-[70px] flex-col items-center justify-center gap-2 p-2 cursor-pointer pointer-events-auto rounded-[16px] ${filterByElement?.code === element.code && 'bg-[#1f293796]'}`}>
                                         <div className={`w-10 h-10 rounded-full flex items-center justify-center`}>
-                                            <Image src={element.icon} alt="element" width={35} height={35} className={`${handleUIIcon(element.code)}`} style={ element.code === ECharacterElementType.ELECTRO ? {
+                                            <Image src={element.icon} alt="element" width={35} height={35} className={`${handleUIIcon(element.code)}`} style={element.code === ECharacterElementType.ELECTRO ? {
                                                 objectPosition: '2px'
                                             } : {}} />
                                         </div>
@@ -102,10 +102,18 @@ export function FilterGuideContainer() {
 
                         <div className="w-fit bg-[#1f293780] border-[#374151] p-[5px] border-[1px] rounded-[20px] overflow-hidden max-[1020px]:flex-1 max-[1020px]:w-full">
                             <div className="flex items-center flex-wrap justify-center">
+                                <button onClick={() => onSelectWeapon('Misc')} className={`flex w-[70px] flex-col items-center justify-center gap-2 p-2 cursor-pointer pointer-events-auto rounded-[16px] ${filterByWeapon?.code === 'Misc' && 'bg-[#1f293796]'}`}>
+                                    <div className="w-10 h-10 flex items-center justify-center">
+                                        <svg width="42px" height="56px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M22 9L12 4L2 9L12 14L22 9ZM22 9V15M19 10.5V16.5L12 20L5 16.5V10.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-xs text-center">Misc</span>
+                                </button>
                                 {weapons.map((weapon) => (
-                                    <button key={weapon.name} onClick={() => onSelectWeapon(weapon.code)} className={`flex w-[70px] flex-col items-center justify-center gap-2 p-2 cursor-pointer pointer-events-auto rounded-[16px] ${filterByWeapon?.code === weapon.code && 'bg-[#334d6c]'}`}>
+                                    <button key={weapon.name} onClick={() => onSelectWeapon(weapon.code)} className={`flex w-[70px] flex-col items-center justify-center gap-2 p-2 cursor-pointer pointer-events-auto rounded-[16px] ${filterByWeapon?.code === weapon.code && 'bg-[#1f293796]'}`}>
                                         <div className="w-10 h-10 flex items-center justify-center">
-                                            <Image src={weapon.icon} alt="element" width={35} height={45} className="h-[46.666px] object-contain" />
+                                            <Image src={weapon.icon} alt="element" width={42} height={56} className="h-[56px] object-contain" />
                                         </div>
                                         <span className="text-xs text-center">{weapon.name}</span>
                                     </button>

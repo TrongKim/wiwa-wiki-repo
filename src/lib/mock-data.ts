@@ -6,14 +6,14 @@ export const mockGuides = [
     title: "Rover quick guide",
     category: "New",
     date: "2 days ago",
-    image: "/placeholder.svg?height=100&width=150&text=Rover",
+    image: "/meapgay.jpg",
   },
   {
     id: 2,
     title: "Advanced combat techniques",
     category: "Combat",
     date: "1 week ago",
-    image: "/placeholder.svg?height=100&width=150&text=Combat",
+    image: "/meaplolicon.jpg",
   },
   {
     id: 3,

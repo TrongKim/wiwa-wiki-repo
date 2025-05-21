@@ -25,7 +25,7 @@ export function Dashboard() {
               <h2 className="text-xl font-bold mb-4 text-[25px]">What's New</h2>
               <div className="space-y-4 flex-[1] overflow-auto max-h-[368px] pr-2 max-[550px]:flex max-[550px]:flex-wrap">
                 {mockGuides.map((guide) => (
-                  <div key={guide.id} className="flex gap-4 p-2 rounded-lg hover:bg-[#334d6c] cursor-pointer pointer-events-auto transition-colors max-[550px]:flex-col max-[550px]:items-center max-[550px]:w-[calc(100%)]">
+                  <div key={guide.id} className="flex gap-4 p-2 rounded-lg hover:bg-[#1f293796] cursor-pointer pointer-events-auto transition-colors max-[550px]:flex-col max-[550px]:items-center max-[550px]:w-[calc(100%)]">
                     <div className="relative w-36 h-24 rounded-md overflow-hidden flex-shrink-0 max-[550px]:w-full max-[550px]:h-26">
                       <Image src={guide.image || "/placeholder.svg"} alt={guide.title} fill className="object-cover" />
                     </div>
@@ -59,7 +59,7 @@ export function Dashboard() {
                     </div>
                     <p className="text-xs text-slate-400">{update.description}</p>
                     <div className="">
-                      <p className="text-xs text-[#a6a5f8] hover:font-bold"><span className="">Rover Quick Guide</span></p>
+                      <p className="text-xs text-[#60a5fa] hover:font-bold"><span>Rover Quick Guide</span></p>
                     </div>
                   </div>
                 ))}

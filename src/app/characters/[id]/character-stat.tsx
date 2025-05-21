@@ -54,11 +54,11 @@ export function CharacterStat({ resonator, material }: Props) {
                     <div className="flex items-center gap-10">
                         <div className="flex-2">
                             <div className="flex justify-between items-center mb-4">
-                                <div className="bg-[#1a2234] border-[#4d647e] text-white px-4 py-1 rounded-lg font-bold border">
+                                <div className="bg-[#33435896] border-[#374151] text-white px-4 py-1 rounded-lg font-bold border">
                                     Lv. {levelCap.level}
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <button onClick={onClickSetStateShowStat} className={`cursor-pointer pointer-events-auto text-white px-4 py-1 rounded-lg flex items-center gap-1 border bg-[#1a2234] border-[#4d647e] ${stateShowStat ? 'bg-[#1a2234]' : 'bg-[#334d6c]'}`}>
+                                    <button onClick={onClickSetStateShowStat} className={`cursor-pointer pointer-events-auto text-white px-4 py-1 rounded-lg flex items-center gap-1 border bg-[#33435896] border-[#374151] ${stateShowStat ? 'bg-[#1a2234]' : 'bg-[#334d6c]'}`}>
                                         <span>Table</span>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -101,11 +101,11 @@ export function CharacterStat({ resonator, material }: Props) {
                         {
                             (material[getRangeUpgrade(levelCap.range)]?.items ?? []).map((item, index) => {
                                 return (
-                                    <div key={index + (item?.name ?? '') + 'icon upgrade'} className="bg-[#1a2234] border-[#4d647e] flex-1 rounded-md p-2 flex flex-col items-center w-20 border">
+                                    <div key={index + (item?.name ?? '') + 'icon upgrade'} className="bg-[#33435896] w-[60px] border-[#374151] rounded-md p-2 flex flex-col items-center border">
                                         <div className="text-orange-500 mb-1">
                                             <Image src={item?.icon ?? ''} width={32} height={32} alt="material" />
                                         </div>
-                                        <span className="text-[14px] font-bold">{item.quantity}</span>
+                                        <span className="text-[14px]">{item.quantity}</span>
                                     </div>
                                 )
                             })
