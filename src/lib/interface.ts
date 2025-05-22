@@ -6,6 +6,12 @@ export interface IEchoSet {
   icon: string;
 }
 
+export interface IEchoSetDetail extends IEchoSet {
+  color: string;
+  set_2_desc: string;
+  set_5_desc: string;
+}
+
 export interface IEcho {
   id: number;
   name: string;

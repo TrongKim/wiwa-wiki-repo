@@ -1,5 +1,7 @@
 import { api } from "@/trpc/server"
-import { EchoCard } from "./echo-card";
+import { Suspense } from "react";
+import EchoDetailsSkeleton from "./echo-skeleton";
+import EchoCard from "./echo-card";
 interface PageProps {
     readonly params: { id: string };
 }
@@ -7,17 +9,13 @@ interface PageProps {
 export default async function EchoDetailPage({ params }: PageProps) {
     const { id } = await params;
     const echo_detail = await api.echo.getDetail({ id: Number(id) });
+    const sets = await api.echoSet.getSetsByIds({ ids: echo_detail?.set_ids ?? [] });
     return (
-        <div className="mb-15 bg-[#1a2234] border-[#374151] border rounded-[20px] text-[#abb2bf] p-4 md:p-8">
-            <div className="max-w-7xl mx-auto">
-                <div className="flex items-center justify-center">
-                    <div>
-                        {echo_detail && <>
-                            <h1 className="text-2xl md:text-3xl font-bold mb-4">{echo_detail.name}</h1>
-                            <EchoCard echo_detail={echo_detail} />
-                        </>}
-                    </div>
-                </div>
+        <div className="min-h-screen text-white p-4 md:p-6 pb-20 md:pb-6 md:pt-20 flex items-center justify-center">
+            <div className="w-full max-w-4xl">
+                <Suspense fallback={<EchoDetailsSkeleton />}>
+                    <EchoCard sets={sets} echo_detail={echo_detail} />
+                </Suspense>
             </div>
         </div>
     )
