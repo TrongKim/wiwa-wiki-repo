@@ -12,7 +12,9 @@ import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js";
 export const resonatorRouter = createTRPCRouter({
     getAll: publicProcedure
         .query(async ({ input }) => {
+            console.log('run server');
             const { data: posts }: PostgrestMaybeSingleResponse<ICharacter[]> = await supabase.from('resonators').select('id, name, card, rank, element, weapon_type, release_date').order('release_date', { ascending: false }).order('name', { ascending: false });
+            console.log(posts);
             return posts;
         }),
     getDetail: publicProcedure

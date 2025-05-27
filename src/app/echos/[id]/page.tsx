@@ -1,20 +1,33 @@
-import { api } from "@/trpc/server"
 import { Suspense } from "react";
 import EchoDetailsSkeleton from "./echo-skeleton";
-import EchoCard from "./echo-card";
+import EchoDetail from "./echo-detail";
+import { supabase } from "@/utils/supabase/server";
+import type { IEchoDetail, IEchoSetDetail } from "@/lib/interface";
+import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js";
+
+export async function generateStaticParams() {
+  const { data: echos } = await supabase.from("echoes").select("id");
+
+  return (
+    echos?.map((r) => ({
+      id: r.id.toString(),
+    })) || []
+  );
+}
+
 interface PageProps {
     readonly params: { id: string };
 }
 
 export default async function EchoDetailPage({ params }: PageProps) {
     const { id } = await params;
-    const echo_detail = await api.echo.getDetail({ id: Number(id) });
-    const sets = await api.echoSet.getSetsByIds({ ids: echo_detail?.set_ids ?? [] });
+    const { data: echo_detail }: PostgrestMaybeSingleResponse<IEchoDetail> = await supabase.from('echoes').select('*').eq('id', Number(id)).single();
+    const { data: sets }: PostgrestMaybeSingleResponse<IEchoSetDetail[]> = await supabase.from('echo_sets').select('*').in('id', echo_detail?.set_ids ?? []);
     return (
         <div className="min-h-screen text-white p-4 md:p-6 pb-20 md:pb-6 md:pt-20 flex items-center justify-center">
             <div className="w-full max-w-4xl">
-                <Suspense fallback={<EchoDetailsSkeleton />}>
-                    <EchoCard sets={sets} echo_detail={echo_detail} />
+                <Suspense>
+                    <EchoDetail sets={sets} echo_detail={echo_detail} />
                 </Suspense>
             </div>
         </div>

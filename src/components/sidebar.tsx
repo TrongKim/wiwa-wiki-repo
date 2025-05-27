@@ -40,17 +40,13 @@ export function Sidebar({
         setShowSidebar(false)
         setActiveRouteIndex(1)
         break
-      case '/guides':
+      case '/weapons':
         setShowSidebar(false)
         setActiveRouteIndex(2)
         break
-      case '/weapons':
-        setShowSidebar(false)
-        setActiveRouteIndex(3)
-        break
       case '/echos':
         setShowSidebar(false)
-        setActiveRouteIndex(4)
+        setActiveRouteIndex(3)
         break
       default:
         setShowSidebar(false)
@@ -135,28 +131,10 @@ export function Sidebar({
             </li>
             <li>
               <Link
-                href="/"
-                className={cn(
-                  "flex items-center p-2 rounded-md hover:bg-slate-700 text-slate-300 hover:text-white transition-colors",
-                  activeRouteIndex === 2 && "bg-slate-700 text-white",
-                )}
-              >
-                <div>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 16 16" fill="none">
-                    <path d="M5 0C3.34315 0 2 1.34315 2 3V13C2 14.6569 3.34315 16 5 16H14V14H4V12H14V0H5Z" fill="#fff" />
-                  </svg>
-                </div>
-                <span className={`ml-3 ${showSidebar ? 'opacity-100' : 'opacity-0'} transition-opacity duration-250 whitespace-nowrap overflow-hidden`}>
-                  Guides
-                </span>
-              </Link>
-            </li>
-            <li>
-              <Link
                 href="/weapons"
                 className={cn(
                   "flex items-center p-2 rounded-md hover:bg-slate-700 text-slate-300 hover:text-white transition-colors",
-                  activeRouteIndex === 3 && "bg-slate-700 text-white",
+                  activeRouteIndex === 2 && "bg-slate-700 text-white",
                 )}
               >
                 <Image src="/weapons_icon/broadblade.png" width={18} height={18} className="min-w-[20px] min-h-[20px] object-cover" alt="icon" />
@@ -170,7 +148,7 @@ export function Sidebar({
                 href="/echos"
                 className={cn(
                   "flex items-center p-2 rounded-md hover:bg-slate-700 text-slate-300 hover:text-white transition-colors",
-                  activeRouteIndex === 4 && "bg-slate-700 text-white",
+                  activeRouteIndex === 3 && "bg-slate-700 text-white",
                 )}
               >
                 <Image src="/echo.png" width={18} height={18} className="min-w-[20px] min-h-[20px] object-cover" alt="icon" />

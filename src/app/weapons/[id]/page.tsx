@@ -1,19 +1,40 @@
-import { api } from "@/trpc/server"
 import { WeaponCard } from "./weapon-card";
 import { Suspense } from "react";
-import WeaponDetailsSkeleton from "./weapon-card-skeleton";
+import { supabase } from "@/utils/supabase/server";
+import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js";
+import type { IWeaponDetail } from "@/lib/interface";
+
+export async function generateStaticParams() {
+    const { data: weapons } = await supabase.from("weapons").select("id");
+
+    return (
+        weapons?.map((r) => ({
+            id: r.id.toString(),
+        })) || []
+    );
+}
+
 interface PageProps {
     readonly params: { id: string };
 }
 
 export default async function WeaponDetailPage({ params }: PageProps) {
     const { id } = await params;
-    const weapon_detail = await api.weapon.getDetail({ id: Number(id) });
+    const { data: weapon_detail }: PostgrestMaybeSingleResponse<IWeaponDetail> = await supabase.from('weapons').select('*').eq('id', Number(id)).single();
+    const { data: items_data } = await supabase
+        .from("items")
+        .select("*")
+        .in("tag", [
+            "Resonator Ascension Material",
+            "Weapon and Skill Material",
+            "Ascension Material",
+            "Universal Currency",
+        ]);
     return (
         <div className="min-h-screen bg-[#0d0d0d] text-white p-4 md:p-6 flex items-center justify-center">
             <div className="w-full max-w-4xl">
-                <Suspense fallback={<WeaponDetailsSkeleton />}>
-                    <WeaponCard key={weapon_detail?.id ?? 'weapon_card'} weapon_detail={weapon_detail} />
+                <Suspense>
+                    <WeaponCard weapon_detail={weapon_detail} items={items_data ?? []} />
                 </Suspense>
             </div>
         </div>

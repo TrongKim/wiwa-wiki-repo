@@ -65,3 +65,11 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #64748b;
 }
+
+.text-shadow-custom {
+  text-shadow: 1px 5px black;
+}
+
+.text-shadow-custom-min {
+  text-shadow: 1px 2px black;
+}

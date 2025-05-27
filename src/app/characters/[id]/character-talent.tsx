@@ -9,6 +9,8 @@ import { SkillStat } from "./skill-stat"
 import { TableSkillStat } from "./table-skill-stat"
 import { Skeleton } from "@/components/ui/skeleton"
 import 'react-loading-skeleton/dist/skeleton.css'
+import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js"
+import { supabase } from "@/utils/supabase/server"
 
 export default function CharacterTalent() {
   const uParams = useParams()
@@ -20,7 +22,7 @@ export default function CharacterTalent() {
   useEffect(() => {
     const id = uParams['id']
     const getSkill = async () => {
-      const skill_data = await client.resonator.getSkill.query({ id: Number(id) })
+      const { data: skill_data }: PostgrestMaybeSingleResponse<IResonatorSkill[]> = await supabase.from('skill').select('*').eq('resonator_id', Number(id));
       setSkills(skill_data ?? [])
       setIsLoading(false)
     }

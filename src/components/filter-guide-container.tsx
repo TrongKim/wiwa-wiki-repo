@@ -7,12 +7,13 @@ import CharacterGuideGallery from './character-guide-gallery'
 import { charactersGuide } from '@/lib/mock-data'
 import { ECharacterElementType, type ECharacterWeaponType } from '@/lib/enum'
 import SearchGuide from './search-guide'
+import { listGuides } from '@/data/guides'
 
 type ICharacterGuide = typeof charactersGuide;
 
 export function FilterGuideContainer() {
-    const [listGuide, setListGuide] = useState<ICharacterGuide>([]);
-    const [listGuideCache, setListGuideCache] = useState<ICharacterGuide>([]);
+    const [listGuide, setListGuide] = useState<typeof listGuides>([]);
+    const [listGuideCache, setListGuideCache] = useState<typeof listGuides>([]);
     const [searchString, setSearchString] = useState<string>('');
 
     const [filterByElement, setFilterByElement] = useState<{ code: ECharacterElementType } | null>(null);
@@ -20,7 +21,7 @@ export function FilterGuideContainer() {
     const [isFilter, setIsFilter] = useState<boolean>(false);
 
     useEffect(() => {
-        setListGuide([...charactersGuide]);
+        setListGuide([...listGuides]);
     }, []);
 
     const isFilterHandler = (): boolean => {
@@ -56,8 +57,8 @@ export function FilterGuideContainer() {
         if (isFilterHandler() || searchString.trim().length != 0) {
             setIsFilter(true);
             let guides_filtered = listGuide.filter(guide => guide.name.toLowerCase().includes(searchString.trim().toLowerCase()));
-            if (filterByElement != null) guides_filtered = guides_filtered.filter(guide => guide.elementType === filterByElement.code);
-            if (filterByWeapon != null) guides_filtered = guides_filtered.filter(guide => guide.weaponType === filterByWeapon.code);
+            if (filterByElement != null) guides_filtered = guides_filtered.filter(guide => guide.element === filterByElement.code);
+            if (filterByWeapon != null) guides_filtered = guides_filtered.filter(guide => guide.weapon_type === filterByWeapon.code);
             setListGuideCache(guides_filtered);
             return;
         }

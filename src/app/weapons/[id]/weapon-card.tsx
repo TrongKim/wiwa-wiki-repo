@@ -1,41 +1,27 @@
 'use client'
 import React, { useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
-import { Star } from 'lucide-react'
-import type { IAllStat, IHashIndex, IKeyValue, IStatWeapon, IWeaponDetail, TDisplayAscension, THashIndexStatList } from '@/lib/interface';
+import type { IHashIndex, IItem, IKeyValue, IStatWeapon, IWeaponDetail, TDisplayAscension, THashIndexStatList } from '@/lib/interface';
 import { useItemStore } from '@/lib/store';
 import { Slider } from '@/components/ui/slider';
 import { cn } from '@/lib/utils';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-
+import { motion } from "framer-motion"
+import { highlightNumbers } from '@/utils/text.utils';
+import { supabase } from '@/utils/supabase/server';
 interface Props {
     weapon_detail: IWeaponDetail | null;
+    items: IItem[];
 }
 
-import { motion } from "framer-motion"
-import WeaponDetailsSkeleton from './weapon-card-skeleton';
-import { highlightNumbers } from '@/utils/text.utils';
-import { client } from '@/trpc/client';
 
-export const WeaponCard = ({ weapon_detail }: Props) => {
-    const { items, setItems } = useItemStore();
+
+export const WeaponCard = ({ weapon_detail, items }: Props) => {
     const [loading, setLoading] = useState(true)
     const [levelCap, setLevelCap] = useState<{ level: number, range: 0 | 1 | 2 | 3 | 4 | 5 | 6 }>({ level: 90, range: 6 })
 
     useEffect(() => {
         if (weapon_detail) setLoading(false);
     }, []);
-
-    useEffect(() => {
-        const getItems = async () => {
-            const items_data = await client.item.getAll.query();
-            setItems(items_data ?? []);
-        }
-        if (items.length === 0) {
-            getItems();
-        }
-    }, [items]);
-
 
     const ascensionDisplayData: TDisplayAscension[] = useMemo(() => {
         return (
@@ -63,7 +49,7 @@ export const WeaponCard = ({ weapon_detail }: Props) => {
         )
     }, [weapon_detail?.ascensions ?? [], items]);
 
-    if (loading) return <WeaponDetailsSkeleton />
+    // if (loading) return <WeaponDetailsSkeleton />
 
 
     const getNumberValue = (n: 0 | 1): number => {
@@ -120,7 +106,7 @@ export const WeaponCard = ({ weapon_detail }: Props) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="bg-[#0d0d0d] rounded-lg overflow-hidden p-6 md:p-8"
+            className="bg-[#1f293780] border border-[#374151] rounded-lg overflow-hidden p-6 md:p-8"
         >
             <div className="flex justify-between items-center mb-6 max-[336px]:flex-col gap-1">
                 <h1 className="text-3xl font-bold text-white">{weapon_detail?.name}</h1>
@@ -164,20 +150,22 @@ export const WeaponCard = ({ weapon_detail }: Props) => {
                         </div>
                     </div>
 
-                    <div className="space-y-3 bg-[#1f293780] rounded-lg p-4">
-                        <div className="flex justify-between items-center py-2 border-b border-[#374151]">
-                            <span className="text-[#94a3b8]">{weapon_detail?.stats[levelCap.range][levelCap.level as keyof THashIndexStatList<IHashIndex<[0, 1], IStatWeapon>>][0]['Name']}</span>
-                            <span className="font-medium text-white">{Number(getNumberValue(0).toFixed(2))}</span>
+                    {
+                        weapon_detail?.stats && <div className="space-y-3 bg-[#1f293780] rounded-lg p-4">
+                            <div className="flex justify-between items-center py-2 border-b border-[#374151]">
+                                <span className="text-[#94a3b8]">{weapon_detail?.stats[levelCap.range][levelCap.level as keyof THashIndexStatList<IHashIndex<[0, 1], IStatWeapon>>][0]['Name']}</span>
+                                <span className="font-medium text-white">{Number(getNumberValue(0).toFixed(2))}</span>
+                            </div>
+                            <div className="flex justify-between items-center py-2 border-b border-[#374151]">
+                                <span className="text-[#94a3b8]">{weapon_detail?.stats[levelCap.range][levelCap.level as keyof THashIndexStatList<IHashIndex<[0, 1], IStatWeapon>>][1]['Name']}</span>
+                                <span className="font-medium text-white">{Number(getNumberValue(1).toFixed(2))}%</span>
+                            </div>
+                            <div className="flex justify-between items-center py-2">
+                                <span className="text-[#94a3b8]">Weapon Type</span>
+                                <span className="font-medium text-white">{weapon_detail?.type}</span>
+                            </div>
                         </div>
-                        <div className="flex justify-between items-center py-2 border-b border-[#374151]">
-                            <span className="text-[#94a3b8]">{weapon_detail?.stats[levelCap.range][levelCap.level as keyof THashIndexStatList<IHashIndex<[0, 1], IStatWeapon>>][1]['Name']}</span>
-                            <span className="font-medium text-white">{Number(getNumberValue(1).toFixed(2))}%</span>
-                        </div>
-                        <div className="flex justify-between items-center py-2">
-                            <span className="text-[#94a3b8]">Weapon Type</span>
-                            <span className="font-medium text-white">{weapon_detail?.type}</span>
-                        </div>
-                    </div>
+                    }
 
                     {/* Materials */}
                     <div>
@@ -220,46 +208,3 @@ export const WeaponCard = ({ weapon_detail }: Props) => {
         </motion.div>
     )
 }
-
-// function DialogTableDetailStat({ stats, isOpen, onClickChangeState }: { readonly isOpen: boolean; stats?: IAllStat<IHashIndex<[0, 1], IStatWeapon>>; readonly onClickChangeState: (value: boolean) => void; } & Props) {
-//     const getNumberValue = (value: number): string => {
-//         return (value / 100).toFixed(2);
-//     }
-//     return (
-//         <Dialog open={isOpen} onOpenChange={onClickChangeState}>
-//             <DialogContent className="sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] p-0 gap-0 bg-[#002147] border-[#334d6c] text-white max-h-[80vh] flex flex-col overflow-hidden">
-//                 <DialogHeader className="p-4 border-b border-[#1a3759] flex flex-row items-center justify-between bg-[#1a3759]">
-//                     <DialogTitle className="text-2xl font-bold text-white mx-auto">Filter</DialogTitle>
-//                 </DialogHeader>
-//                 <div className="pb-6 h-full flex flex-col overflow-hidden">
-//                     <div className="p-5 py-6 pb-0 overflow-y-auto h-full flex-1">
-//                         <table className="w-full max-w-2xl text-sm text-center rounded-lg overflow-hidden">
-//                             <thead className="bg-[#1a3759] text-white">
-//                                 <tr>
-//                                     <th className="p-3 max-[364px]:p-1">Level</th>
-//                                     <th className="p-3 max-[364px]:p-1">Base {stats?.[0][1][0]['Name']}</th>
-//                                     <th className="p-3 max-[364px]:p-1 capitalize">{stats?.[0][1][1]['Name']}</th>
-//                                 </tr>
-//                             </thead>
-//                             <tbody>
-//                                 {stats &&
-//                                     (Object.entries(stats) as Array<[string, THashIndexStatList<IHashIndex<[0, 1], IStatWeapon>>]>).flatMap(([groupKey, group]) =>
-//                                         (Object.entries(group) as Array<[string, IHashIndex<[0, 1], IStatWeapon>]>).map(([indexStr, value], i) => (
-//                                             <tr
-//                                                 key={indexStr.toString() + i + groupKey}
-//                                                 className={i % 2 === 0 ? 'bg-[#334d6c]' : 'bg-[#4d647e]'}
-//                                             >
-//                                                 <td className="p-3 max-[364px]:p-1">{indexStr}</td>
-//                                                 <td className="p-3 max-[364px]:p-1">{value[0].Value.toFixed(2)}</td>
-//                                                 <td className="p-3 max-[364px]:p-1">{getNumberValue(value[1].Value)}</td>
-//                                             </tr>
-//                                         ))
-//                                     )}
-//                             </tbody>
-//                         </table>
-//                     </div>
-//                 </div>
-//             </DialogContent>
-//         </Dialog>
-//     );
-// }

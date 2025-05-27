@@ -1,6 +1,9 @@
 import { api } from "@/trpc/server";
 import { EchoGrid } from "./echo-grid";
 import { EchoHeader } from "./echo-header";
+import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js";
+import type { IEcho, IEchoSet } from "@/lib/interface";
+import { supabase } from "@/utils/supabase/server";
 
 export const metadata = {
     title: 'Danh sách echo',
@@ -8,8 +11,8 @@ export const metadata = {
 };
 
 export default async function EchosPage() {
-    const echos = await api.echo.getAll();
-    const echoSets = await api.echoSet.getAll();
+    const { data: echos }: PostgrestMaybeSingleResponse<IEcho[]> = await supabase.from('echoes').select('id, name, intensity, icon, set_ids').order('name', { ascending: false });
+    const { data: echoSets }: PostgrestMaybeSingleResponse<IEchoSet[]> = await supabase.from('echo_sets').select('id, name, icon').order('name', { ascending: false });
 
     return (
         <main className="flex-1 transition-all duration-300 ease-in-out pb-4">

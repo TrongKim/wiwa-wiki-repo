@@ -160,10 +160,8 @@ export default function EchoCard({ echo_detail, sets }: Props) {
                                             <Image src={set.icon} width={100} height={100} alt={set.name} className="w-6 h-6" />
                                         </div>
                                     </div>
-
                                     <div className="flex-1">
                                         <h3 className="text-lg font-medium mb-3">{set.name}</h3>
-
                                         <div className="space-y-2">
                                             <div>
                                                 <p className="text-sm font-bold mb-1">2-piece</p>

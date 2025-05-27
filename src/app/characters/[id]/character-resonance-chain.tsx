@@ -1,6 +1,8 @@
 "use client"
 import type { IResonatorChain } from "@/lib/interface";
 import { client } from "@/trpc/client"
+import { supabase } from "@/utils/supabase/server";
+import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js";
 import Image from "next/image"
 import { useEffect, useState } from "react";
 interface PageProps {
@@ -12,7 +14,7 @@ export const CharacterResonanceChain = ({ params }: PageProps) => {
 
   useEffect(() => {
     const getChain = async () => {
-      const data = await client.resonator.getChain.query({ id: params.id })
+      const { data: data }: PostgrestMaybeSingleResponse<IResonatorChain[]> = await supabase.from('resonant_chain').select('*').eq('resonator_id', params.id);
       setResonatorChains(data ?? [])
     }
     getChain()
