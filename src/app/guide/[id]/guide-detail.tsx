@@ -65,8 +65,8 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
 
         const distanceToBottom = scrollHeight - (scrollTop + clientHeight);
 
-        setIsShowMenuScrollTo(distanceToBottom > 0);
-      }, 50); // debounce time: 100ms
+        setIsShowMenuScrollTo(distanceToBottom > 200);
+      }, 50);
     };
 
     el.addEventListener('scroll', handleScroll);
@@ -593,7 +593,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
         </nav>
       }
 
-      {(isShowMenuScrollTo || isMobileMenuOpen) && (
+      {isMobileMenuOpen && (
         <div className="fixed inset-0 bg-black/50 z-30 lg:hidden" onClick={() => setIsMobileMenuOpen(false)} />
       )}
     </div>

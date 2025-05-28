@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/src/styles/sidebar.css"],"sourcesContent":["/* .top-nav-client {\r\n    transition: all 200ms;\r\n}\r\n\r\n.nav-side-bar-container:has(.side-bar-client:hover) > .top-nav-client {\r\n    width: calc(100% - 256.2px);\r\n    left: 256.2px;\r\n    transition-delay: 40ms;\r\n} */"],"names":[],"mappings":""}}]
-}

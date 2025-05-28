@@ -31,7 +31,7 @@ export default function CharacterGuideCard({ character }: CharacterGuideCardProp
               return (
                 <div key={guide.id} className="flex justify-between mb-0 border border-[#4d647e] px-1 pr-0 rounded-xl overflow-hidden bg-[#606d8180] max-w-[170px] mx-auto">
                   <span className="text-white text-sm sm:text-[14px] pr-1 text-center w-full">{guide.name}</span>
-                  <span className="flex items-center justify-center min-w-[35px] text-white text-sm sm:text-[14px] font-medium border-l border-[#1a3759] w-[35px] text-center bg-[#5d6977]">{guide.version}.</span>
+                  <span className="flex items-center justify-center min-w-[35px] text-white text-sm sm:text-[14px] font-medium border-l border-[#1a3759] w-[35px] text-center bg-[#5d6977]">{guide.version}</span>
                 </div>
               )
             })
