@@ -14,7 +14,7 @@ export const CharacterResonanceChain = ({ params }: PageProps) => {
 
   useEffect(() => {
     const getChain = async () => {
-      const { data: data }: PostgrestMaybeSingleResponse<IResonatorChain[]> = await supabase.from('resonant_chain').select('*').eq('resonator_id', params.id);
+      const { data: data }: PostgrestMaybeSingleResponse<IResonatorChain[]> = await supabase.from('resonant_chain').select('*').eq('resonator_id', params.id).order('index', { ascending: true });
       setResonatorChains(data ?? [])
     }
     getChain()
@@ -32,7 +32,7 @@ export const CharacterResonanceChain = ({ params }: PageProps) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {resonatorChains.map((chain, index) => (
             <div
-              key={chain.id + index}
+              key={chain.id}
               className="bg-[#131620] rounded-lg border border-[#1e2230] overflow-hidden flex flex-col"
             >
               <div className="bg-[#1a2234] p-4 flex items-center gap-4">
@@ -45,7 +45,7 @@ export const CharacterResonanceChain = ({ params }: PageProps) => {
                   />
                 </div>
                 <h2 className="text-xl font-bold text-white">
-                  {chain.name}
+                  {index + 1 + '. ' + chain.name}
                 </h2>
               </div>
               <div className="p-6">

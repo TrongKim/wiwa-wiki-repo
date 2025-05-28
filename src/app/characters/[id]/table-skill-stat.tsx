@@ -1,6 +1,7 @@
-import type { IResonatorSkill, ISkillConsume } from '@/lib/interface'
+import type { IResonatorSkill, IResonatorSkillConsume, ISkillConsume } from '@/lib/interface'
 import React from 'react'
 import Image from 'next/image'
+import { getSumMaterial } from '@/lib/utils';
 
 interface Props {
     skill: IResonatorSkill;
@@ -15,6 +16,8 @@ export const TableSkillStat = ({ skill }: Props) => {
     const handleDescription = (description: string) => {
         return description.replaceAll(`<br><br>`, '<br>').replaceAll('text-3xl', 'text-[17px]');
     }
+
+
 
     return (
         <div className="p-4 bg-[#1a2234] border-[#1e2230]">
@@ -73,11 +76,14 @@ export const TableSkillStat = ({ skill }: Props) => {
             {/* Materials Section */}
             <div className="mt-8 flex items-center justify-start gap-[10px] flex-wrap">
                 {
-                    (skill.consumes[9]?.Consume ?? []).map((consume: ISkillConsume, index: number) => {
+                    (getSumMaterial(skill.consumes) ?? []).map((consume: ISkillConsume, index: number) => {
                         return (
-                            <div key={consume.Key + index + 'consume'} className="flex-1 bg-[#1a3759] p-3 rounded-[20px] flex flex-col items-center justify-center cursor-pointer pointer-events-auto border border-[#617fa3d6]">
+                            <div key={consume.Key + index + 'consume'} className="bg-[#1a3759] w-[calc(20%-10px)] min-w-[calc(20%-10px)] p-3 rounded-[20px] flex flex-col items-center justify-center cursor-pointer pointer-events-auto border border-[#617fa3d6]">
                                 <div className="flex-1 bg-[#334d6c] w-full flex justify-center py-2 rounded-xl">
                                     <Image src={handleWrongURL(consume.Icon)} width={48} height={48} alt="consume" />
+                                </div>
+                                <div className="pt-1 h-fit">
+                                    <p className="text-center">{consume.Value}</p>
                                 </div>
                             </div>
                         )

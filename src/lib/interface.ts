@@ -167,16 +167,18 @@ export type TAscensionEntry = {
   Value: number;
 };
 
+export interface IItemsUpgradeResonator {
+  id: number;
+  quantity: number;
+  name?: string;
+  icon?: string;
+  tag?: string;
+  rank?: number;
+}
+
 export type TDisplayAscension = {
   level: number;
-  items: {
-    id: number;
-    quantity: number;
-    name?: string;
-    icon?: string;
-    tag?: string;
-    rank?: number;
-  }[];
+  items: IItemsUpgradeResonator[];
 };
 
 export interface IFilter {

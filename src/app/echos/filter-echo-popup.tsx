@@ -74,7 +74,7 @@ export default function FilterEchoPopup({ isOpen, onClickChangeState, onChangeFi
                             activeColor="#4d647e"
                             fixedHeight="h-[40px]"
                         >
-                            <span className="text-yellow-300">Common</span>
+                            <span className="text-yellow-300">Cost 1</span>
                         </FilterButton>
                         <FilterButton
                             active={filtersT.echo.some(item => item.code === EEchoCost.COST_THREE)}
@@ -83,7 +83,7 @@ export default function FilterEchoPopup({ isOpen, onClickChangeState, onChangeFi
                             activeColor="#4d647e"
                             fixedHeight="h-[40px]"
                         >
-                            <span className="text-yellow-300">Elite</span>
+                            <span className="text-yellow-300">Cost 3</span>
                         </FilterButton>
                         <FilterButton
                             active={filtersT.echo.some(item => item.code === EEchoCost.COST_FOUR)}
@@ -92,7 +92,7 @@ export default function FilterEchoPopup({ isOpen, onClickChangeState, onChangeFi
                             activeColor="#4d647e"
                             fixedHeight="h-[40px]"
                         >
-                            <span className="text-yellow-300">Overlord</span>
+                            <span className="text-yellow-300">Cost 4</span>
                         </FilterButton>
                     </FilterSection>
                     <FilterSection maxLength={2} title="Echo Set" filters={filtersT} keyFilter="set" handleFilterChange={() => setFiltersT({ ...filtersT, set: [] })}>

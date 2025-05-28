@@ -16,15 +16,15 @@ export function Footer() {
               Hướng dẫn và tối ưu nhân vật. Để những cuộc tranh luận có não hơn.
             </p>
             <div className="flex space-x-4 pt-2">
-              <Link href="https://www.youtube.com/@meap0812" className="text-gray-300 hover:text-white transition-colors">
+              <Link  href="https://www.facebook.com/songgiohu/" className="text-gray-300 hover:text-white transition-colors">
                 <Facebook size={20} />
                 <span className="sr-only">Facebook</span>
               </Link>
-              <Link href="https://discord.gg/songgiohu" className="text-gray-300 hover:text-white transition-colors">
+              <Link href="https://www.youtube.com/@meap0812" className="text-gray-300 hover:text-white transition-colors">
                 <Youtube size={20} />
                 <span className="sr-only">Youtube</span>
               </Link>
-              <Link href="https://www.facebook.com/songgiohu/" className="text-gray-300 hover:text-white transition-colors">
+              <Link href="https://discord.gg/songgiohu" className="text-gray-300 hover:text-white transition-colors">
                 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fillRule="evenodd" clipRule="evenodd" d="M11 12.5C11 13.8807 10.1046 15 9 15C7.89543 15 7 13.8807 7 12.5C7 11.1193 7.89543 10 9 10C10.1046 10 11 11.1193 11 12.5ZM8.22293 12.5C8.22293 13.0365 8.57084 13.4713 9 13.4713C9.42916 13.4713 9.77707 13.0365 9.77707 12.5C9.77707 11.9635 9.42916 11.5287 9 11.5287C8.57084 11.5287 8.22293 11.9635 8.22293 12.5Z" fill="#fff" />
                   <path fillRule="evenodd" clipRule="evenodd" d="M15 15C16.1046 15 17 13.8807 17 12.5C17 11.1193 16.1046 10 15 10C13.8954 10 13 11.1193 13 12.5C13 13.8807 13.8954 15 15 15ZM15 13.4713C14.5708 13.4713 14.2229 13.0365 14.2229 12.5C14.2229 11.9635 14.5708 11.5287 15 11.5287C15.4292 11.5287 15.7771 11.9635 15.7771 12.5C15.7771 13.0365 15.4292 13.4713 15 13.4713Z" fill="#fff" />

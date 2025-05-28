@@ -1,11 +1,25 @@
 'use client'
 import Link from "next/link"
 import { cn } from "@/lib/utils"
-import { useEffect, useRef, useState } from "react"
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode, type RefObject } from "react"
 import './../styles/sidebar.css'
 import { ScrollTopIcon } from "./scroll-top-icon"
 import { usePathname } from "next/navigation"
 import Image from 'next/image'
+
+type ScrollRefContextType = {
+  scrollRef: React.RefObject<HTMLDivElement | null>;
+};
+
+const ScrollRefContext = createContext<ScrollRefContextType | null>(null);
+
+export const useScrollRef = () => {
+  const context = useContext(ScrollRefContext);
+  if (!context) {
+    throw new Error("useScrollRef must be used within <Sidebar>");
+  }
+  return context;
+};
 
 export function Sidebar({
   children,
@@ -186,7 +200,11 @@ export function Sidebar({
           </button>
         </div>
         <div ref={refParentElement} className="flex-1 overflow-auto flex justify-center items-start">
-          {children}
+          {
+            refParentElement && <ScrollRefContext.Provider value={{ scrollRef: refParentElement }}>
+              {children}
+            </ScrollRefContext.Provider>
+          }
           {refParentElement && <ScrollTopIcon key={'reference-state' + stateShowIcon} onClick={onClickScrollToTop} stateShowIcon={stateShowIcon} />}
         </div>
       </div>

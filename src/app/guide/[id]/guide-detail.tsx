@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Menu, X } from "lucide-react"
+import { useScrollRef } from "@/components/sidebar"
 type GuideProps = {
   guide: typeof import("@/data/guides").guides
 }
@@ -27,7 +28,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
   const [activeSection, setActiveSection] = useState("overview")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isShowMenuScrollTo, setIsShowMenuScrollTo] = useState(true)
-  const observerRef = useRef<IntersectionObserver | null>(null)
+  const { scrollRef } = useScrollRef();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,25 +49,70 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
   }, [])
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.innerHeight + window.scrollY;
-      const documentHeight = document.body.offsetHeight;
+    if (!scrollRef?.current) return;
 
-      if (documentHeight - scrollPosition <= 400) {
-        setIsShowMenuScrollTo(false)
-      } else setIsShowMenuScrollTo(true)
+    const el = scrollRef.current;
+
+    let timeout: ReturnType<typeof setTimeout>;
+
+    const handleScroll = () => {
+      if (timeout) clearTimeout(timeout);
+
+      timeout = setTimeout(() => {
+        const scrollTop = el.scrollTop;
+        const scrollHeight = el.scrollHeight;
+        const clientHeight = el.clientHeight;
+
+        const distanceToBottom = scrollHeight - (scrollTop + clientHeight);
+
+        setIsShowMenuScrollTo(distanceToBottom > 0);
+      }, 50); // debounce time: 100ms
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [])
+    el.addEventListener('scroll', handleScroll);
+
+    handleScroll();
+
+    return () => {
+      clearTimeout(timeout);
+      el.removeEventListener('scroll', handleScroll);
+    };
+  }, [scrollRef]);
+
+
+  useEffect(() => {
+    if (!scrollRef?.current) return;
+
+    const container = scrollRef.current;
+
+    const handleScroll = () => {
+      const scrollPosition = container.scrollTop + 100;
+
+      const sections = navigationItems.map((item) => document.getElementById(item.id));
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(navigationItems[i]?.id ?? 'overview');
+          break;
+        }
+      }
+    };
+
+    container.addEventListener('scroll', handleScroll);
+
+    handleScroll();
+
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, [navigationItems, scrollRef]);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
+    if (!scrollRef?.current) return;
     if (element) {
       const offset = 80
       const elementPosition = element.offsetTop - offset
-      window.scrollTo({
+      scrollRef.current.scrollTo({
         top: elementPosition,
         behavior: "smooth",
       })
@@ -115,7 +161,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                   <Badge className="bg-[#374151] text-white">Sub-DPS</Badge>
                   <Badge className="bg-[#374151] text-white">Buffer</Badge>
                 </div>
-                <p className="text-[#94a3b8] leading-relaxed">{guide.introduction}</p>
+                <p className="text-[#94a3b8] leading-relaxed text-justify">{guide.introduction}</p>
               </div>
             </div>
 
@@ -131,7 +177,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
             <div>
               <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Character Overview</h2>
               <div>
-                <p className="text-[#94a3b8] leading-relaxed">{guide.overview}</p>
+                <p className="text-[#94a3b8] leading-relaxed text-justify">{guide.overview}</p>
               </div>
             </div>
           </section>
@@ -239,7 +285,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                   </div>
                   <div className="bg-[#60a5fa]/10 border border-[#60a5fa]/30 rounded-lg p-4">
                     <h3 className="text-[#60a5fa] font-semibold mb-2">Note</h3>
-                    <p className="text-[#94a3b8] text-sm">{guide.basicGuide.targetStats.note}</p>
+                    <p className="text-[#94a3b8] text-sm text-justify">{guide.basicGuide.targetStats.note}</p>
                   </div>
                 </div>
               </CardContent>
@@ -307,7 +353,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                         </div>
                       </div>
                       <div className="col-span-6 max-[850px]:col-span-4 max-[710px]:hidden flex items-center">
-                        <p className="text-[#94a3b8] text-sm leading-relaxed">{weapon.description}</p>
+                        <p className="text-[#94a3b8] text-sm leading-relaxed text-justify">{weapon.description}</p>
                       </div>
                     </div>
                   )
@@ -327,7 +373,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
             <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Team Compositions</h2>
             <Card className="bg-[#1f293780] border-[#374151] mb-6">
               <CardContent className="pt-6">
-                <pre className="text-[#94a3b8] leading-relaxed whitespace-pre-wrap font-sans not-italic">{guide.teamComp.notes}</pre>
+                <pre className="text-[#94a3b8] leading-relaxed whitespace-pre-wrap font-sans not-italic text-justify">{guide.teamComp.notes}</pre>
               </CardContent>
             </Card>
             <div className="grid md:grid-cols-2 gap-4">
@@ -412,7 +458,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                   <CardTitle className="text-[#60a5fa]">Important Notes</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <pre className="text-[#94a3b8] whitespace-pre-wrap font-sans not-italic">{guide.rotation.notes}</pre>
+                  <pre className="text-[#94a3b8] whitespace-pre-wrap font-sans not-italic text-justify">{guide.rotation.notes}</pre>
                 </CardContent>
               </Card>
             </div>
@@ -427,7 +473,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                 <div key={index} className="mb-4">
                   <h3 className="text-[#60a5fa] text-lg">{technique.name}</h3>
                   <div>
-                    <p className="text-[#94a3b8]">{technique.description}</p>
+                    <p className="text-[#94a3b8] text-justify">{technique.description}</p>
                   </div>
                   <div className="flex flex-col gap-4 items-center mt-4">
                     {
@@ -457,7 +503,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
 
             <Card className="bg-[#60a5fa]/10 border-[#60a5fa]/30 mb-6">
               <CardContent className="pt-6">
-                <p className="text-[#94a3b8] leading-relaxed">{guide.summary.notes}</p>
+                <p className="text-[#94a3b8] leading-relaxed text-justify">{guide.summary.notes}</p>
                 <div className="flex justify-center">
                   {
                     guide.summary.link && getYoutubeEmbedUrl(guide.summary.link) && <iframe
@@ -512,7 +558,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                 <CardTitle className="text-[#38bdf8]">Conclusion</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-white text-lg leading-relaxed">{guide.summary.conclusion}</p>
+                <p className="text-white text-lg leading-relaxed text-justify">{guide.summary.conclusion}</p>
               </CardContent>
             </Card>
           </section>
@@ -547,7 +593,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
         </nav>
       }
 
-      {isMobileMenuOpen && (
+      {(isShowMenuScrollTo || isMobileMenuOpen) && (
         <div className="fixed inset-0 bg-black/50 z-30 lg:hidden" onClick={() => setIsMobileMenuOpen(false)} />
       )}
     </div>

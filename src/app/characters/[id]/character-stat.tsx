@@ -1,7 +1,7 @@
 'use client'
 import { Card, CardContent } from '@/components/ui/card'
 import React, { useState } from 'react'
-import { cn } from '@/lib/utils'
+import { cn, getSumMaterialUpgradeResonator } from '@/lib/utils'
 import { Slider } from '@/components/ui/slider'
 import { TableStatCharacter } from './table-stat'
 import type { ICharacterDetail, IStatCharacter, TDisplayAscension, THashIndexStatList } from '@/lib/interface'
@@ -97,20 +97,41 @@ export function CharacterStat({ resonator, material }: Props) {
 
                         </div>
                     </div>
-                    <div className="flex justify-center gap-4 mt-4 mb-4 flex-wrap">
-                        {
-                            (material[getRangeUpgrade(levelCap.range)]?.items ?? []).map((item, index) => {
-                                return (
-                                    <div key={index + (item?.name ?? '') + 'icon upgrade'} className="bg-[#33435896] w-[60px] border-[#374151] rounded-md p-2 flex flex-col items-center border">
-                                        <div className="text-orange-500 mb-1">
-                                            <Image src={item?.icon ?? ''} width={32} height={32} alt="material" />
-                                        </div>
-                                        <span className="text-[14px]">{item.quantity}</span>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
+                    <h3 className="mt-4 font-bold">{stateShowStat ? '[ Đột Phá Mốc ' + levelCap.range + 1 + ' ]' : '[ Đột Phá Tất Cả Các Mốc ]'}</h3>
+                    {
+                        stateShowStat ? (
+                            <div className="flex justify-center gap-4 mt-4 mb-4 flex-wrap">
+                                {
+                                    (material[getRangeUpgrade(levelCap.range)]?.items ?? []).map((item, index) => {
+                                        return (
+                                            <div key={index + (item?.name ?? '') + 'icon upgrade'} className="bg-[#33435896] w-[60px] border-[#374151] rounded-md p-2 flex flex-col items-center border">
+                                                <div className="text-orange-500 mb-1">
+                                                    <Image src={item?.icon ?? ''} width={32} height={32} alt="material" />
+                                                </div>
+                                                <span className="text-[14px]">{item.quantity}</span>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        ) : (
+                            <div className="flex justify-center gap-4 mt-4 mb-4 flex-wrap">
+                                {
+                                    (getSumMaterialUpgradeResonator(material) ?? []).map((item, index) => {
+                                        return (
+                                            <div key={index + (item?.name ?? '') + 'icon upgrade'} className="bg-[#33435896] w-[60px] border-[#374151] rounded-md p-2 flex flex-col items-center border">
+                                                <div className="text-orange-500 mb-1">
+                                                    <Image src={item?.icon ?? ''} width={32} height={32} alt="material" />
+                                                </div>
+                                                <span className="text-[14px]">{item.quantity}</span>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
+                    }
+
                     {/* <div className="flex items-center justify-center gap-2">
                         <span>Required:</span>
                         <span className="text-yellow-400">●</span>
