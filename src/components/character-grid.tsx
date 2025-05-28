@@ -62,7 +62,7 @@ export function CharacterGrid({ characters }: Props) {
               <div className="absolute top-2 right-2 z-10">
                 <WeaponIcon type={character.weapon_type} />
               </div>
-              { character.card && <Image src={character.card} alt={character.name} fill className="object-contain" /> }
+              <Image src={character.card} alt={character.name} fill className="object-contain" />
               <div className={`absolute bottom-0 left-0 right-0 ${character.rank === 5 ? 'bg-[linear-gradient(0deg,_#c9ac67c8_0%,_#c9ac6700_100%)]' : 'bg-[linear-gradient(0deg,_#b567c9c8_0%,_#aa67c900_100%)]'} p-4`}>
                 <h3 className="text-center text-shadow-[#050505b8] text-shadow-lg font-bold">{character.name}</h3>
                 <div className="flex justify-center mt-1">
