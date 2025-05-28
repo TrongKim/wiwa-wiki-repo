@@ -19,7 +19,8 @@ export function CharacterHeader({ onChangeFilter }: Props) {
     element: [],
     bodyType: [],
     rarity_weapon: [],
-    echo: []
+    echo: [],
+    set: []
   });
 
   useEffect(() => {
