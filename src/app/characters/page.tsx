@@ -4,10 +4,22 @@ import { api } from "@/trpc/server";
 import { supabase } from "@/utils/supabase/server";
 import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
     title: 'Danh sách nhân vật',
     description: 'Tổng hợp các nhân vật trong Wuthering Waves.',
 };
+
+export async function generateStaticParams() {
+  const { data: resonators } = await supabase.from("resonators").select("id");
+
+  return (
+    resonators?.map((r) => ({
+      id: r.id.toString(),
+    })) || []
+  );
+}
 
 export default async function CharactersPage() {
     // const resonators = await api.resonator.getAll();

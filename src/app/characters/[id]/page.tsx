@@ -5,16 +5,6 @@ import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js";
 import type { ICharacterDetail, IItem } from "@/lib/interface";
 import { Suspense } from "react";
 
-export async function generateStaticParams() {
-  const { data: resonators } = await supabase.from("resonators").select("id");
-
-  return (
-    resonators?.map((r) => ({
-      id: r.id.toString(),
-    })) || []
-  );
-}
-
 interface PageProps {
   readonly params: { id: string };
 }

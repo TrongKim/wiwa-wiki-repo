@@ -181,22 +181,9 @@ export type TDisplayAscension = {
   items: IItemsUpgradeResonator[];
 };
 
-export interface IFilter {
-  rarity: string;
-  type: string;
-  element: string;
-  specialStat: string;
-  region: string;
-  bodyType: string;
-}
-
 export interface TFilter<T> {
   code: T | 0,
   name: string;
-}
-
-export interface IFilterWeapon {
-
 }
 
 export interface IFilterT {
