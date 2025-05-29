@@ -1,6 +1,30 @@
 {
   "version": 4,
   "routes": {
+    "/": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/",
+      "dataRoute": "/index.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/tribute": {
       "experimentalBypassFor": [
         {
@@ -25,7 +49,7 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/guide": {
+    "/echos": {
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -38,32 +62,8 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/guide",
-      "dataRoute": "/guide.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/",
-      "dataRoute": "/index.rsc",
+      "srcRoute": "/echos",
+      "dataRoute": "/echos.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -97,7 +97,7 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/echos": {
+    "/guide": {
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -110,8 +110,8 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/echos",
-      "dataRoute": "/echos.rsc",
+      "srcRoute": "/guide",
+      "dataRoute": "/guide.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -5192,8 +5192,8 @@
   },
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "287f35dd217a135f439e056de43b3645",
-    "previewModeSigningKey": "5dc8ea7ace2fbf85d7e613aa5b368a01a47b632b256010f0f956dc1674c6d616",
-    "previewModeEncryptionKey": "85490b71a4633b7f69c67b83c0551e6b69f18b7b4f6c658f1594903ac18ac0d4"
+    "previewModeId": "70290db7b7271295e81f54b66ff1e181",
+    "previewModeSigningKey": "5f0a6b2cfec4d39efe243b01e0690a1c989fa270753881146fa5e33cb99cdc5a",
+    "previewModeEncryptionKey": "ed6acf7d2159b7dd8183ea2f6ffbaa17bda100ac2704c5a250548514fe23e3d1"
   }
 }

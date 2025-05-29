@@ -97,7 +97,7 @@ export function CharacterStat({ resonator, material }: Props) {
 
                         </div>
                     </div>
-                    <h3 className="mt-4 font-bold">{stateShowStat ? '[ Đột Phá Mốc ' + levelCap.range + 1 + ' ]' : '[ Đột Phá Tất Cả Các Mốc ]'}</h3>
+                    <h3 className="mt-4 font-bold">{stateShowStat ? '[ Đột Phá Mốc ' + (Number(levelCap.range) + 1) + ' ]' : '[ Đột Phá Tất Cả Các Mốc ]'}</h3>
                     {
                         stateShowStat ? (
                             <div className="flex justify-center gap-4 mt-4 mb-4 flex-wrap">
