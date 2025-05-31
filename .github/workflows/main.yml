@@ -24,6 +24,8 @@ jobs:
           git fetch origin
           git checkout release
           git pull
+          node -v
+          npm -v
           npm install
           /root/.nvm/versions/node/v22.16.0/bin/pm2 reload wiwabeacon
       env:
