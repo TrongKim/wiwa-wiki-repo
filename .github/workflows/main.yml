@@ -15,12 +15,15 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: 22
+        envs: GH_PAT  # <== TRUYỀN biến GH_PAT vào máy chủ SSH
         script: |
           cd /home/wiwa*
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/TrongKim/wiwa-wiki-repo.git
+          git remote set-url origin https://x-access-token:$GH_PAT@github.com/TrongKim/wiwa-wiki-repo.git
           git fetch origin
           git checkout release
           git pull
           pm2 reload wiwabeacon
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}  # <== Gắn secret vào biến GH_PAT để truyền qua envs
