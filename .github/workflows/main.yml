@@ -16,14 +16,11 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: 22
         script: |
+          cd /home/wiwa*
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          cd /
-          cd /home/wiwa*
+          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/your-username/your-repo.git
           git fetch origin
           git checkout release
           git pull
           pm2 reload wiwabeacon
-            
-          
