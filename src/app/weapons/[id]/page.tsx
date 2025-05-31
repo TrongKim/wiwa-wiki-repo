@@ -4,16 +4,6 @@ import { supabase } from "@/utils/supabase/server";
 import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js";
 import type { IWeaponDetail } from "@/lib/interface";
 
-export async function generateStaticParams() {
-    const { data: weapons } = await supabase.from("weapons").select("id");
-
-    return (
-        weapons?.map((r) => ({
-            id: r.id.toString(),
-        })) || []
-    );
-}
-
 interface PageProps {
     readonly params: { id: string };
 }

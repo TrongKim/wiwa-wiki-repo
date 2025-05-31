@@ -131,12 +131,6 @@ export function CharacterStat({ resonator, material }: Props) {
                             </div>
                         )
                     }
-
-                    {/* <div className="flex items-center justify-center gap-2">
-                        <span>Required:</span>
-                        <span className="text-yellow-400">●</span>
-                        <span className="text-yellow-400 font-bold">120000</span>
-                    </div> */}
                 </CardContent>
             </Card>
         </div>

@@ -3,6 +3,16 @@ import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js";
 import type { IWeapon } from "@/lib/interface";
 import { supabase } from "@/utils/supabase/server";
 
+export async function generateStaticParams() {
+    const { data: weapons } = await supabase.from("weapons").select("id");
+
+    return (
+        weapons?.map((r) => ({
+            id: r.id.toString(),
+        })) || []
+    );
+}
+
 export const metadata = {
     title: 'Danh sách vũ khí',
     description: 'Tổng hợp các vũ khí trong wuthering waves.',

@@ -31,5 +31,6 @@ export enum EWeaponRare {
 export enum EEchoCost {
     COST_ONE = 'Common Class',
     COST_FOUR = 'Overlord Class',
-    COST_THREE = 'Elite Class'
+    COST_THREE = 'Elite Class',
+    COST_CAMA = 'Calamity Class'
 }

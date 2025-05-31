@@ -1,4 +1,4 @@
-// File: C:\Users\VIP\Desktop\project\wiwa-wiki-repo\src\app\api\trpc\[trpc]\route.ts
+// File: C:\Users\VIP\OneDrive\Desktop\project\wiwa-wiki-repo\src\app\api\trpc\[trpc]\route.ts
 import * as entry from '../../../../../../src/app/api/trpc/[trpc]/route.js'
 import type { NextRequest } from 'next/server.js'
 

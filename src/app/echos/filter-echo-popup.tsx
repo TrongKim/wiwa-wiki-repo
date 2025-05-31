@@ -49,6 +49,13 @@ export default function FilterEchoPopup({ isOpen, onClickChangeState, onChangeFi
         }
     }
 
+    const onClickFilterChangeCost4 = () => {
+        setFiltersT((prev) => ({
+            ...prev,
+            echo: prev.echo.some(item => item.code === EEchoCost.COST_FOUR || item.code === EEchoCost.COST_CAMA) ? prev.echo.filter(f => (f.code !== EEchoCost.COST_FOUR && f.code !== EEchoCost.COST_CAMA)) : [...prev.echo, { code: EEchoCost.COST_FOUR, name: '4' }, { code: EEchoCost.COST_CAMA, name: '4' }],
+        }));
+    }
+
     const isInstanceOfEcho = (value: IFilterT[typeof key][number], key: keyof IFilterT): value is TFilter<EEchoCost> => {
         const weaponsType: unknown[] = [EEchoCost.COST_ONE, EEchoCost.COST_THREE, EEchoCost.COST_FOUR];
         return weaponsType.includes(value.code);
@@ -87,7 +94,7 @@ export default function FilterEchoPopup({ isOpen, onClickChangeState, onChangeFi
                         </FilterButton>
                         <FilterButton
                             active={filtersT.echo.some(item => item.code === EEchoCost.COST_FOUR)}
-                            onClick={() => onClickFilterChange("echo", { code: EEchoCost.COST_FOUR, name: '4' })}
+                            onClick={onClickFilterChangeCost4}
                             baseColor="#334d6c"
                             activeColor="#4d647e"
                             fixedHeight="h-[40px]"

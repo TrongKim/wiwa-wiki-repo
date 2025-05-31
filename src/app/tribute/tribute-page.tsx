@@ -5,7 +5,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Users, Code, Globe, Heart, Github, MessageCircle, Star } from "lucide-react"
+import { ArrowLeft, Users, Code, Globe, Heart, Github, MessageCircle, Star, BookOpenText } from "lucide-react"
+import { ExternalLink } from "@/components/external-link"
 
 const contributors = [
   {
@@ -15,18 +16,20 @@ const contributors = [
     server: "Sóng Gió Hú",
     department: "Designer",
     role: "UI/UX Designer",
-    contributions: ["Designer", "UI/UX", "Theorycrafter", "Translation"],
+    contributions: ["Designer", "UI/UX", "Theorycrafter", "Translation", "Donation", "Chủ Trại Giam"],
     joinDate: "2025-04",
+    linkDiscord: 'http://discord.gg/songgiohu'
   },
   {
     id: 2,
     name: "Squid~",
     photo: "/tribute/muc.jpg",
-    server: "GitHub",
-    department: "Theorycrafter",
+    server: "Sóng Gió Hú",
+    department: "Guide Writer",
     role: "Theorycrafter",
-    contributions: ["Translation", "Theorycrafter"],
+    contributions: ["Translation", "Guide Writer", "Donation", "LBGT"],
     joinDate: "2025-05",
+    linkDiscord: 'http://discord.gg/songgiohu'
   },
   {
     id: 3,
@@ -37,6 +40,7 @@ const contributors = [
     role: "Frontend / Deployment",
     contributions: ["Development", "Frontend Developer", "Maintain"],
     joinDate: "2025-02",
+    linkDiscord: 'http://discord.gg/songgiohu'
   },
   {
     id: 4,
@@ -47,6 +51,7 @@ const contributors = [
     role: "Technical Lead",
     contributions: ["Translation", "Database", "Data Mining"],
     joinDate: "2025-04",
+    linkDiscord: 'http://discord.gg/songgiohu'
   },
   {
     id: 6,
@@ -54,9 +59,32 @@ const contributors = [
     photo: "/tribute/thu.png",
     server: "Sóng Gió Hú",
     department: "Designer",
-    role: "Inforgraphic",
-    contributions: ["Designer", "Inforgraphic", "Translation", "Quản Ngục"],
+    role: "Infographic",
+    contributions: ["Designer", "Infographic", "Quản Ngục"],
     joinDate: "2025-05",
+    linkDiscord: 'http://discord.gg/songgiohu'
+  },
+  {
+    id: 10,
+    name: "AAA-Battery",
+    photo: "/tribute/battery.png",
+    server: "Sóng Gió Hú",
+    department: "Translation",
+    role: "Translation",
+    contributions: ["Translation", "Theorycrafter"],
+    joinDate: "2025-05",
+    linkDiscord: 'http://discord.gg/songgiohu'
+  },
+  {
+    id: 8,
+    name: "Maiyon",
+    photo: "/tribute/maiyon.jpg",
+    server: "Sóng Gió Hú",
+    department: "Development",
+    role: "Development",
+    contributions: ["Development", "Data Mining"],
+    joinDate: "2025-05",
+    linkDiscord: 'http://discord.gg/songgiohu'
   },
   {
     id: 5,
@@ -67,16 +95,40 @@ const contributors = [
     role: "UI/UX Designer",
     contributions: ["Designer", "UI/UX", "Figma"],
     joinDate: "2025-04",
+    linkDiscord: 'http://discord.gg/songgiohu'
   },
-    {
-    id: 8,
-    name: "Maiyon",
-    photo: "/tribute/maiyon.jpg",
-    server: "WW VN Fandom",
-    department: "Translation",
-    role: "Translation",
-    contributions: ["Development Newbie", "Translation"],
+  {
+    id: 16,
+    name: "Neck",
+    photo: "/tribute/khodam.png",
+    server: "Sóng Gió Hú",
+    department: "Guide Writer",
+    role: "Guide Writer",
+    contributions: ["Guide Writer"],
     joinDate: "2025-05",
+    linkDiscord: 'http://discord.gg/songgiohu'
+  },
+  {
+    id: 17,
+    name: "Yuji Katori",
+    photo: "",
+    server: "Sóng Gió Hú",
+    department: "Guide Writer",
+    role: "Guide Writer",
+    contributions: ["Guide Writer"],
+    joinDate: "2025-05",
+    linkDiscord: 'http://discord.gg/songgiohu'
+  },
+  {
+    id: 12,
+    name: "Kinzyl",
+    photo: "/tribute/kinzyl.png",
+    server: "Kuni Wuwa",
+    department: "Theorycrafter",
+    role: "Theorycrafter",
+    contributions: ["Theorycrafter"],
+    joinDate: "2025-05",
+    linkDiscord: 'https://discord.gg/hatRjANXx8'
   },
   {
     id: 7,
@@ -87,6 +139,7 @@ const contributors = [
     role: "Translation",
     contributions: ["Translation"],
     joinDate: "2025-05",
+    linkDiscord: 'http://discord.gg/songgiohu'
   },
   {
     id: 9,
@@ -97,18 +150,9 @@ const contributors = [
     role: "Translation",
     contributions: ["Translation"],
     joinDate: "2025-05",
+    linkDiscord: 'http://discord.gg/songgiohu'
   },
-    {
-    id: 10,
-    name: "AAA-Battery",
-    photo: "/tribute/battery.png",
-    server: "Sóng Gió Hú",
-    department: "Translation",
-    role: "Translation",
-    contributions: ["Translation", "Theorycrafter", "Gei Cua Meap"],
-    joinDate: "2025-05",
-  },
-    {
+  {
     id: 11,
     name: "Shu",
     photo: "/tribute/shu.jpg",
@@ -117,6 +161,40 @@ const contributors = [
     role: "Translation",
     contributions: ["Translation"],
     joinDate: "2025-05",
+    linkDiscord: 'http://discord.gg/songgiohu'
+  },
+  {
+    id: 14,
+    name: "Đào Việt Nam",
+    photo: "/tribute/dao.png",
+    server: "Sóng Gió Hú",
+    department: "Translation",
+    role: "Translation",
+    contributions: ["Translation"],
+    joinDate: "2025-05",
+    linkDiscord: 'http://discord.gg/songgiohu'
+  },
+  {
+    id: 15,
+    name: "Loran",
+    photo: "/tribute/loran.png",
+    server: "Sóng Gió Hú",
+    department: "Translation",
+    role: "Translation",
+    contributions: ["Translation"],
+    joinDate: "2025-05",
+    linkDiscord: 'http://discord.gg/songgiohu'
+  },
+  {
+    id: 13,
+    name: "Lilya",
+    photo: "",
+    server: "Sóng Gió Hú",
+    department: "Translation",
+    role: "Translation",
+    contributions: ["Translation"],
+    joinDate: "2025-05",
+    linkDiscord: 'http://discord.gg/songgiohu'
   },
 ]
 
@@ -125,25 +203,31 @@ const departments = [
     name: "Development",
     icon: Code,
     color: "from-[#60a5fa] to-[#38bdf8]",
-    description: "Building and maintaining the technical foundation",
+    description: "Xây dựng website từ những ý tưởng và vận hành nó",
   },
   {
     name: "Translation",
     icon: Globe,
     color: "from-[#38bdf8] to-[#0ea5e9]",
-    description: "Making content accessible across languages",
+    description: "Dịch nội dung thông tin từ game sang tiếng Việt",
   },
   {
     name: "Designer",
     icon: Users,
     color: "from-[#8b5cf6] to-[#7c3aed]",
-    description: "Fostering engagement and providing support",
+    description: "Thiết kế website cũng như infographic",
   },
   {
-    name: "Donations",
-    icon: Heart,
+    name: "Theorycrafter",
+    icon: BookOpenText,
     color: "from-[#f59e0b] to-[#d97706]",
-    description: "Managing financial support and sustainability",
+    description: "Những người đã tính toán excel lỏ, nerd",
+  },
+  {
+    name: "Guide Writer",
+    icon: BookOpenText,
+    color: "from-[#34d399] to-[#10b981]",
+    description: "Cũng là nerd nhưng văn lắm vl",
   },
 ]
 
@@ -180,10 +264,9 @@ export default function TributePage() {
           </Link>
 
           <div className="text-center">
-            <h1 className="text-5xl md:text-7xl font-bold text-[#38bdf8] mb-6">Tribute</h1>
+            <h1 className="text-5xl md:text-7xl font-bold text-[#38bdf8] mb-6">Tri Ân</h1>
             <p className="text-xl text-[#94a3b8] max-w-3xl mx-auto leading-relaxed">
-              Honoring the dedicated contributors who made this Roccia character guide possible through their passion,
-              expertise, and unwavering commitment to the Wuthering Waves community.
+              Tôn vinh những đóng góp tận tâm của những người đã chung tay tạo nên website wiki này bằng niềm đam mê, kiến thức chuyên sâu và sự gắn bó bền bỉ với cộng đồng Wuthering Waves.
             </p>
           </div>
 
@@ -191,19 +274,19 @@ export default function TributePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
             <div className="text-center p-4 bg-[#1f293780] rounded-lg border border-[#374151]">
               <div className="text-2xl font-bold text-[#38bdf8]">{contributors.length}</div>
-              <div className="text-[#94a3b8] text-sm">Contributors</div>
+              <div className="text-[#94a3b8] text-sm">Thành Viên</div>
             </div>
             <div className="text-center p-4 bg-[#1f293780] rounded-lg border border-[#374151]">
               <div className="text-2xl font-bold text-[#60a5fa]">{departments.length}</div>
-              <div className="text-[#94a3b8] text-sm">Departments</div>
+              <div className="text-[#94a3b8] text-sm">Bộ phận</div>
             </div>
             <div className="text-center p-4 bg-[#1f293780] rounded-lg border border-[#374151]">
-              <div className="text-2xl font-bold text-[#38bdf8]">6</div>
-              <div className="text-[#94a3b8] text-sm">Months</div>
+              <div className="text-2xl font-bold text-[#38bdf8]">1.5</div>
+              <div className="text-[#94a3b8] text-sm">Tháng</div>
             </div>
             <div className="text-center p-4 bg-[#1f293780] rounded-lg border border-[#374151]">
               <div className="text-2xl font-bold text-[#60a5fa]">∞</div>
-              <div className="text-[#94a3b8] text-sm">Dedication</div>
+              <div className="text-[#94a3b8] text-sm">Cống Hiến</div>
             </div>
           </div>
         </div>
@@ -212,7 +295,7 @@ export default function TributePage() {
       {/* Department Filter */}
       <div className="max-w-6xl mx-auto px-6 py-8">
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-[#38bdf8] mb-6">Departments</h2>
+          <h2 className="text-2xl font-bold text-[#38bdf8] mb-6">Các Bộ Phận</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {departments.map((department) => {
               const Icon = department.icon
@@ -254,7 +337,7 @@ export default function TributePage() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-[#38bdf8]">
-              {selectedDepartment ? `${selectedDepartment} Team` : "All Contributors"}
+              {selectedDepartment ? `${selectedDepartment} Team` : "Tất Cả Thành Viên"}
             </h2>
             {selectedDepartment && (
               <button
@@ -308,7 +391,7 @@ export default function TributePage() {
                     {/* Department and Server */}
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-[#94a3b8] text-xs">Department</span>
+                        <span className="text-[#94a3b8] text-xs">Bộ phận</span>
                         <Badge
                           className={`bg-gradient-to-r ${getDepartmentColor(contributor.department)} text-white text-xs`}
                         >
@@ -317,17 +400,19 @@ export default function TributePage() {
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-[#94a3b8] text-xs">Server</span>
-                        <span className="text-white text-xs">{contributor.server}</span>
+                        <ExternalLink href={contributor.linkDiscord}>
+                          <span className="text-xs text-[#38bdf8]">{contributor.server}</span>
+                        </ExternalLink>
                       </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-[#94a3b8] text-xs">Joined</span>
+                      {/* <div className="flex items-center justify-between">
+                        <span className="text-[#94a3b8] text-xs">Ngày tham gia</span>
                         <span className="text-white text-xs">{contributor.joinDate}</span>
-                      </div>
+                      </div> */}
                     </div>
 
                     {/* Contributions */}
                     <div className="space-y-2">
-                      <span className="text-[#94a3b8] text-xs">Key Contributions</span>
+                      <span className="text-[#94a3b8] text-xs">Nhiệm Vụ</span>
                       <div className="flex flex-wrap gap-1">
                         {contributor.contributions.map((contribution, idx) => (
                           <Badge key={idx} className="bg-[#374151] text-[#94a3b8] text-xs">
@@ -348,13 +433,13 @@ export default function TributePage() {
           <div className="max-w-3xl mx-auto">
             <div className="mb-8">
               <Star className="w-16 h-16 text-[#38bdf8] mx-auto mb-4" />
-              <h2 className="text-3xl font-bold text-[#38bdf8] mb-4">Thank You</h2>
+              <h2 className="text-3xl font-bold text-[#38bdf8] mb-4">Cảm Ơn</h2>
               <p className="text-[#94a3b8] text-lg leading-relaxed text-justify">
                 Dự án này tồn tại nhờ vào sự cống hiến tuyệt vời và niềm đam mê mãnh liệt của những người đã chung tay xây dựng nên nó. Mỗi cá nhân được vinh danh tại đây đều đã dành thời gian, kỹ năng và tâm huyết để tạo nên một sản phẩm ý nghĩa dành cho cộng đồng Wuthering Waves.
 
-                Sự hợp tác gắn bó giữa các bộ phận như Cộng đồng, Phát triển, Dịch thuật và Ủng hộ (Donate) — đặc biệt là từ cộng đồng <span className="text-[#60a5fa]">Sóng Gió Hú</span> và sự góp ý tưởng của <span className="text-[#60a5fa]">Wuthering Waves Vietnam Fandom</span> — chính là nền móng tạo nên hướng dẫn này.
+                Sự hợp tác gắn bó giữa các bộ phận như Cộng đồng, Phát triển, Dịch thuật và Ủng hộ (Donate) — đặc biệt là từ cộng đồng <span className="text-[#60a5fa] font-bold"><ExternalLink href="http://discord.gg/songgiohu">Sóng Gió Hú</ExternalLink></span> — chính là nền móng tạo nên hướng dẫn này.
 
-                Chúng tôi xin được tri ân sâu sắc tới tất cả những ai đã góp phần làm nên thành công của dự án. Chính tinh thần đồng đội và khát khao mang lại trải nghiệm tốt nhất cho cộng đồng đã biến ý tưởng này thành hiện thực.
+                Chúng tôi xin được tri ân sâu sắc tới tất cả những ai đã góp phần làm nên thành công của dự án. Đồng thời gửi lời đến cộng đồng LBGT sâu sắc khi đã gửi cho chúng tôi những người nole chất lượng.
               </p>
             </div>
 
@@ -362,19 +447,19 @@ export default function TributePage() {
               <div className="p-6 bg-[#1f293780] rounded-lg border border-[#374151]">
                 <Github className="w-8 h-8 text-[#60a5fa] mx-auto mb-3" />
                 <h3 className="font-semibold text-white mb-2">Mã nguồn</h3>
-                <p className="text-[#94a3b8] text-sm">
-                  Xây dựng bởi đội phát triển của dự án
+                <p className="text-[#94a3b8] text-sm text-justify">
+                  Cảm ơn 2 repo về thông tin: <span className="text-[#38bdf8] font-bold"><ExternalLink href="https://github.com/Arikatsu/WutheringWaves_Data">WutheringWaves_Data của Arikatsu</ExternalLink></span> và <span className="text-[#38bdf8] font-bold"><ExternalLink href="https://github.com/Arikatsu/WutheringWaves_Data">WW_Asset của alt3ri</ExternalLink></span> nhờ có 2 repo trên mới có được thông tin đầy đủ như hôm nay
                 </p>
               </div>
               <div className="p-6 bg-[#1f293780] rounded-lg border border-[#374151]">
                 <MessageCircle className="w-8 h-8 text-[#38bdf8] mx-auto mb-3" />
                 <h3 className="font-semibold text-white mb-2">Cộng Đồng</h3>
-                <p className="text-[#94a3b8] text-sm">Sự hỗ trợ từ cộng đồng góp phần xây dựng website này</p>
+                <p className="text-[#94a3b8] text-sm text-justify">Nhờ sự giúp đỡ của cộng đồng <span className="text-[#38bdf8] font-bold cursor-pointer pointer-events-auto"><ExternalLink href="http://discord.gg/songgiohu">Sóng Gió Hú</ExternalLink></span> mà đã tiếp động lực cho chúng tôi xây dựng website này</p>
               </div>
               <div className="p-6 bg-[#1f293780] rounded-lg border border-[#374151]">
                 <Heart className="w-8 h-8 text-[#f59e0b] mx-auto mb-3" />
                 <h3 className="font-semibold text-white mb-2">Made with Love</h3>
-                <p className="text-[#94a3b8] text-sm">
+                <p className="text-[#94a3b8] text-sm text-justify">
                   Xây dựng với mục tiêu giúp cộng đồng tranh luận có não hơn.
                 </p>
               </div>

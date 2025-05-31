@@ -37,6 +37,7 @@ export function EchoGrid({ echos, echoSets }: Props) {
 
     setEchoFilted(filtered);
   };
+
   return (
     <>
       <EchoHeader onChangeFilter={onChangeFilter} />

@@ -1,9 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import type { IResonatorSkill, ISkillConsume } from "@/lib/interface"
+import type { IResonatorSkill } from "@/lib/interface"
 import { useParams } from "next/navigation"
-import { client } from "@/trpc/client"
 import Image from 'next/image'
 import { SkillStat } from "./skill-stat"
 import { TableSkillStat } from "./table-skill-stat"
@@ -15,13 +14,12 @@ import { supabase } from "@/utils/supabase/server"
 export default function CharacterTalent() {
   const uParams = useParams()
   const [skills, setSkills] = useState<IResonatorSkill[]>([])
-  const [skillLevelCap, setSkillLevelCap] = useState<number>(9)
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const id = uParams['id']
     const getSkill = async () => {
-      const { data: skill_data }: PostgrestMaybeSingleResponse<IResonatorSkill[]> = await supabase.from('skill').select('*').eq('resonator_id', Number(id));
+      const { data: skill_data }: PostgrestMaybeSingleResponse<IResonatorSkill[]> = await supabase.from('skill').select('*').eq('resonator_id', Number(id)).order('id', { ascending: true });
       setSkills(skill_data ?? [])
       setIsLoading(false)
     }

@@ -36,7 +36,7 @@ export default function SearchGuide() {
                         type="text"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
-                        placeholder="Search..."
+                        placeholder="Tìm kiếm..."
                         className="flex-1 py-3 pl-2 pr-1 text-white border-none focus:outline-none max-[240px]:w-[inherit]"
 
                     />

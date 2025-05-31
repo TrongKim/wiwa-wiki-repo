@@ -1,4 +1,4 @@
-// File: C:\Users\VIP\Desktop\project\wiwa-wiki-repo\src\app\tribute\page.tsx
+// File: C:\Users\VIP\OneDrive\Desktop\project\wiwa-wiki-repo\src\app\tribute\page.tsx
 import * as entry from '../../../../src/app/tribute/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

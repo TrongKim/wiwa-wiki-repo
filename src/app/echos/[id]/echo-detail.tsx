@@ -24,7 +24,6 @@ export default function EchoDetail({ echo_detail, sets }: Props) {
         if (echo_detail && sets) setLoading(false);
     }, [])
 
-
     // if (loading) <ItemShowcaseSkeleton />
 
     return (
@@ -99,7 +98,7 @@ export default function EchoDetail({ echo_detail, sets }: Props) {
                                         <div className="w-8 h-8 bg-[#374151] rounded-full flex items-center justify-center">
                                             <Image src={set.icon} width={100} height={100} alt={set.name} className="w-full h-full" />
                                         </div>
-                                        <span className="font-medium text-white">Molten Rift</span>
+                                        <span className="font-medium text-white">{set.name}</span>
                                     </div>
                                 )
                             })

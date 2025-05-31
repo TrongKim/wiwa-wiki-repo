@@ -6,6 +6,7 @@ import './../styles/sidebar.css'
 import { ScrollTopIcon } from "./scroll-top-icon"
 import { usePathname } from "next/navigation"
 import Image from 'next/image'
+import { ExternalLink } from "./external-link"
 
 type ScrollRefContextType = {
   scrollRef: React.RefObject<HTMLDivElement | null>;
@@ -62,6 +63,10 @@ export function Sidebar({
         setShowSidebar(false)
         setActiveRouteIndex(3)
         break
+      case '/tribute':
+        setShowSidebar(false)
+        setActiveRouteIndex(4)
+        break
       default:
         setShowSidebar(false)
         setActiveRouteIndex(-1)
@@ -79,27 +84,29 @@ export function Sidebar({
     setShowSidebar(!showSidebar)
   }
 
-
   return (
     <div className="flex items-start w-full h-full nav-side-bar-container fixed top-0 left-0 z-1000">
       <aside className={`h-full bg-[#1f293780] border-[#374151] border-r flex flex-col transition-all origin-left max-[600px]:scale-x-0 duration-300 group top-0 left-0 z-1000 ${showSidebar ? 'w-64 max-[600px]:fixed max-[600px]:scale-x-100' : 'w-13 max-[600px]:invisible max-[600px]:absolute'}`}>
-        <div className="p-4 flex items-center h-fit pt-[10px]">
-          <div className={`font-bold transition-opacity duration-300 absolute flex items-center ${showSidebar ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 792" width={32} height={32} className="scale-[1.3]">
+        <div className="p-2 flex items-center h-fit pt-[10px] pb-4">
+          <Link href="/" className={`font-bold transition-opacity duration-300 absolute flex items-center ${showSidebar ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+            <div className={`font-bold transition-opacity duration-300 absolute flex items-center`}>
+              <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 792" width={32} height={32} className="scale-[1.3]">
+                <defs>
+                </defs>
+                <path fill="#fff" strokeWidth="0" d="m498.71,155.16l28.74-33.1v-3.48l-1.32-.77-143.86,99.46-19.26-11.25s7.38-27.44,7.38-30.44.44-33.44.44-33.44c0,0-29.27,13.21-52.69,49.02,0,0-84.39-5.42-141.68,56.13-57.29,61.55-53.23,127.74-53.23,127.74,0,0-.39,61.94,24.19,90l1.35-.87s-22.65-77.71,23.42-137.71c0,0-20.71,70.45,25.74,120.77,46.45,50.32,100.65,49.55,132.77,64.45,32.13,14.9,62.9,40.45,78.29,92.03l2.1-.16s8.65-47.35-5.87-82.97c-14.52-35.61-29.42-50.71-65.81-72.39l-46.58-22.77s-59.1-24.26-61.61-89.87c0,0-2.13-35.03,29.81-67.26,0,0-18.19,49.65,15.29,81.39s68.13,21.16,68.13,21.16l6.84.13,73.42,32.39,6.26,4.87,5.81,6.48,6.48,7.16,4.74,4.06,5.52,2.03,12.48-.1,4-.42,5.52-.81,7.87-1.16,4.74-1.74,5.19-4.74,15.74-28.63,1.03-3.11.13-10.58s-22.84-33.77-41.71-55.74c-18.87-21.97-40.84-55.74-40.84-55.74l-10.94-16.65,38.52-43.45,43.45-49.94Zm-16.9,220.19c5.42,1.74,8.58,9.03,8.58,9.03,0,0,0,5.16-.45,6.84-.45,1.68-3.29,1.42-3.29,1.42,0,0-5.55-4.84-8-8.26-2.45-3.42,3.16-9.03,3.16-9.03Zm-101.74-81.81c0-.39-21.77-21.97-21.77-21.97l34.94,4.26c7.84,6.97,14.61,24.39,14.61,24.39-3-2.61-27.77-6.29-27.77-6.68Z" />
+                <path fill="#fff" strokeWidth="0" d="m171.61,500.84s8.71,36.19,38.13,55.35,25.55,19.55,80.71,30,86.13,52.65,86.13,52.65l1.35,2.13h1.55s.39-30.77-21.1-54.97-42.58-37.74-96.77-46.26-90-38.9-90-38.9Z" />
+              </svg>
+              WuwaBeacon
+            </div>
+          </Link>
+          <Link href="/" className={`scale-[1] ${showSidebar ? 'opacity-0' : 'opacity-100'}`}>
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 792" width={32} height={32}>
               <defs>
               </defs>
               <path fill="#fff" strokeWidth="0" d="m498.71,155.16l28.74-33.1v-3.48l-1.32-.77-143.86,99.46-19.26-11.25s7.38-27.44,7.38-30.44.44-33.44.44-33.44c0,0-29.27,13.21-52.69,49.02,0,0-84.39-5.42-141.68,56.13-57.29,61.55-53.23,127.74-53.23,127.74,0,0-.39,61.94,24.19,90l1.35-.87s-22.65-77.71,23.42-137.71c0,0-20.71,70.45,25.74,120.77,46.45,50.32,100.65,49.55,132.77,64.45,32.13,14.9,62.9,40.45,78.29,92.03l2.1-.16s8.65-47.35-5.87-82.97c-14.52-35.61-29.42-50.71-65.81-72.39l-46.58-22.77s-59.1-24.26-61.61-89.87c0,0-2.13-35.03,29.81-67.26,0,0-18.19,49.65,15.29,81.39s68.13,21.16,68.13,21.16l6.84.13,73.42,32.39,6.26,4.87,5.81,6.48,6.48,7.16,4.74,4.06,5.52,2.03,12.48-.1,4-.42,5.52-.81,7.87-1.16,4.74-1.74,5.19-4.74,15.74-28.63,1.03-3.11.13-10.58s-22.84-33.77-41.71-55.74c-18.87-21.97-40.84-55.74-40.84-55.74l-10.94-16.65,38.52-43.45,43.45-49.94Zm-16.9,220.19c5.42,1.74,8.58,9.03,8.58,9.03,0,0,0,5.16-.45,6.84-.45,1.68-3.29,1.42-3.29,1.42,0,0-5.55-4.84-8-8.26-2.45-3.42,3.16-9.03,3.16-9.03Zm-101.74-81.81c0-.39-21.77-21.97-21.77-21.97l34.94,4.26c7.84,6.97,14.61,24.39,14.61,24.39-3-2.61-27.77-6.29-27.77-6.68Z" />
               <path fill="#fff" strokeWidth="0" d="m171.61,500.84s8.71,36.19,38.13,55.35,25.55,19.55,80.71,30,86.13,52.65,86.13,52.65l1.35,2.13h1.55s.39-30.77-21.1-54.97-42.58-37.74-96.77-46.26-90-38.9-90-38.9Z" />
             </svg>
-            WuwaBeacon
-          </div>
-          <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 792" width={32} height={32} className={`scale-[1.3] ${showSidebar ? 'opacity-0' : 'opacity-100'}`}>
-            <defs>
-            </defs>
-            <path fill="#fff" strokeWidth="0" d="m498.71,155.16l28.74-33.1v-3.48l-1.32-.77-143.86,99.46-19.26-11.25s7.38-27.44,7.38-30.44.44-33.44.44-33.44c0,0-29.27,13.21-52.69,49.02,0,0-84.39-5.42-141.68,56.13-57.29,61.55-53.23,127.74-53.23,127.74,0,0-.39,61.94,24.19,90l1.35-.87s-22.65-77.71,23.42-137.71c0,0-20.71,70.45,25.74,120.77,46.45,50.32,100.65,49.55,132.77,64.45,32.13,14.9,62.9,40.45,78.29,92.03l2.1-.16s8.65-47.35-5.87-82.97c-14.52-35.61-29.42-50.71-65.81-72.39l-46.58-22.77s-59.1-24.26-61.61-89.87c0,0-2.13-35.03,29.81-67.26,0,0-18.19,49.65,15.29,81.39s68.13,21.16,68.13,21.16l6.84.13,73.42,32.39,6.26,4.87,5.81,6.48,6.48,7.16,4.74,4.06,5.52,2.03,12.48-.1,4-.42,5.52-.81,7.87-1.16,4.74-1.74,5.19-4.74,15.74-28.63,1.03-3.11.13-10.58s-22.84-33.77-41.71-55.74c-18.87-21.97-40.84-55.74-40.84-55.74l-10.94-16.65,38.52-43.45,43.45-49.94Zm-16.9,220.19c5.42,1.74,8.58,9.03,8.58,9.03,0,0,0,5.16-.45,6.84-.45,1.68-3.29,1.42-3.29,1.42,0,0-5.55-4.84-8-8.26-2.45-3.42,3.16-9.03,3.16-9.03Zm-101.74-81.81c0-.39-21.77-21.97-21.77-21.97l34.94,4.26c7.84,6.97,14.61,24.39,14.61,24.39-3-2.61-27.77-6.29-27.77-6.68Z" />
-            <path fill="#fff" strokeWidth="0" d="m171.61,500.84s8.71,36.19,38.13,55.35,25.55,19.55,80.71,30,86.13,52.65,86.13,52.65l1.35,2.13h1.55s.39-30.77-21.1-54.97-42.58-37.74-96.77-46.26-90-38.9-90-38.9Z" />
-          </svg>
-          {/* <span className={`text-xl font-bold transition-opacity duration-300 }>R</span> */}
+          </Link>
         </div>
         <nav className="flex-1 p-2">
           <ul className="space-y-2">
@@ -171,16 +178,34 @@ export function Sidebar({
                 </span>
               </Link>
             </li>
+            <li>
+              <Link
+                href="/tribute"
+                className={cn(
+                  "flex items-center p-2 rounded-md hover:bg-slate-700 text-slate-300 hover:text-white transition-colors",
+                  activeRouteIndex === 4 && "bg-slate-700 text-white",
+                )}
+              >
+                <div className="w-[20px] h-[20px] min-w-[20px]  flex items-center justify-center">
+                  <Image src="/trophy.svg" width={14} height={14} className="min-w-[15px] min-h-[15px] object-cover" alt="icon" />
+                </div>
+                <span className={`ml-3 ${showSidebar ? 'opacity-100' : 'opacity-0'} transition-opacity duration-250 whitespace-nowrap overflow-hidden`}>
+                  Tribute
+                </span>
+              </Link>
+            </li>
           </ul>
         </nav>
-        <div className="p-4 w-full overflow-hidden cursor-pointer pointer-events-auto flex items-center gap-[12px]">
-          <div className="w-[20px] h-[20px]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
-              <path d="M18.59 5.88997C17.36 5.31997 16.05 4.89997 14.67 4.65997C14.5 4.95997 14.3 5.36997 14.17 5.69997C12.71 5.47997 11.26 5.47997 9.83001 5.69997C9.69001 5.36997 9.49001 4.95997 9.32001 4.65997C7.94001 4.89997 6.63001 5.31997 5.40001 5.88997C2.92001 9.62997 2.25001 13.28 2.58001 16.87C4.23001 18.1 5.82001 18.84 7.39001 19.33C7.78001 18.8 8.12001 18.23 8.42001 17.64C7.85001 17.43 7.31001 17.16 6.80001 16.85C6.94001 16.75 7.07001 16.64 7.20001 16.54C10.33 18 13.72 18 16.81 16.54C16.94 16.65 17.07 16.75 17.21 16.85C16.7 17.16 16.15 17.42 15.59 17.64C15.89 18.23 16.23 18.8 16.62 19.33C18.19 18.84 19.79 18.1 21.43 16.87C21.82 12.7 20.76 9.08997 18.61 5.88997H18.59ZM8.84001 14.67C7.90001 14.67 7.13001 13.8 7.13001 12.73C7.13001 11.66 7.88001 10.79 8.84001 10.79C9.80001 10.79 10.56 11.66 10.55 12.73C10.55 13.79 9.80001 14.67 8.84001 14.67ZM15.15 14.67C14.21 14.67 13.44 13.8 13.44 12.73C13.44 11.66 14.19 10.79 15.15 10.79C16.11 10.79 16.87 11.66 16.86 12.73C16.86 13.79 16.11 14.67 15.15 14.67Z" fill="#fff" />
-            </svg>
+        <ExternalLink href="http://discord.gg/songgiohu">
+          <div className="p-4 w-full overflow-hidden cursor-pointer pointer-events-auto flex items-center gap-[12px]">
+            <div className="w-[20px] h-[20px]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
+                <path d="M18.59 5.88997C17.36 5.31997 16.05 4.89997 14.67 4.65997C14.5 4.95997 14.3 5.36997 14.17 5.69997C12.71 5.47997 11.26 5.47997 9.83001 5.69997C9.69001 5.36997 9.49001 4.95997 9.32001 4.65997C7.94001 4.89997 6.63001 5.31997 5.40001 5.88997C2.92001 9.62997 2.25001 13.28 2.58001 16.87C4.23001 18.1 5.82001 18.84 7.39001 19.33C7.78001 18.8 8.12001 18.23 8.42001 17.64C7.85001 17.43 7.31001 17.16 6.80001 16.85C6.94001 16.75 7.07001 16.64 7.20001 16.54C10.33 18 13.72 18 16.81 16.54C16.94 16.65 17.07 16.75 17.21 16.85C16.7 17.16 16.15 17.42 15.59 17.64C15.89 18.23 16.23 18.8 16.62 19.33C18.19 18.84 19.79 18.1 21.43 16.87C21.82 12.7 20.76 9.08997 18.61 5.88997H18.59ZM8.84001 14.67C7.90001 14.67 7.13001 13.8 7.13001 12.73C7.13001 11.66 7.88001 10.79 8.84001 10.79C9.80001 10.79 10.56 11.66 10.55 12.73C10.55 13.79 9.80001 14.67 8.84001 14.67ZM15.15 14.67C14.21 14.67 13.44 13.8 13.44 12.73C13.44 11.66 14.19 10.79 15.15 10.79C16.11 10.79 16.87 11.66 16.86 12.73C16.86 13.79 16.11 14.67 15.15 14.67Z" fill="#fff" />
+              </svg>
+            </div>
+            <span className={`whitespace-nowrap ${showSidebar ? 'opacity-100' : 'opacity-0'} duration-250 delay-75 capitalize text-slate-300`}>Vào discord đi</span>
           </div>
-          <span className={`whitespace-nowrap ${showSidebar ? 'opacity-100' : 'opacity-0'} duration-250 delay-75 capitalize text-slate-300`}>Vào discord đi</span>
-        </div>
+        </ExternalLink>
       </aside>
       <div className="w-full h-full flex flex-col">
         <div className="flex items-center justify-between px-[17px] py-[10px] bg-[#1f293780] border-[#374151] border-b w-full">

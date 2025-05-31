@@ -37,26 +37,26 @@ export function Footer() {
 
           {/* Quick links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4">Đường Dẫn</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/" className="text-gray-300 hover:text-white transition-colors">
-                  Home
+                  Trang chủ
                 </Link>
               </li>
               <li>
                 <Link href="/characters" className="text-gray-300 hover:text-white transition-colors">
-                  Characters
+                  Nhân vật
                 </Link>
               </li>
               <li>
                 <Link href="/guide" className="text-gray-300 hover:text-white transition-colors">
-                  Guides
+                  Hướng dẫn
                 </Link>
               </li>
               <li>
                 <Link href="#" className="text-gray-300 hover:text-white transition-colors">
-                  About Us
+                  Về Website
                 </Link>
               </li>
             </ul>
@@ -64,7 +64,7 @@ export function Footer() {
 
           {/* Resources */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Resources</h3>
+            <h3 className="text-lg font-semibold mb-4">Tính Năng</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="#" className="text-gray-300 hover:text-white transition-colors">
@@ -72,13 +72,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/guide" className="text-gray-300 hover:text-white transition-colors">
-                  Build Guides
-                </Link>
-              </li>
-              <li>
                 <Link href="/weapons" className="text-gray-300 hover:text-white transition-colors">
-                  Weapons
+                  Vũ Khí
                 </Link>
               </li>
               <li>
@@ -91,13 +86,13 @@ export function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Stay Updated</h3>
+            <h3 className="text-lg font-semibold mb-4">Coming soon</h3>
             <p className="text-gray-300 text-sm mb-4">Coming soon</p>
             <div className="flex flex-col sm:flex-row gap-2">
               <Input
                 type="email"
-                placeholder="Meap gay"
-                className="bg-[#1A3A62] border-[#2A4A72] text-white placeholder:text-gray-400"
+                placeholder="Tìm kiếm"
+                className="bg-[#1A3A62] border-[#2A4A72] text-white placeholder:text-gray-400 outline-0 ring-0"
               />
               <Button className="bg-[#3A5A82] hover:bg-[#4A6A92] text-white border-none">Subscribe</Button>
             </div>

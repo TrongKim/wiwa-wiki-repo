@@ -7,7 +7,7 @@ import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js";
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-    title: 'Danh sách nhân vật',
+    title: 'Wuwabeacon - Danh sách nhân vật',
     description: 'Tổng hợp các nhân vật trong Wuthering Waves.',
 };
 

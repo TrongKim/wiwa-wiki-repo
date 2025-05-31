@@ -1,6 +1,4 @@
-import { api } from "@/trpc/server";
 import { EchoGrid } from "./echo-grid";
-import { EchoHeader } from "./echo-header";
 import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js";
 import type { IEcho, IEchoSet } from "@/lib/interface";
 import { supabase } from "@/utils/supabase/server";
@@ -9,6 +7,16 @@ export const metadata = {
     title: 'Danh sách echo',
     description: 'Tổng hợp các echo trong wuthering waves.',
 };
+
+export async function generateStaticParams() {
+  const { data: echos } = await supabase.from("echoes").select("id");
+
+  return (
+    echos?.map((r) => ({
+      id: r.id.toString(),
+    })) || []
+  );
+}
 
 export default async function EchosPage() {
     const { data: echos }: PostgrestMaybeSingleResponse<IEcho[]> = await supabase.from('echoes').select('id, name, intensity, icon, set_ids').order('name', { ascending: false });

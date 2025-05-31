@@ -94,10 +94,10 @@ export function SidebarCharacter({ resonator }: Props) {
       <Link href="https://onlyfans.com/meapmeapwuwa" className="text-gray-300 hover:text-white transition-colors">
         <Card className="bg-[#1f293780] border-[#374151] mb-4">
           <CardContent className="p-6 flex flex-col">
-            <h2 className="text-xl mb-2">Advertisement</h2>
+            <h2 className="text-xl mb-2">Quảng cáo</h2>
             <div className="bg-[#334d6c] rounded p-2 flex items-center justify-between border border-[#4d647e] gap-2 flex-wrap">
               <div className="text-white font-bold">Meap Gay</div>
-              <button className="bg-orange-600 text-white text-xs px-3 py-1 rounded">PLAY NOW FOR FREE</button>
+              <button className="bg-orange-600 text-white text-xs px-3 py-1 rounded">CHƠI NGAY MIỄN PHÍ</button>
             </div>
           </CardContent>
         </Card>

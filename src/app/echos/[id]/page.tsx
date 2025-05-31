@@ -1,19 +1,8 @@
 import { Suspense } from "react";
-import EchoDetailsSkeleton from "./echo-skeleton";
 import EchoDetail from "./echo-detail";
 import { supabase } from "@/utils/supabase/server";
 import type { IEchoDetail, IEchoSetDetail } from "@/lib/interface";
 import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js";
-
-export async function generateStaticParams() {
-  const { data: echos } = await supabase.from("echoes").select("id");
-
-  return (
-    echos?.map((r) => ({
-      id: r.id.toString(),
-    })) || []
-  );
-}
 
 interface PageProps {
     readonly params: { id: string };
