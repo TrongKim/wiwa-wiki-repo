@@ -1,0 +1,26 @@
+name: Next deploy
+
+on:
+  push:
+    branches: [release]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy using ssh
+      uses: appleboy/ssh-action@master
+      with: 
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: 22
+        script: |
+          cd /
+          cd /home/wiwa*
+          git fetch origin
+          git checkout release
+          git pull
+          pm2 reload wiwabeacon
+            
+          
