@@ -24,6 +24,7 @@ jobs:
           git fetch origin
           git checkout release
           git pull
+          npm install
           /root/.nvm/versions/node/v22.16.0/bin/pm2 reload wiwabeacon
       env:
         GH_PAT: ${{ secrets.GH_PAT }}  # <== Gắn secret vào biến GH_PAT để truyền qua envs
