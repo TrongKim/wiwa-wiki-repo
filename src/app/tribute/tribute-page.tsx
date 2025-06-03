@@ -196,6 +196,17 @@ const contributors = [
     joinDate: "2025-05",
     linkDiscord: 'http://discord.gg/songgiohu'
   },
+  {
+    id: 18,
+    name: "Ác Mộng",
+    photo: "/tribute/acmong.png",
+    server: "Sóng Gió Hú",
+    department: "Development",
+    role: "Development",
+    contributions: ["Development"],
+    joinDate: "2025-06",
+    linkDiscord: 'http://discord.gg/songgiohu'
+  },
 ]
 
 const departments = [
