@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: "Wuwabeacon",
     images: [
       {
-        url: "https://wuwabeacon.com/banner-guide.jpg",
+        url: "/banner-guide.jpg",
         width: 1200,
         height: 630,
         alt: "Wuwabeacon - Hướng dẫn nhân vật",
