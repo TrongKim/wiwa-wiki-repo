@@ -8,6 +8,8 @@ export const metadata = {
     description: 'Tổng hợp các echo trong wuthering waves.',
 };
 
+export const dynamic = 'force-dynamic';
+
 export async function generateStaticParams() {
   const { data: echos } = await supabase.from("echoes").select("id");
 

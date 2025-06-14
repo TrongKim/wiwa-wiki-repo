@@ -1,6 +1,5 @@
 import { CharacterGrid } from "@/components/character-grid"
-import type { ICharacter, IItem } from "@/lib/interface";
-import { api } from "@/trpc/server";
+import type { ICharacter } from "@/lib/interface";
 import { supabase } from "@/utils/supabase/server";
 import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js";
 
@@ -24,6 +23,7 @@ export async function generateStaticParams() {
 export default async function CharactersPage() {
     // const resonators = await api.resonator.getAll();
     const { data: resonators }: PostgrestMaybeSingleResponse<ICharacter[]> = await supabase.from('resonators').select('id, name, card, rank, element, weapon_type, release_date').order('release_date', { ascending: false }).order('name', { ascending: false });
+    console.log(resonators);
     return (
         <main className="flex-1 transition-all duration-300 ease-in-out pb-4">
             <div className="min-h-screen border bg-[#1f293780] border-[#374151] text-white rounded-[20px] max-[421px]:mx-auto">

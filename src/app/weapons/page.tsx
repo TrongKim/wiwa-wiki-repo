@@ -13,6 +13,8 @@ export async function generateStaticParams() {
     );
 }
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
     title: 'Danh sách vũ khí',
     description: 'Tổng hợp các vũ khí trong wuthering waves.',

@@ -51,10 +51,12 @@ export const WeaponCard = ({ weapon_detail, items }: Props) => {
 
     // if (loading) return <WeaponDetailsSkeleton />
 
-
     const getNumberValue = (n: 0 | 1): number => {
         if (!weapon_detail) return 0;
         if (n === 0) return weapon_detail.stats[levelCap.range][levelCap.level as keyof THashIndexStatList<IHashIndex<[0, 1], IStatWeapon>>][n]['Value'];
+        if (weapon_detail.stats[levelCap.range][levelCap.level as keyof THashIndexStatList<IHashIndex<[0, 1], IStatWeapon>>][n]['IsRatio']) {
+            return weapon_detail.stats[levelCap.range][levelCap.level as keyof THashIndexStatList<IHashIndex<[0, 1], IStatWeapon>>][n]['Value'] * 100;
+        }
         return weapon_detail.stats[levelCap.range][levelCap.level as keyof THashIndexStatList<IHashIndex<[0, 1], IStatWeapon>>][n]['Value'] / 100;
     }
 
@@ -154,11 +156,11 @@ export const WeaponCard = ({ weapon_detail, items }: Props) => {
                         weapon_detail?.stats && <div className="space-y-3 bg-[#1f293780] rounded-lg p-4">
                             <div className="flex justify-between items-center py-2 border-b border-[#374151]">
                                 <span className="text-[#94a3b8]">{weapon_detail?.stats[levelCap.range][levelCap.level as keyof THashIndexStatList<IHashIndex<[0, 1], IStatWeapon>>][0]['Name']}</span>
-                                <span className="font-medium text-white">{Number(getNumberValue(0).toFixed(2))}</span>
+                                <span className="font-medium text-white">{Number(getNumberValue(0).toFixed(0))}</span>
                             </div>
                             <div className="flex justify-between items-center py-2 border-b border-[#374151]">
                                 <span className="text-[#94a3b8]">{weapon_detail?.stats[levelCap.range][levelCap.level as keyof THashIndexStatList<IHashIndex<[0, 1], IStatWeapon>>][1]['Name']}</span>
-                                <span className="font-medium text-white">{Number(getNumberValue(1).toFixed(2))}%</span>
+                                <span className="font-medium text-white">{Number(getNumberValue(1).toFixed(1))}%</span>
                             </div>
                             <div className="flex justify-between items-center py-2">
                                 <span className="text-[#94a3b8]">Weapon Type</span>

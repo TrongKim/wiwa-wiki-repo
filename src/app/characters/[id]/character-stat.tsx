@@ -121,7 +121,7 @@ export function CharacterStat({ resonator, material }: Props) {
                                         return (
                                             <div key={index + (item?.name ?? '') + 'icon upgrade'} className="bg-[#33435896] w-[60px] border-[#374151] rounded-md p-2 flex flex-col items-center border">
                                                 <div className="text-orange-500 mb-1">
-                                                    <Image src={item?.icon ?? ''} width={32} height={32} alt="material" />
+                                                    <Image src={item.icon ?? ''} width={32} height={32} alt="material" />
                                                 </div>
                                                 <span className="text-[14px]">{item.quantity}</span>
                                             </div>
