@@ -37,7 +37,7 @@ export default function CharacterTalent() {
             {
               skills.map((skill: IResonatorSkill, index: number) => {
                 return (
-                  <CharacterSkill skill={skill} key={skill.id + index + 'skill'} />
+                  <CharacterSkill skill={skill} key={skill.id + Math.random()} />
                 )
               })
             }

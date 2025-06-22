@@ -55,7 +55,7 @@ export function EchoGrid({ echos, echoSets }: Props) {
               {/* <div className="absolute top-2 right-2 z-10">
               <echoIcon type={echo.type} />
             </div> */}
-              <Image src={echo.icon || "/placeholder.svg"} alt={echo.name} fill className="object-contain" />
+              <Image src={echo.icon.split('.')[0] + '.png' || "/placeholder.svg"} alt={echo.name} fill className="object-contain" />
               <div className={`absolute bottom-0 left-0 right-0 p-4`}>
                 <h3 className="text-center text-shadow-[#050505b8] text-[14px] text-shadow-lg font-bold truncate overflow-hidden text-wrap max-h-[48px]">{echo.name}</h3>
               </div>

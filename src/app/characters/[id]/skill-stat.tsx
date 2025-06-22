@@ -40,7 +40,7 @@ export const SkillStat = ({ skill }: Props) => {
                 {
                     skill.attributes.map((attribute, index) => {
                         return (
-                            <AttributeRow key={attribute.attributeId + index} label={attribute.attributeName} value={String(attribute.values[skillLevelCap])} />
+                            <AttributeRow key={attribute.attributeId} label={attribute.attributeName} value={String(attribute.values[skillLevelCap])} />
                         )
                     })
                 }

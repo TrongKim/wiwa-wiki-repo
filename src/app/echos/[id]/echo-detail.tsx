@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Flame, Zap, Wind, Users } from "lucide-react"
+import { Users } from "lucide-react"
 import type { IEchoDetail, IEchoSetDetail } from "@/lib/interface"
 import Image from 'next/image'
 import { highlightNumberPhrasesToHTML, highlightNumbers } from "@/utils/text.utils"
@@ -39,7 +39,7 @@ export default function EchoDetail({ echo_detail, sets }: Props) {
                     <Image
                         width={100}
                         height={100}
-                        src={echo_detail?.icon ?? ''}
+                        src={echo_detail?.icon.split('.')[0] + '.png'}
                         alt={echo_detail?.name ?? ''}
                         className="w-full max-w-md h-auto object-contain"
                     />
@@ -96,7 +96,7 @@ export default function EchoDetail({ echo_detail, sets }: Props) {
                                 return (
                                     <div key={set.id} className="flex items-center gap-3 ">
                                         <div className="w-8 h-8 bg-[#374151] rounded-full flex items-center justify-center">
-                                            <Image src={set.icon} width={100} height={100} alt={set.name} className="w-full h-full" />
+                                            <Image src={set.icon.split('.')[0] + '.png'} width={100} height={100} alt={set.name} className="w-full h-full" />
                                         </div>
                                         <span className="font-medium text-white">{set.name}</span>
                                     </div>
@@ -122,7 +122,7 @@ export default function EchoDetail({ echo_detail, sets }: Props) {
                         <div className="w-16 h-16 bg-[#374151] rounded-full flex items-center justify-center flex-shrink-0">
                             {/* <div className="w-8 h-8 bg-[#60a5fa] rounded-full"></div> */}
                             <Image
-                                src={echo_detail?.skill_icon ?? ''}
+                                src={echo_detail?.skill_icon.split('.')[0] + '.png'}
                                 width={100}
                                 height={100}
                                 alt="echo skill"
@@ -162,7 +162,7 @@ export default function EchoDetail({ echo_detail, sets }: Props) {
                                 return (
                                     <div key={'set echo' + set.id} className="flex items-start gap-4">
                                         <div className="w-12 h-12 bg-[#374151] rounded-full flex items-center justify-center flex-shrink-0">
-                                            <Image src={set.icon} width={100} height={100} alt={set.name} className="w-8 h-8" />
+                                            <Image src={set.icon.split('.')[0] + '.png'} width={100} height={100} alt={set.name} className="w-8 h-8" />
                                         </div>
                                         <div>
                                             <h4 className="font-medium text-white mb-2">{set.name}</h4>

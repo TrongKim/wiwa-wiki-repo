@@ -115,7 +115,7 @@ export default function FilterEchoPopup({ isOpen, onClickChangeState, onChangeFi
                                         key={echoSet.id + Math.random() + 'set'}
                                         className="flex items-center gap-2"
                                     >
-                                        <Image src={echoSet.icon} width={26} height={26} alt="set" />
+                                        <Image src={echoSet.icon.split('.')[0] + '.png'} width={26} height={26} alt="set" />
                                         <span className="text-yellow-300">{echoSet.name}</span>
                                     </FilterButton>
                                 )

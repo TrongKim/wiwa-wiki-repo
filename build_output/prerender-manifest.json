@@ -1,30 +1,6 @@
 {
   "version": 4,
   "routes": {
-    "/": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/",
-      "dataRoute": "/index.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/tribute": {
       "experimentalBypassFor": [
         {
@@ -40,6 +16,30 @@
       "initialRevalidateSeconds": false,
       "srcRoute": "/tribute",
       "dataRoute": "/tribute.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/",
+      "dataRoute": "/index.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -77,8 +77,8 @@
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "dbe26a4fba96717102916e45c69e6fb1",
-    "previewModeSigningKey": "781cf0e7aebb7b521910d79ff3473f5f338d990cd537b3307d7d9645d4fef13d",
-    "previewModeEncryptionKey": "c4bbce1480d318d08ae7219feb8c5e46e0ffcc8b6cead1dcfb12bf0a98911f80"
+    "previewModeId": "da9612f3752d8e2e1f577fa90c9cd8eb",
+    "previewModeSigningKey": "ae25503ac2ce189e1ec624efb128a3dd5ae73497005ff7dd18dce4f4a6ce1272",
+    "previewModeEncryptionKey": "b8816c69d7844cc4fe424d300f146d3e272abcc121d474c6b7f43db104e03a97"
   }
 }
