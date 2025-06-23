@@ -172,13 +172,15 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
             </div>
 
             <div className="w-full h-auto mb-8">
-              <Image
-                width={300}
-                height={300}
-                alt="guide"
-                src={guide.thumbnail}
-                className="w-full h-auto object-contain"
-              />
+              {
+                guide.thumbnail && <Image
+                  width={300}
+                  height={300}
+                  alt="guide"
+                  src={guide.thumbnail}
+                  className="w-full h-auto object-contain"
+                />
+              }
             </div>
             <div>
               <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Character Overview</h2>
@@ -232,7 +234,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                 <Card key={index} className="bg-transparent border-0">
                   <CardHeader className="p-0 py-1">
                     <CardTitle className="text-[#60a5fa] flex items-center gap-2">
-                      <h3 className="text-[#60a5fa] text-xl font-extrabold">Cost { (4 - index) === 2 ? 1 : 4 - index }</h3>
+                      <h3 className="text-[#60a5fa] text-xl font-extrabold">Cost {(4 - index) === 2 ? 1 : 4 - index}</h3>
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-0">
@@ -312,7 +314,9 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                           className={`w-16 h-16 rounded-lg bg-gradient-to-br flex items-center justify-center flex-shrink-0 shadow-lg`}
                         >
                           <div className="w-16 h-16 bg-white/20 rounded-md flex items-center justify-center">
-                            <Image src={weapon.icon} width={46} height={46} alt={weapon.name} className="w-16 h-16 object-contain" />
+                            {
+                              weapon.icon && <Image src={weapon.icon} width={46} height={46} alt={weapon.name} className="w-16 h-16 object-contain" />
+                            }
                           </div>
                         </div>
                         <div>
@@ -464,7 +468,9 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                   <CardTitle className="text-[#60a5fa]">Important Notes</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <pre className="text-[#94a3b8] whitespace-pre-wrap font-sans not-italic text-justify">{guide.important_note}</pre>
+                  {
+                    guide.important_note && guide.important_note.length > 0 && <pre className="text-[#94a3b8] whitespace-pre-wrap font-sans not-italic text-justify" dangerouslySetInnerHTML={{ __html: guide.important_note }}></pre>
+                  }
                 </CardContent>
               </Card>
             </div>
@@ -482,15 +488,17 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                     <p className="text-[#94a3b8] text-justify">{technique.description}</p>
                   </div>
                   <div className="flex flex-col gap-4 items-center mt-4">
-                    <iframe
-                      src={getYoutubeEmbedUrl(technique.link) ?? ''}
-                      width="70%"
-                      key={index + 'link'}
-                      height="300"
-                      style={{ border: 'none' }}
-                      allowFullScreen
-                      className="rounded-[20px] max-[800px]:w-full max-[590px]:h-[200px]"
-                    ></iframe>
+                    {
+                      technique.link && <iframe
+                        src={getYoutubeEmbedUrl(technique.link) ?? ''}
+                        width="70%"
+                        key={index + 'link'}
+                        height="300"
+                        style={{ border: 'none' }}
+                        allowFullScreen
+                        className="rounded-[20px] max-[800px]:w-full max-[590px]:h-[200px]"
+                      ></iframe>
+                    }
                   </div>
                 </div>
               ))}

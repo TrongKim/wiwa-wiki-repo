@@ -11,7 +11,7 @@ interface PageProps {
 export default async function Home({ params }: PageProps) {
     const { id } = await params;
     const { data: guide_raw }: PostgrestMaybeSingleResponse<IGuideDetailBody> = await supabase.from('guide').select('*').eq('id', id).single();
-    const guide = JSON.parse(guide_raw?.content || '') as IGuideDetail;
+    const guide = JSON.parse(JSON.stringify(guide_raw?.content) || '') as IGuideDetail;
     return (
         <main className="min-h-screen bg-[#0d0d0d] text-white">
             {
