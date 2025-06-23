@@ -157,16 +157,18 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
             <div className="flex flex-col md:flex-row gap-8 items-center mb-8">
               <div className="flex-1 text-center md:text-left">
                 <h1 className="text-4xl md:text-6xl font-bold text-[#38bdf8] mb-4">{guide.title}</h1>
-                <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-4">
-                  <Badge className="bg-[#60a5fa] text-white">{guide.character_tags[0]}</Badge>
-                  {
-                    guide.character_tags.slice(1, guide.character_tags.length).map((value, index) => {
-                      return (
-                        <Badge key={value + index} className="bg-[#374151] text-white">{value}</Badge>
-                      )
-                    })
-                  }
-                </div>
+                {
+                  guide.character_tags && guide.character_tags.length > 0 && <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-4">
+                    <Badge className="bg-[#60a5fa] text-white">{guide.character_tags[0]}</Badge>
+                    {
+                      guide.character_tags.slice(1, guide.character_tags.length).map((value, index) => {
+                        return (
+                          <Badge key={value + index} className="bg-[#374151] text-white">{value}</Badge>
+                        )
+                      })
+                    }
+                  </div>
+                }
                 <p className="text-[#94a3b8] leading-relaxed text-justify">{guide.description}</p>
               </div>
             </div>
@@ -567,7 +569,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
               </CardHeader>
               <CardContent>
                 {
-                  guide.conclusion && guide.conclusion.trim().length > 0 && <p className="text-white text-lg leading-relaxed text-justify">{guide.conclusion.replace('<p>', '').replace('</p>', '')}</p>
+                  guide.conclusion && guide.conclusion.length > 0 && <div className="text-white text-lg leading-relaxed text-justify" dangerouslySetInnerHTML={{ __html: guide.conclusion }}></div>
                 }
               </CardContent>
             </Card>

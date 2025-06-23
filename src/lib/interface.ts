@@ -244,6 +244,15 @@ export type Resonator = {
   release_date: string
 }
 
+export interface IReviewGuide {
+  id: string;
+  title: string;
+  created_at: string;
+  published: boolean;
+  tags: string[];
+  thumnail: string;
+}
+
 export interface IGuideDetailBody {
   id: string;
   title: string;
@@ -252,7 +261,7 @@ export interface IGuideDetailBody {
   author_id: string;
   created_at: string;
   published: boolean;
-  thumbnail: string;
+  thumnail: string;
   resonator_id: number;
 }
 

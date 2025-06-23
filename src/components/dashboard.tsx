@@ -1,13 +1,16 @@
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { mockGuides, mockUpdates } from "@/lib/mock-data"
 import { FilterGuideContainer } from "./filter-guide-container"
 import '../app/custom.css'
-import { listGuides } from "@/data/guides"
 import Link from "next/link"
+import { supabase } from "@/utils/supabase/server"
+import type { IReviewGuide } from "@/lib/interface"
+import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js"
 
-export function Dashboard() {
+export async function Dashboard() {
+  const { data: guides_raw }: PostgrestMaybeSingleResponse<IReviewGuide[]> = await supabase.from('guide').select('id, title, created_at, published, tags, thumnail');
+  const guides = guides_raw || [];
   return (
     <div className="space-y-8 pb-10">
       <div className="relative h-64 md:h-80 rounded-[20px] overflow-hidden mb-6">
@@ -25,25 +28,25 @@ export function Dashboard() {
             <CardContent className="p-6 flex flex-col">
               <h2 className="text-xl font-bold mb-4 text-[25px]">Thông tin mới</h2>
               <div className="space-y-4 flex-[1] overflow-auto max-h-[368px] pr-2 max-[550px]:flex max-[550px]:flex-wrap">
-                {listGuides.map((guide) => (
+                {guides.map((guide) => (
                   <Link
                     key={guide.id}
                     href={"/guide/" + guide.id}>
 
                     <div className="flex gap-4 p-2 rounded-lg hover:bg-[#1f293796] cursor-pointer pointer-events-auto transition-colors max-[550px]:flex-col max-[550px]:items-center max-[550px]:w-[calc(100%)]">
                       <div className="relative w-36 h-24 rounded-md overflow-hidden flex-shrink-0 max-[550px]:w-full max-[550px]:h-26">
-                        <Image src={guide.intro_image || "/placeholder.svg"} alt="guide" fill className="object-cover" />
+                        <Image src={guide.thumnail || "/placeholder.svg"} alt="guide" fill className="object-contain" />
                       </div>
                       <div className="flex-1">
-                        <h2 className="font-medium max-[550px]:text-center">{guide.name}</h2>
+                        <h2 className="font-medium max-[550px]:text-center">{guide.title}</h2>
                         <div className="flex justify-between items-center mt-2 max-[550px]:justify-center">
                           <Badge variant="outline" className="text-xs">
-                            {guide.state}
+                            {guide.tags[0]}
                           </Badge>
                         </div>
                       </div>
                       <div className="mr-auto flex items-end max-[550px]:mx-auto">
-                        <span className="text-xs text-slate-400 mb-[15px]">{guide.date}</span>
+                        <span className="text-xs text-slate-400 mb-[15px]">{guide.created_at}</span>
                       </div>
                     </div>
                   </Link>

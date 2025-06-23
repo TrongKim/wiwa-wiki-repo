@@ -1,7 +1,7 @@
 {
   "version": 4,
   "routes": {
-    "/guide": {
+    "/tribute": {
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -14,8 +14,8 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/guide",
-      "dataRoute": "/guide.rsc",
+      "srcRoute": "/tribute",
+      "dataRoute": "/tribute.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -49,7 +49,7 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/tribute": {
+    "/guide": {
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -62,8 +62,8 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/tribute",
-      "dataRoute": "/tribute.rsc",
+      "srcRoute": "/guide",
+      "dataRoute": "/guide.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -77,8 +77,8 @@
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "6f10f0b8c7a419bd8f8f5039ac00929c",
-    "previewModeSigningKey": "bbd0df7ec582ed6a0faf23ecb837f223e0d8a84fe08da4e1b1588a1e6ee0c084",
-    "previewModeEncryptionKey": "0eea0737eb26201501cdea6b2deea7dbd715575f4cc0990e20ddebed9241f711"
+    "previewModeId": "c161ec2848667a57d9874f95e896edfa",
+    "previewModeSigningKey": "2a3a48e1901c3b265eb10ab1feda449d6e44e377d205f911b709e2bb14218efb",
+    "previewModeEncryptionKey": "d485c15b64de54445acad3a6a788ee49531799989ac6540e528853cbf178058b"
   }
 }
