@@ -6,8 +6,9 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Menu, X } from "lucide-react"
 import { useScrollRef } from "@/components/sidebar"
+import type { IGuideDetail } from "@/lib/interface"
 type GuideProps = {
-  guide: typeof import("@/data/guides").guides
+  guide: IGuideDetail;
 }
 
 const navigationItems = [
@@ -155,13 +156,18 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
           <section id="overview" className="mb-0 pt-16">
             <div className="flex flex-col md:flex-row gap-8 items-center mb-8">
               <div className="flex-1 text-center md:text-left">
-                <h1 className="text-4xl md:text-6xl font-bold text-[#38bdf8] mb-4">{guide.name}</h1>
+                <h1 className="text-4xl md:text-6xl font-bold text-[#38bdf8] mb-4">{guide.title}</h1>
                 <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-4">
-                  <Badge className="bg-[#60a5fa] text-white">Havoc</Badge>
-                  <Badge className="bg-[#374151] text-white">Sub-DPS</Badge>
-                  <Badge className="bg-[#374151] text-white">Buffer</Badge>
+                  <Badge className="bg-[#60a5fa] text-white">{guide.character_tags[0]}</Badge>
+                  {
+                    guide.character_tags.slice(1, guide.character_tags.length).map((value, index) => {
+                      return (
+                        <Badge key={value + index} className="bg-[#374151] text-white">{value}</Badge>
+                      )
+                    })
+                  }
                 </div>
-                <p className="text-[#94a3b8] leading-relaxed text-justify">{guide.introduction}</p>
+                <p className="text-[#94a3b8] leading-relaxed text-justify">{guide.description}</p>
               </div>
             </div>
 
@@ -170,14 +176,14 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                 width={300}
                 height={300}
                 alt="guide"
-                src={guide.intro_image}
+                src={guide.thumbnail}
                 className="w-full h-auto object-contain"
               />
             </div>
             <div>
               <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Character Overview</h2>
               <div>
-                <p className="text-[#94a3b8] leading-relaxed text-justify">{guide.overview}</p>
+                <p className="text-[#94a3b8] leading-relaxed text-justify">{guide.character_overview.replace('<p>', '').replace('</p>', '')}</p>
               </div>
             </div>
           </section>
@@ -185,7 +191,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
           <section id="echo-sets" className="mb-0 pt-16">
             <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Echo Sets</h2>
             <div className="grid gap-6">
-              {guide.basicGuide.echoSets.map((set, index) => (
+              {guide.echoSets.map((set, index) => (
                 <Card key={index} className="bg-[#1f293780] border-[#374151]">
                   <CardHeader>
                     <CardTitle className="text-[#60a5fa] text-xl">{set.name}</CardTitle>
@@ -195,23 +201,22 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                     <div className="space-y-3">
                       <div className="flex items-start gap-3">
                         <Badge className="bg-[#38bdf8] text-white whitespace-nowrap">2-Piece</Badge>
-                        <span className="text-white">{set.effects.pc2}</span>
+                        <span className="text-white">{set.set_2_desc}</span>
                       </div>
                       <div className="flex items-start gap-3">
                         <Badge className="bg-[#60a5fa] text-white whitespace-nowrap">5-Piece</Badge>
-                        <span className="text-white">{set.effects.pc5}</span>
+                        <span className="text-white">{set.set_5_desc}</span>
                       </div>
-                      <div>
+                      {/* <div>
                         <div className="mt-2">
-                          <p><span className="text-[#60a5fa]">{set.recommend.name_main_cost}:</span></p>
+                          <p><span className="text-[#60a5fa]">{set.main_slot?.name}:</span></p>
                           <p className="text-[#94a3b8] mt-2">
                             {
-                              set.recommend.description
+                              set.main_slot?.skill_simple_desc
                             }
                           </p>
                         </div>
-
-                      </div>
+                      </div> */}
                     </div>
                   </CardContent>
                 </Card>
@@ -223,25 +228,15 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
           <section id="main-stats" className="mb-0 pt-16">
             <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Main Stats</h2>
             <div className="grid gap-0 space-y-3 bg-[#1f293780] border border-[#374151] rounded-[20px] p-[24px]">
-              {guide.basicGuide.mainStats.map((stat, index) => (
+              {guide.mainStats.map((stat, index) => (
                 <Card key={index} className="bg-transparent border-0">
                   <CardHeader className="p-0 py-1">
                     <CardTitle className="text-[#60a5fa] flex items-center gap-2">
-                      <h3 className="text-[#60a5fa] text-xl font-extrabold">Cost {stat.cost}</h3>
+                      <h3 className="text-[#60a5fa] text-xl font-extrabold">Cost { (4 - index) === 2 ? 1 : 4 - index }</h3>
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-0">
-                    {stat.echo ? (
-                      <div className="space-y-2">
-                        {stat.echo.map((echo, echoIndex) => (
-                          <p key={echoIndex} className="text-white rounded-lg">
-                            {echo}
-                          </p>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="text-white rounded-lg">{stat.stat}</p>
-                    )}
+                    <p className="text-white rounded-lg">{stat.description}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -254,11 +249,11 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
             <Card className="bg-[#1f293780] border-[#374151]">
               <CardContent className="pt-6">
                 <div className="flex items-center justify-center gap-2 max-[590px]:flex-wrap">
-                  {guide.basicGuide.subStatsPriority.map((stat, index) => (
+                  {guide.sub_stat_priority.map((stat, index) => (
                     <div key={index} className="flex items-center gap-2 rounded-lg">
                       <span className="text-white font-medium">{stat}</span>
                       {
-                        index < guide.basicGuide.subStatsPriority.length - 1 && <span>{'>'}</span>
+                        index < guide.sub_stat_priority.length - 1 && <span>{'>'}</span>
                       }
                     </div>
                   ))}
@@ -274,18 +269,20 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
               <CardContent className="pt-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-4 flex justify-center flex-col w-full">
-                    <div className="flex justify-between items-center p-4 bg-[#374151] rounded-lg w-full">
-                      <span className="text-[#94a3b8]">Crit Rate</span>
-                      <span className="text-[#38bdf8] font-bold">{guide.basicGuide.targetStats.critRate}</span>
-                    </div>
-                    <div className="flex justify-between items-center p-4 bg-[#374151] rounded-lg w-full">
-                      <span className="text-[#94a3b8]">Energy Recharge</span>
-                      <span className="text-[#38bdf8] font-bold">{guide.basicGuide.targetStats.er}</span>
-                    </div>
+                    {
+                      guide.targetStat.target.map((target, index) => {
+                        return (
+                          <div key={index} className="flex justify-between items-center p-4 bg-[#374151] rounded-lg w-full">
+                            <span className="text-[#94a3b8]">{target.name}</span>
+                            <span className="text-[#38bdf8] font-bold">{target.value}</span>
+                          </div>
+                        )
+                      })
+                    }
                   </div>
                   <div className="bg-[#60a5fa]/10 border border-[#60a5fa]/30 rounded-lg p-4">
                     <h3 className="text-[#60a5fa] font-semibold mb-2">Note</h3>
-                    <p className="text-[#94a3b8] text-sm text-justify">{guide.basicGuide.targetStats.note}</p>
+                    <p className="text-[#94a3b8] text-sm text-justify">{guide.targetStat.note}</p>
                   </div>
                 </div>
               </CardContent>
@@ -304,11 +301,11 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
               </div>
 
               <div className="divide-y divide-[#374151]">
-                {guide.basicGuide.recommendedWeapons.map((weapon, index) => {
+                {guide.weapons.sort((a, b) => (b.effective || 0) - (a.effective || 0)).map((weapon, index) => {
                   return (
                     <div
                       key={index}
-                      className={`grid grid-cols-12 gap-4 p-4 hover:bg-[#374151]/30 transition-colors duration-200 ${weapon.useless ? "opacity-60" : ""}`}
+                      className={`grid grid-cols-12 gap-4 p-4 hover:bg-[#374151]/30 transition-colors duration-200 ${weapon.effective === 0 ? "opacity-60" : ""}`}
                     >
                       <div className="col-span-4 max-[850px]:col-span-5 max-[710px]:col-span-9 flex items-center gap-3">
                         <div
@@ -320,23 +317,23 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                         </div>
                         <div>
                           <div
-                            className={`font-semibold ${weapon.useless ? "text-[#94a3b8] line-through" : "text-white"}`}
+                            className={`font-semibold ${weapon.effective === 0 ? "text-[#94a3b8] line-through" : "text-white"}`}
                           >
                             {weapon.name}
                           </div>
                           <div className="text-xs text-[#94a3b8]">
                             Rarity:{" "}
                             <span
-                              className={`font-medium ${weapon.rank === 5
+                              className={`font-medium ${weapon.rarity === 5
                                 ? "text-[#38bdf8]"
-                                : weapon.rank === 4
+                                : weapon.rarity === 4
                                   ? "text-[#60a5fa]"
-                                  : weapon.rank === 3
+                                  : weapon.rarity === 3
                                     ? "text-[#94a3b8]"
                                     : "text-[#6b7280]"
                                 }`}
                             >
-                              {weapon.rank}
+                              {weapon.rarity}
                             </span>
                           </div>
                         </div>
@@ -345,15 +342,15 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                       <div className="col-span-2 max-[850px]:col-span-3 flex items-center justify-center">
                         <div className="text-center">
                           <div
-                            className={`text-lg font-bold ${weapon.useless ? "text-[#94a3b8]" : "text-[#38bdf8]"}`}
+                            className={`text-lg font-bold ${weapon.effective === 0 ? "text-[#94a3b8]" : "text-[#38bdf8]"}`}
                           >
-                            {weapon.percent}
+                            {weapon.effective + '%'}
                           </div>
                           <div className="text-xs text-[#94a3b8]">Effectiveness</div>
                         </div>
                       </div>
                       <div className="col-span-6 max-[850px]:col-span-4 max-[710px]:hidden flex items-center">
-                        <p className="text-[#94a3b8] text-sm leading-relaxed text-justify">{weapon.description}</p>
+                        <p className="text-[#94a3b8] text-sm leading-relaxed text-justify">{weapon.note}</p>
                       </div>
                     </div>
                   )
@@ -373,26 +370,35 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
             <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Team Compositions</h2>
             <Card className="bg-[#1f293780] border-[#374151] mb-6">
               <CardContent className="pt-6">
-                <pre className="text-[#94a3b8] leading-relaxed whitespace-pre-wrap font-sans not-italic text-justify">{guide.teamComp.notes}</pre>
+                <pre className="text-[#94a3b8] leading-relaxed whitespace-pre-wrap font-sans not-italic text-justify">{guide.team_composition.note}</pre>
               </CardContent>
             </Card>
             <div className="grid md:grid-cols-2 gap-4">
-              {guide.teamComp.teams.map((team, index) => (
+              {guide.team_composition.team_comb.map((team, index) => (
                 <Card key={index} className="bg-[#1f293780] border-[#374151]">
                   <CardHeader>
                     <CardTitle className="text-[#60a5fa] text-lg">Team {index + 1}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="flex flex-wrap gap-4 justify-between w-fit mx-auto">
-                      {team.map((character, charIndex) => (
-                        <Image
-                          width={64}
-                          height={64}
-                          src={character}
-                          alt="character"
-                          key={charIndex}
-                        />
-                      ))}
+                      <Image
+                        width={64}
+                        height={64}
+                        src={team.slot_one?.icon || ''}
+                        alt="character"
+                      />
+                      <Image
+                        width={64}
+                        height={64}
+                        src={team.slot_two?.icon || ''}
+                        alt="character"
+                      />
+                      <Image
+                        width={64}
+                        height={64}
+                        src={team.slot_three?.icon || ''}
+                        alt="character"
+                      />
                     </div>
                   </CardContent>
                 </Card>
@@ -406,11 +412,11 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
             <Card className="bg-[#1f293780] border-[#374151]">
               <CardContent className="pt-6">
                 <div className="flex items-center justify-center gap-2 max-[590px]:flex-wrap">
-                  {guide.skillPriority.map((skill, index) => (
+                  {guide.skill_priority.map((skill, index) => (
                     <div key={index} className="flex items-center gap-2 rounded-lg">
-                      <span className="text-white font-medium">{skill.skill}</span>
+                      <span className="text-white font-medium">{skill}</span>
                       {
-                        index < guide.skillPriority.length - 1 && <span>{'>'}</span>
+                        index < guide.skill_priority.length - 1 && <span>{'>'}</span>
                       }
                     </div>
                   ))}
@@ -429,7 +435,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    {guide.rotation.simple.map((step, index) => (
+                    {guide.combatRotation.map((step, index) => (
                       <div key={index} className="p-4 bg-[#374151] rounded-lg">
                         <div className="flex items-start gap-3 mb-4">
                           <Badge className="bg-[#60a5fa] text-white min-w-[2rem] text-center">{index + 1}</Badge>
@@ -458,7 +464,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                   <CardTitle className="text-[#60a5fa]">Important Notes</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <pre className="text-[#94a3b8] whitespace-pre-wrap font-sans not-italic text-justify">{guide.rotation.notes}</pre>
+                  <pre className="text-[#94a3b8] whitespace-pre-wrap font-sans not-italic text-justify">{guide.important_note}</pre>
                 </CardContent>
               </Card>
             </div>
@@ -469,28 +475,22 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
           <section id="advanced" className="mb-0 pt-16">
             <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Advanced Techniques</h2>
             <div className="">
-              {guide.advancedTechniques.map((technique, index) => (
+              {guide.advanced_tech.map((technique, index) => (
                 <div key={index} className="mb-4">
-                  <h3 className="text-[#60a5fa] text-lg">{technique.name}</h3>
+                  <h3 className="text-[#60a5fa] text-lg">{technique.title}</h3>
                   <div>
                     <p className="text-[#94a3b8] text-justify">{technique.description}</p>
                   </div>
                   <div className="flex flex-col gap-4 items-center mt-4">
-                    {
-                      technique.link.map((mini_link, index) => {
-                        return (
-                          getYoutubeEmbedUrl(mini_link) && <iframe
-                            src={getYoutubeEmbedUrl(mini_link) ?? ''}
-                            width="70%"
-                            key={index + 'link'}
-                            height="300"
-                            style={{ border: 'none' }}
-                            allowFullScreen
-                            className="rounded-[20px] max-[800px]:w-full max-[590px]:h-[200px]"
-                          ></iframe>
-                        )
-                      })
-                    }
+                    <iframe
+                      src={getYoutubeEmbedUrl(technique.link) ?? ''}
+                      width="70%"
+                      key={index + 'link'}
+                      height="300"
+                      style={{ border: 'none' }}
+                      allowFullScreen
+                      className="rounded-[20px] max-[800px]:w-full max-[590px]:h-[200px]"
+                    ></iframe>
                   </div>
                 </div>
               ))}
@@ -503,7 +503,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
 
             <Card className="bg-[#60a5fa]/10 border-[#60a5fa]/30 mb-6">
               <CardContent className="pt-6">
-                <p className="text-[#94a3b8] leading-relaxed text-justify">{guide.summary.notes}</p>
+                <p className="text-[#94a3b8] leading-relaxed text-justify">{guide.summary.description}</p>
                 <div className="flex justify-center">
                   {
                     guide.summary.link && getYoutubeEmbedUrl(guide.summary.link) && <iframe
@@ -526,7 +526,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-3">
-                    {guide.summary.pros.map((pro, index) => (
+                    {guide.prosCons.pros.map((pro, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <span className="text-[#38bdf8] text-xl">+</span>
                         <span className="text-white">{pro}</span>
@@ -542,7 +542,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-3">
-                    {guide.summary.cons.map((con, index) => (
+                    {guide.prosCons.cons.map((con, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <span className="text-[#94a3b8] text-xl">-</span>
                         <span className="text-white">{con}</span>
@@ -558,7 +558,9 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                 <CardTitle className="text-[#38bdf8]">Conclusion</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-white text-lg leading-relaxed text-justify">{guide.summary.conclusion}</p>
+                {
+                  guide.conclusion && guide.conclusion.trim().length > 0 && <p className="text-white text-lg leading-relaxed text-justify">{guide.conclusion.replace('<p>', '').replace('</p>', '')}</p>
+                }
               </CardContent>
             </Card>
           </section>
