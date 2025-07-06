@@ -250,6 +250,7 @@ export interface IReviewGuide {
   created_at: string;
   published: boolean;
   tags: string[];
+  resonator_id: number;
   thumnail: string;
 }
 
@@ -298,7 +299,7 @@ export interface IGuideDetail {
   character_tags: string[];
   character_overview: string;
   skill_priority: string[];
-  advanced_tech: { title: string; description: string; link: string; }[];
+  advanced_tech: { title: string; description: string; link: string | string[]; }[];
   sub_stat_priority: string[];
   important_note: string;
   conclusion: string;

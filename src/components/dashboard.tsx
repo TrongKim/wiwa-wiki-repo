@@ -5,11 +5,27 @@ import { FilterGuideContainer } from "./filter-guide-container"
 import '../app/custom.css'
 import Link from "next/link"
 import { supabase } from "@/utils/supabase/server"
-import type { IReviewGuide } from "@/lib/interface"
+import type { IReviewGuide, Resonator } from "@/lib/interface"
 import type { PostgrestMaybeSingleResponse } from "@supabase/supabase-js"
 
 export async function Dashboard() {
-  const { data: guides_raw }: PostgrestMaybeSingleResponse<IReviewGuide[]> = await supabase.from('guide').select('id, title, created_at, published, tags, thumnail');
+  const { data: guides_raw }: PostgrestMaybeSingleResponse<IReviewGuide[]> = await supabase
+    .from('guide')
+    .select('id, title, created_at, published, tags, thumnail, resonator_id')
+    .order('created_at', { ascending: false });
+  const resonatorIds = (guides_raw || []).map(g => g.resonator_id);
+  const guideMapByResonatorId = new Map<number, IReviewGuide[]>();
+  (guides_raw || []).forEach(guide => {
+    const id = guide.resonator_id;
+    if (!guideMapByResonatorId.has(id)) {
+      guideMapByResonatorId.set(id, []);
+    }
+    guideMapByResonatorId.get(id)?.push(guide);
+  });
+  const { data: resonators }: PostgrestMaybeSingleResponse<Pick<Resonator, 'id' | 'element' | 'icon' | 'weapon_type' | 'name'>[]> = await supabase
+    .from('resonators')
+    .select('id, name, element, weapon_type, icon')
+    .in('id', resonatorIds);
   const guides = guides_raw || [];
   return (
     <div className="space-y-8 pb-10">
@@ -39,14 +55,22 @@ export async function Dashboard() {
                       </div>
                       <div className="flex-1">
                         <h2 className="font-medium max-[550px]:text-center">{guide.title}</h2>
-                        <div className="flex justify-between items-center mt-2 max-[550px]:justify-center">
-                          <Badge variant="outline" className="text-xs">
-                            {guide.tags[0]}
-                          </Badge>
+                        <div className="flex justify-start gap-2 items-center mt-2 max-[550px]:justify-center">
+                          {
+                            guide.tags.slice(0, 2).map((guide, index) => {
+                              return (
+                                <Badge key={guide + 'index'} variant="outline" className="text-[10px]">
+                                  {guide}
+                                </Badge>
+                              )
+                            })
+                          }
                         </div>
                       </div>
                       <div className="mr-auto flex items-end max-[550px]:mx-auto">
-                        <span className="text-xs text-slate-400 mb-[15px]">{guide.created_at}</span>
+                        <span className="text-xs text-slate-400 mb-[15px]">{new Date(guide.created_at).toLocaleDateString("vi-VN", {
+                          timeZone: "Asia/Ho_Chi_Minh",
+                        })}</span>
                       </div>
                     </div>
                   </Link>
@@ -80,7 +104,7 @@ export async function Dashboard() {
           </Card>
         </div>
       </div>
-      <FilterGuideContainer />
+      <FilterGuideContainer resonator_guide_map={guideMapByResonatorId} resonators_guide={resonators || []} />
     </div>
   )
 }

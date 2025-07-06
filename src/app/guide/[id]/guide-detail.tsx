@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Menu, X } from "lucide-react"
 import { useScrollRef } from "@/components/sidebar"
 import type { IGuideDetail } from "@/lib/interface"
+import { highlightNumbers } from "@/utils/text.utils"
 type GuideProps = {
   guide: IGuideDetail;
 }
@@ -487,19 +488,35 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                 <div key={index} className="mb-4">
                   <h3 className="text-[#60a5fa] text-lg">{technique.title}</h3>
                   <div>
-                    <p className="text-[#94a3b8] text-justify">{technique.description}</p>
+                    <p className="text-[#94a3b8] text-justify whitespace-pre-line">{technique.description}</p>
                   </div>
                   <div className="flex flex-col gap-4 items-center mt-4">
                     {
-                      technique.link && <iframe
-                        src={getYoutubeEmbedUrl(technique.link) ?? ''}
-                        width="70%"
-                        key={index + 'link'}
-                        height="300"
-                        style={{ border: 'none' }}
-                        allowFullScreen
-                        className="rounded-[20px] max-[800px]:w-full max-[590px]:h-[200px]"
-                      ></iframe>
+                      typeof technique.link === 'string' ? (
+                        <iframe
+                          src={getYoutubeEmbedUrl(technique.link) ?? ''}
+                          width="70%"
+                          key={index + 'link'}
+                          height="300"
+                          style={{ border: 'none' }}
+                          allowFullScreen
+                          className="rounded-[20px] max-[800px]:w-full max-[590px]:h-[200px]"
+                        ></iframe>
+                      ) : (
+                        technique.link.map((link, indexLinkChild) => {
+                          return (
+                            <iframe
+                              src={getYoutubeEmbedUrl(link) ?? ''}
+                              width="70%"
+                              key={indexLinkChild + 'link'}
+                              height="300"
+                              style={{ border: 'none' }}
+                              allowFullScreen
+                              className="rounded-[20px] max-[800px]:w-full max-[590px]:h-[200px]"
+                            ></iframe>
+                          )
+                        })
+                      )
                     }
                   </div>
                 </div>
@@ -513,7 +530,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
 
             <Card className="bg-[#60a5fa]/10 border-[#60a5fa]/30 mb-6">
               <CardContent className="pt-6">
-                <p className="text-[#94a3b8] leading-relaxed text-justify">{guide.summary.description}</p>
+                <p className="text-[#94a3b8] leading-relaxed text-justify whitespace-pre-line">{highlightNumbers(guide.summary.description || '')}</p>
                 <div className="flex justify-center">
                   {
                     guide.summary.link && getYoutubeEmbedUrl(guide.summary.link) && <iframe

@@ -7,22 +7,24 @@ import CharacterGuideGallery from './character-guide-gallery'
 import { charactersGuide } from '@/lib/mock-data'
 import { ECharacterElementType, type ECharacterWeaponType } from '@/lib/enum'
 import SearchGuide from './search-guide'
-import { listGuides } from '@/data/guides'
+import type { IReviewGuide, Resonator } from '@/lib/interface'
 
 type ICharacterGuide = typeof charactersGuide;
 
-export function FilterGuideContainer() {
-    const [listGuide, setListGuide] = useState<typeof listGuides>([]);
-    const [listGuideCache, setListGuideCache] = useState<typeof listGuides>([]);
+interface Props {
+    resonators_guide: Pick<Resonator, 'id' | 'element' | 'icon' | 'weapon_type' | 'name'>[];
+    resonator_guide_map: Map<number, IReviewGuide[]>;
+}
+
+export function FilterGuideContainer({ resonators_guide, resonator_guide_map }: Props) {
+    // const [mapGuide, setMapGuide] = useState<>
+    const [listGuide, setListGuide] = useState<typeof resonators_guide>(resonators_guide);
+    const [listGuideCache, setListGuideCache] = useState<typeof resonators_guide>([]);
     const [searchString, setSearchString] = useState<string>('');
 
     const [filterByElement, setFilterByElement] = useState<{ code: ECharacterElementType } | null>(null);
     const [filterByWeapon, setFilterByWeapon] = useState<{ code: ECharacterWeaponType | 'Misc' } | null>(null);
     const [isFilter, setIsFilter] = useState<boolean>(false);
-
-    useEffect(() => {
-        setListGuide([...listGuides]);
-    }, []);
 
     const isFilterHandler = (): boolean => {
         return filterByElement != null || filterByWeapon != null;
@@ -127,7 +129,7 @@ export function FilterGuideContainer() {
 
             {/* Character Selection */}
             <div className="space-y-4 mt-2">
-                <CharacterGuideGallery guides={listGuide} guides_search={listGuideCache} stateSearch={isFilter} />
+                <CharacterGuideGallery guides={listGuide} guides_search={listGuideCache} stateSearch={isFilter} guide_map={resonator_guide_map} />
             </div>
         </div>
     )
