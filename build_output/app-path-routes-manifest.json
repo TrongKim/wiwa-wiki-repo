@@ -4,12 +4,12 @@
   "/api/auth/[...nextauth]/route": "/api/auth/[...nextauth]",
   "/characters/[id]/page": "/characters/[id]",
   "/echos/[id]/page": "/echos/[id]",
-  "/guide/[id]/page": "/guide/[id]",
   "/page": "/",
   "/tribute/page": "/tribute",
   "/weapons/[id]/page": "/weapons/[id]",
-  "/guide/page": "/guide",
+  "/guide/[id]/page": "/guide/[id]",
   "/echos/page": "/echos",
-  "/characters/page": "/characters",
-  "/weapons/page": "/weapons"
+  "/weapons/page": "/weapons",
+  "/guide/page": "/guide",
+  "/characters/page": "/characters"
 }
