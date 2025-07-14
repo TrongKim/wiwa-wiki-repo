@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 
     if (!guide) return { title: 'Không tìm thấy bài viết', robots: 'noindex' };
 
-    const description = String(guide.content).slice(0, 160).replace(/\n/g, ' ') ?? 'Hướng dẫn chi tiết từ cộng đồng.';
+    const description = 'Hướng dẫn về: ' + guide.title.toLocaleLowerCase() + ' mang đến cái nhìn sâu sắc về lối chơi của nhân vật cũng như các chiến thuật tối ưu. Từ việc hiểu rõ kỹ năng, vũ khí, đến cách phối hợp với đồng đội, bài viết này sẽ giúp bạn nắm vững cách sử dụng một cách hiệu quả nhất trong trận đấu.';
     const tags = guide.tags?.join(', ') ?? '';
 
     return {

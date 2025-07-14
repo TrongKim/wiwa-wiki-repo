@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: "Hướng dẫn xây dựng, combo của các nhân vật trong Wuthering Waves",
   
   icons: {
-    icon: "/artboard.png",
+    icon: "https://wuwabeacon.com/artboard.png",
   },
     openGraph: {
     title: "Wuwabeacon - Guide nhân vật Wuthering Waves",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: "Wuwabeacon",
     images: [
       {
-        url: "/banner-guide.jpg",
+        url: "https://wuwabeacon.com/banner-guide.jpg",
         width: 1200,
         height: 630,
         alt: "Wuwabeacon - Hướng dẫn nhân vật",
