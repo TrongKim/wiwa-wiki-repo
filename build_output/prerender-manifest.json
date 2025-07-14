@@ -25,30 +25,6 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/guide": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/guide",
-      "dataRoute": "/guide.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/": {
       "experimentalBypassFor": [
         {
@@ -72,13 +48,37 @@
         "x-next-revalidated-tags",
         "x-next-revalidate-tag-token"
       ]
+    },
+    "/guide": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/guide",
+      "dataRoute": "/guide.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
     }
   },
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "6bc2ea067ff448eeb31ced2bd97af1d3",
-    "previewModeSigningKey": "df5022ae5fbe537aff33516570e1b037172f3c9e9be0fb3ddfa59971174af6f3",
-    "previewModeEncryptionKey": "684b523ecc3da815c430662d176317d9d8bffc267a863c89426a26c0280e9e7c"
+    "previewModeId": "14b54072367d7b19ed2cccad6684011a",
+    "previewModeSigningKey": "1575c4ace47e4aa2e5d1fde97903dee02f89de813177edca4aab31b1cf498c6c",
+    "previewModeEncryptionKey": "beb3fd70d95133c6925b9e2e793b853d5dea43b8c094117623eae6bf7ec621d7"
   }
 }
