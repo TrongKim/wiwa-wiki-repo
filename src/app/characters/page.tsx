@@ -21,7 +21,6 @@ export async function generateStaticParams() {
 }
 
 export default async function CharactersPage() {
-    // const resonators = await api.resonator.getAll();
     const { data: resonators }: PostgrestMaybeSingleResponse<ICharacter[]> = await supabase.from('resonators').select('id, name, card, rank, element, weapon_type, release_date').order('release_date', { ascending: false }).order('name', { ascending: false });
     console.log(resonators);
     return (
