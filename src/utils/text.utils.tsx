@@ -1,7 +1,7 @@
 import React from "react";
 
 // Regex để bắt các cụm số như 12%, 17.5%, 3 lần, 6 giây, 30s, 24.5%
-const HIGHLIGHT_REGEX = /\d+(\.\d+)?(%| ?giây| ?s| times?| lần)?/gi;
+const HIGHLIGHT_REGEX = /\d+(\.\d+)?(%| ?giây| ?sao | ?stack | ?s| times?| lần)?/gi;
 
 export function highlightNumbers(text: string) {
   const elements: React.ReactNode[] = [];

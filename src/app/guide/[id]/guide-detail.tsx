@@ -586,7 +586,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
               </CardHeader>
               <CardContent>
                 {
-                  guide.conclusion && guide.conclusion.length > 0 && <div className="text-white text-lg leading-relaxed text-justify" dangerouslySetInnerHTML={{ __html: guide.conclusion }}></div>
+                  guide.conclusion && guide.conclusion.length > 0 && <div className="text-white text-lg leading-relaxed text-justify whitespace-pre-line" dangerouslySetInnerHTML={{ __html: guide.conclusion }}></div>
                 }
               </CardContent>
             </Card>
