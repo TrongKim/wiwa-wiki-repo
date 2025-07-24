@@ -1,30 +1,6 @@
 {
   "version": 4,
   "routes": {
-    "/tribute": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/tribute",
-      "dataRoute": "/tribute.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/": {
       "experimentalBypassFor": [
         {
@@ -72,13 +48,37 @@
         "x-next-revalidated-tags",
         "x-next-revalidate-tag-token"
       ]
+    },
+    "/tribute": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tribute",
+      "dataRoute": "/tribute.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
     }
   },
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "36c5bb3f45705a1e4010ff8d75ec90d8",
-    "previewModeSigningKey": "ea6f2fe2da5b75d8ba2026728f258e5a0ec57d51d2a09b7380e37fd559c61b87",
-    "previewModeEncryptionKey": "25749cb9a187368a2a845aba5276460a3e22cb0e1750253a724ecce04e173dce"
+    "previewModeId": "c4c66746cb429de2fa7bc306ad6c78e1",
+    "previewModeSigningKey": "f36e92a9171e769a00515088f61e7d5448ff115397a80f7d7e9bedd20e156120",
+    "previewModeEncryptionKey": "4c59279b9eae941b37369bc5356c49c6af98b0d2507b610833915999146c0bb1"
   }
 }
