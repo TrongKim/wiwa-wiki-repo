@@ -57,7 +57,7 @@ export const SkillStat = ({ skill }: Props) => {
                             {
                                 (skill.consumes[skillLevelCap]?.Consume ?? []).map((consume: ISkillConsume, index: number) => {
                                     return (
-                                        <div key={consume.Key + index + 'consume'} className="min-w-[90px] flex-1 bg-[#1a3759] p-3 rounded-[20px] flex flex-col items-center justify-center cursor-pointer pointer-events-auto border border-[#617fa3d6]">
+                                        <div key={consume.Key + index + 'consume'} className="min-w-[90px] flex-1 bg-[#1a3759] p-3 rounded-[20px] flex flex-col items-center justify-center cursor-pointer pointer-events-auto border border-[#617fa3d6] max-[1200px]:max-w-[98.14px] max-[600px]:max-w-[unset]">
                                             <div className="flex-1 bg-[#334d6c] w-full flex justify-center py-2 rounded-xl">
                                                 <Image src={handleWrongURL(consume.Icon)} width={48} height={48} alt="consume" />
                                             </div>

@@ -9,6 +9,7 @@ export interface IEchoSet {
 export interface IEchoSetDetail extends IEchoSet {
   color: string;
   set_2_desc: string;
+  set_3_desc: string;
   set_5_desc: string;
 }
 

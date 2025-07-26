@@ -141,10 +141,6 @@ export default function EchoDetail({ echo_detail, sets }: Props) {
                                     highlightNumberPhrasesToHTML(echo_detail?.skill_desc ?? '')
                                 }
                             </p>
-
-                            <p className="text-[#94a3b8]">
-                                CD: <span className="text-[#60a5fa] font-medium">15s</span>
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -158,26 +154,38 @@ export default function EchoDetail({ echo_detail, sets }: Props) {
 
                     <div className="space-y-6">
                         {
-                            (sets ?? []).map((set, index) => {
+                            (sets ?? []).map((set: IEchoSetDetail, index) => {
                                 return (
                                     <div key={'set echo' + set.id} className="flex items-start gap-4">
                                         <div className="w-12 h-12 bg-[#374151] rounded-full flex items-center justify-center flex-shrink-0">
                                             <Image src={set.icon.split('.')[0] + '.png'} width={100} height={100} alt={set.name} className="w-8 h-8" />
                                         </div>
-                                        <div>
-                                            <h4 className="font-medium text-white mb-2">{set.name}</h4>
-                                            <p className="text-sm text-[#94a3b8] mb-1">2-Piece: {highlightNumbers(set.set_2_desc)}</p>
-                                            <p className="text-sm text-[#94a3b8]">
-                                                5-Piece: {highlightNumbers(set.set_5_desc)}
-                                            </p>
-                                        </div>
+                                        {
+                                            set.set_3_desc ? (
+                                                <div>
+                                                    <h4 className="font-medium text-white mb-2">{set.name}</h4>
+                                                    <p className="text-sm text-[#94a3b8]">
+                                                        3-Piece: {highlightNumbers(set.set_3_desc)}
+                                                    </p>
+                                                </div>
+                                            ) : (
+                                                <div>
+                                                    <h4 className="font-medium text-white mb-2">{set.name}</h4>
+                                                    {set.set_2_desc && <p className="text-sm text-[#94a3b8] mb-1">2-Piece: {highlightNumbers(set.set_2_desc)}</p>}
+                                                    <p className="text-sm text-[#94a3b8]">
+                                                        {[19].includes(set.id) ? '3' : '5'}-Piece: {highlightNumbers(set.set_5_desc)}
+                                                    </p>
+                                                </div>
+                                            )
+                                        }
+
                                     </div>
                                 )
                             })
                         }
                     </div>
                 </div>
-            </div>
-        </motion.div>
+            </div >
+        </motion.div >
     )
 }
