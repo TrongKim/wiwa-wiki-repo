@@ -204,14 +204,27 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-3">
-                      <div className="flex items-start gap-3">
-                        <Badge className="bg-[#38bdf8] text-white whitespace-nowrap">2-Piece</Badge>
-                        <span className="text-white">{set.set_2_desc}</span>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <Badge className="bg-[#60a5fa] text-white whitespace-nowrap">5-Piece</Badge>
-                        <span className="text-white">{set.set_5_desc}</span>
-                      </div>
+                      {
+                        set.set_3_desc ? (
+                          <div className="flex items-start gap-3">
+                            <Badge className="bg-[#38bdf8] text-white whitespace-nowrap">3-Piece</Badge>
+                            <span className="text-white">{set.set_3_desc}</span>
+                          </div>
+                        ) : (
+                          <>
+                            {set.set_2_desc && <div className="flex items-start gap-3">
+                              <Badge className="bg-[#38bdf8] text-white whitespace-nowrap">2-Piece</Badge>
+                              <span className="text-white">{set.set_2_desc}</span>
+                            </div>}
+                            
+                            <div className="flex items-start gap-3">
+                              <Badge className="bg-[#60a5fa] text-white whitespace-nowrap">{[19].includes(set.id) ? '3' : '5'}-Piece</Badge>
+                              <span className="text-white">{set.set_5_desc}</span>
+                            </div>
+                          </>
+                        )
+                      }
+
                       {/* <div>
                         <div className="mt-2">
                           <p><span className="text-[#60a5fa]">{set.main_slot?.name}:</span></p>

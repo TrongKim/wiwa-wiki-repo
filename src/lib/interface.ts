@@ -230,6 +230,7 @@ export type ISelectedEchoSet = {
   name: string;
   icon: string;
   set_2_desc: string;
+  set_3_desc?: string;
   set_5_desc: string;
   condition?: string;
   main_slot?: IGuideEcho;
