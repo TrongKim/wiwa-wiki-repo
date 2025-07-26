@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dashboard } from '@/components/dashboard'
 import type { Metadata } from 'next';
+import { supabase } from '@/utils/supabase/server';
 
 export const metadata: Metadata = {
   title: "Wuwabeacon - Guide nhân vật Wuthering Waves",
@@ -25,6 +26,17 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+export async function generateStaticParams() {
+  const { data: resonators } = await supabase.from('guide')
+    .select('id');
+
+  return (
+    resonators?.map((r) => ({
+      id: r.id.toString(),
+    })) || []
+  );
+}
 
 export default function GuidePage() {
   return (
