@@ -15,6 +15,7 @@ export function SidebarCharacter({ resonator }: Props) {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [indexTab, setIndexTab] = useState<number>(-1)
+  const [urlList, setUrlList] = useState<string[]>(['profile', 'forte', 'resonance-chain', 'guides', 'backstory', 'voice']);
 
   useEffect(() => {
     const mode = searchParams.get('mode')
@@ -79,7 +80,7 @@ export function SidebarCharacter({ resonator }: Props) {
             <nav>
               {["Thông tin", "Forte", "Cung Mệnh", "Hướng dẫn", "Câu chuyện", "Lồng tiếng"].map((item, index) => (
                 <button
-                  onClick={() => onClickChangeIndexTab(index, item.toLowerCase())}
+                  onClick={() => onClickChangeIndexTab(index, urlList[index] || '')}
                   key={item}
                   className={`w-full text-left px-3 py-2 rounded-[20px] cursor-pointer pointer-events-auto transition-all duration-600 ${index === indexTab ? "bg-[#33435896]" : "bg-transparent"}`}
                 >
