@@ -28,7 +28,7 @@ export default function CharacterTalent() {
 
   return (
     <div className="min-h-screen text-white font-sans p-4">
-      <h1 className="text-4xl font-bold mb-6">Resonance Skills</h1>
+      <h1 className="text-4xl font-bold mb-6">Kĩ năng</h1>
       {isLoading ? (
         <Skeleton className="h-[600px] w-full bg-[#131620]" />
       ) : (

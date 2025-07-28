@@ -78,7 +78,7 @@ export function SidebarCharacter({ resonator }: Props) {
         <CardContent className="p-3 flex flex-col">
           <div className="p-0">
             <nav>
-              {["Thông tin", "Forte", "Cung Mệnh", "Hướng dẫn", "Câu chuyện", "Lồng tiếng"].map((item, index) => (
+              {["Thông tin", "Kĩ năng", "Resonance chain", "Hướng dẫn", "Câu chuyện", "Lồng tiếng"].map((item, index) => (
                 <button
                   onClick={() => onClickChangeIndexTab(index, urlList[index] || '')}
                   key={item}

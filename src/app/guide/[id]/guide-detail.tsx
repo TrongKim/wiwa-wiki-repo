@@ -13,17 +13,17 @@ type GuideProps = {
 }
 
 const navigationItems = [
-  { id: "overview", label: "Character Overview" },
+  { id: "overview", label: "Tổng Quan" },
   { id: "echo-sets", label: "Echo Sets" },
-  { id: "main-stats", label: "Main Stats" },
-  { id: "sub-stats", label: "Sub-Stat Priority" },
-  { id: "target-stats", label: "Target Stats" },
-  { id: "weapons", label: "Recommended Weapons" },
-  { id: "team-comps", label: "Team Compositions" },
-  { id: "skills", label: "Skill Priority" },
+  { id: "main-stats", label: "Chỉ số chính" },
+  { id: "sub-stats", label: "Dòng phụ hướng đến" },
+  { id: "target-stats", label: "Chỉ số hướng đến" },
+  { id: "weapons", label: "Vũ khí đề xuất" },
+  { id: "team-comps", label: "Đề xuất đội hình" },
+  { id: "skills", label: "Kĩ năng ưu tiên" },
   { id: "rotation", label: "Combat Rotation" },
-  { id: "advanced", label: "Advanced Techniques" },
-  { id: "summary", label: "Summary" },
+  { id: "advanced", label: "Kĩ năng nâng cao" },
+  { id: "summary", label: "tổng kết" },
 ]
 
 export default function RocciaSinglePageGuide({ guide }: GuideProps) {
@@ -186,7 +186,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
               }
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Character Overview</h2>
+              <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Tổng quan nhân vật</h2>
               <div>
                 <p className="text-[#94a3b8] leading-relaxed text-justify">{guide.character_overview.replace('<p>', '').replace('</p>', '')}</p>
               </div>
@@ -194,31 +194,31 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
           </section>
 
           <section id="echo-sets" className="mb-0 pt-16">
-            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Echo Sets</h2>
+            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Bộ Echo</h2>
             <div className="grid gap-6">
               {guide.echoSets.map((set, index) => (
                 <Card key={index} className="bg-[#1f293780] border-[#374151]">
                   <CardHeader>
                     <CardTitle className="text-[#60a5fa] text-xl">{set.name}</CardTitle>
-                    <p className="text-[#94a3b8]">Condition: {set.condition}</p>
+                    <p className="text-[#94a3b8]">Điều kiện: {set.condition}</p>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-3">
                       {
                         set.set_3_desc ? (
                           <div className="flex items-start gap-3">
-                            <Badge className="bg-[#38bdf8] text-white whitespace-nowrap">3-Piece</Badge>
+                            <Badge className="bg-[#38bdf8] text-white whitespace-nowrap">3-Mảnh</Badge>
                             <span className="text-white">{set.set_3_desc}</span>
                           </div>
                         ) : (
                           <>
                             {set.set_2_desc && <div className="flex items-start gap-3">
-                              <Badge className="bg-[#38bdf8] text-white whitespace-nowrap">2-Piece</Badge>
+                              <Badge className="bg-[#38bdf8] text-white whitespace-nowrap">2-Mảnh</Badge>
                               <span className="text-white">{set.set_2_desc}</span>
                             </div>}
                             
                             <div className="flex items-start gap-3">
-                              <Badge className="bg-[#60a5fa] text-white whitespace-nowrap">{[19].includes(set.id) ? '3' : '5'}-Piece</Badge>
+                              <Badge className="bg-[#60a5fa] text-white whitespace-nowrap">{[19].includes(set.id) ? '3' : '5'}-Mảnh</Badge>
                               <span className="text-white">{set.set_5_desc}</span>
                             </div>
                           </>
@@ -244,7 +244,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
 
           {/* Main Stats Section */}
           <section id="main-stats" className="mb-0 pt-16">
-            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Main Stats</h2>
+            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Chỉ số chính</h2>
             <div className="grid gap-0 space-y-3 bg-[#1f293780] border border-[#374151] rounded-[20px] p-[24px]">
               {guide.mainStats.map((stat, index) => (
                 <Card key={index} className="bg-transparent border-0">
@@ -263,7 +263,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
 
           {/* Sub Stats Priority Section */}
           <section id="sub-stats" className="mb-0 pt-16">
-            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Sub-Stat Priority</h2>
+            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Dòng phụ ưu tiên</h2>
             <Card className="bg-[#1f293780] border-[#374151]">
               <CardContent className="pt-6">
                 <div className="flex items-center justify-center gap-2 max-[590px]:flex-wrap">
@@ -282,7 +282,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
 
           {/* Target Stats Section */}
           <section id="target-stats" className="mb-0 pt-16">
-            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Target Stats</h2>
+            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Chỉ số hướng tới</h2>
             <Card className="bg-[#1f293780] border-[#374151]">
               <CardContent className="pt-6">
                 <div className="grid md:grid-cols-2 gap-6">
@@ -309,12 +309,12 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
 
           {/* Weapons Section */}
           <section id="weapons" className="mb-0 pt-16">
-            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Recommended Weapons</h2>
+            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Vũ khí đề xuất</h2>
 
             <div className="bg-[#1f293780] border border-[#374151] rounded-lg overflow-hidden">
               <div className="grid grid-cols-12 gap-4 p-4 border-b border-[#374151] bg-[#0d0d0d]">
-                <div className="col-span-4 max-[850px]:col-span-5 max-[710px]:col-span-9 text-[#94a3b8] font-semibold">Weapon</div>
-                <div className="col-span-2 max-[850px]:col-span-3 text-[#94a3b8] font-semibold text-center">Effective</div>
+                <div className="col-span-4 max-[850px]:col-span-5 max-[710px]:col-span-9 text-[#94a3b8] font-semibold">Vũ khí</div>
+                <div className="col-span-2 max-[850px]:col-span-3 text-[#94a3b8] font-semibold text-center">Hiệu xuất</div>
                 <div className="col-span-6 max-[850px]:col-span-4 max-[710px]:hidden text-[#94a3b8] font-semibold">Notes</div>
               </div>
 
@@ -342,7 +342,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                             {weapon.name}
                           </div>
                           <div className="text-xs text-[#94a3b8]">
-                            Rarity:{" "}
+                            Độ hiếm:{" "}
                             <span
                               className={`font-medium ${weapon.rarity === 5
                                 ? "text-[#38bdf8]"
@@ -366,7 +366,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                           >
                             {weapon.effective + '%'}
                           </div>
-                          <div className="text-xs text-[#94a3b8]">Effectiveness</div>
+                          <div className="text-xs text-[#94a3b8]">Độ hiệu quả</div>
                         </div>
                       </div>
                       <div className="col-span-6 max-[850px]:col-span-4 max-[710px]:hidden flex items-center">
@@ -387,7 +387,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
 
           {/* Team Compositions Section */}
           <section id="team-comps" className="mb-0 pt-16">
-            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Team Compositions</h2>
+            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Đội hình</h2>
             <Card className="bg-[#1f293780] border-[#374151] mb-6">
               <CardContent className="pt-6">
                 <pre className="text-[#94a3b8] leading-relaxed whitespace-pre-wrap font-sans not-italic text-justify">{guide.team_composition.note}</pre>
@@ -428,7 +428,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
 
           {/* Skills Section */}
           <section id="skills" className="mb-0 pt-16">
-            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Skill Priority</h2>
+            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Kĩ năng ưu tiên</h2>
             <Card className="bg-[#1f293780] border-[#374151]">
               <CardContent className="pt-6">
                 <div className="flex items-center justify-center gap-2 max-[590px]:flex-wrap">
@@ -451,7 +451,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
             <div className="space-y-6">
               <Card className="bg-[#1f293780] border-[#374151]">
                 <CardHeader>
-                  <CardTitle className="text-[#60a5fa]">Basic Rotation</CardTitle>
+                  <CardTitle className="text-[#60a5fa]">Rotation Cơ Bản</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
@@ -481,7 +481,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
 
               <Card className="bg-[#60a5fa]/10 border-[#60a5fa]/30">
                 <CardHeader>
-                  <CardTitle className="text-[#60a5fa]">Important Notes</CardTitle>
+                  <CardTitle className="text-[#60a5fa]">Thông tin quan trọng</CardTitle>
                 </CardHeader>
                 <CardContent>
                   {
@@ -493,9 +493,9 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
           </section>
 
           {/* Advanced Techniques Section */}
-          <p className="text-[#38bdf8] rounded-xl box-border p-4 max-[430px]:p-2 bg-[#1f293780] border-[#374151] w-fit mx-auto mt-16 font-bold px-20">ADVANCED</p>
+          <p className="text-[#38bdf8] rounded-xl box-border p-4 max-[430px]:p-2 bg-[#1f293780] border-[#374151] w-fit mx-auto mt-16 font-bold px-20">NÂNG CAO</p>
           <section id="advanced" className="mb-0 pt-16">
-            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Advanced Techniques</h2>
+            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Kĩ năng nâng cao</h2>
             <div className="">
               {guide.advanced_tech.map((technique, index) => (
                 <div key={index} className="mb-4">
@@ -539,7 +539,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
 
           {/* Summary Section */}
           <section id="summary" className="mb-0 pt-16">
-            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Summary</h2>
+            <h2 className="text-3xl font-bold text-[#38bdf8] mb-6">Tổng kết</h2>
 
             <Card className="bg-[#60a5fa]/10 border-[#60a5fa]/30 mb-6">
               <CardContent className="pt-6">
@@ -562,7 +562,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
             <div className="grid md:grid-cols-2 gap-6 mb-6">
               <Card className="bg-[#1f293780] border-[#374151]">
                 <CardHeader>
-                  <CardTitle className="text-[#38bdf8]">Pros</CardTitle>
+                  <CardTitle className="text-[#38bdf8]">Mạnh</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-3">
@@ -578,7 +578,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
 
               <Card className="bg-[#1f293780] border-[#374151]">
                 <CardHeader>
-                  <CardTitle className="text-[#94a3b8]">Cons</CardTitle>
+                  <CardTitle className="text-[#94a3b8]">Yếu</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-3">
@@ -595,7 +595,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
 
             <Card className="bg-[#38bdf8]/10 border-[#38bdf8]/30">
               <CardHeader>
-                <CardTitle className="text-[#38bdf8]">Conclusion</CardTitle>
+                <CardTitle className="text-[#38bdf8]">Kết luận</CardTitle>
               </CardHeader>
               <CardContent>
                 {

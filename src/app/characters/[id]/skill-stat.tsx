@@ -53,11 +53,11 @@ export const SkillStat = ({ skill }: Props) => {
                             <span>No items needed to upgrade!</span>
                         </div>
                     ) : (
-                        <div className="flex items-center justify-start gap-[10px] flex-wrap">
+                        <div className="flex items-center justify-start gap-[10px] flex-wrap max-[900px]:justify-center">
                             {
                                 (skill.consumes[skillLevelCap]?.Consume ?? []).map((consume: ISkillConsume, index: number) => {
                                     return (
-                                        <div key={consume.Key + index + 'consume'} className="min-w-[90px] flex-1 bg-[#1a3759] p-3 rounded-[20px] flex flex-col items-center justify-center cursor-pointer pointer-events-auto border border-[#617fa3d6] max-[1200px]:max-w-[98.14px] max-[600px]:max-w-[unset]">
+                                        <div key={consume.Key + index + 'consume'} className="min-w-[90px] flex-1 bg-[#1a3759] p-3 rounded-[20px] flex flex-col items-center justify-center cursor-pointer pointer-events-auto border border-[#617fa3d6] max-[1200px]:max-w-[98.14px]">
                                             <div className="flex-1 bg-[#334d6c] w-full flex justify-center py-2 rounded-xl">
                                                 <Image src={handleWrongURL(consume.Icon)} width={48} height={48} alt="consume" />
                                             </div>
@@ -81,7 +81,7 @@ function AttributeRow({ label, value }: { readonly label: string; readonly value
     return (
         <div className="flex justify-between items-center py-1 px-2 bg-[#1a3759] rounded">
             <span className="text-yellow-200">{label}</span>
-            <span className="font-bold">{value}</span>
+            <span className="font-bold break-all">{value}</span>
         </div>
     )
 }
