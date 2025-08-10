@@ -17,13 +17,15 @@ export const TableSkillStat = ({ skill }: Props) => {
         return description.replaceAll(`<br><br>`, '<br>').replaceAll('text-3xl', 'text-[17px]');
     }
 
-
+const createSpace = (value: string): string => {
+        return value.replaceAll('+', ' + ').replaceAll('*', ' * ');
+    }
 
     return (
         <div className="p-4 bg-[#1a2234] border-[#1e2230]">
             {/* Table View */}
             <div className="bg-[#4d647e] rounded-full py-2 px-6 text-center mb-4">
-                <span className="font-bold">Talent Info</span>
+                <span className="font-bold">Thông Tin Skill</span>
             </div>
 
             <div className="mb-4">
@@ -32,7 +34,7 @@ export const TableSkillStat = ({ skill }: Props) => {
             </div>
 
             <div className="bg-[#4d647e] rounded-full py-2 px-6 text-center mb-4">
-                <span className="font-bold">Skill Attributes</span>
+                <span className="font-bold">Thông Số Kĩ Năng</span>
             </div>
 
             <div className="overflow-x-auto">
@@ -59,9 +61,9 @@ export const TableSkillStat = ({ skill }: Props) => {
                                     <tr key={attribute.attributeId + index} className="bg-[#334d6c]">
                                         <td className="border border-[#667a91] p-1 text-[14px]">{attribute.attributeName}</td>
                                         {
-                                            attribute.values.map((value, index) => {
+                                            attribute.values.slice(0, 10).map((value, index) => {
                                                 return (
-                                                    <td key={value + index + attribute.attributeId} className="border border-[#667a91] p-1 text-center text-[14px]">{value}</td>
+                                                    <td key={value + index + attribute.attributeId} className="border border-[#667a91] p-1 text-center text-[14px]">{createSpace(value)}</td>
                                                 )
                                             })
                                         }
@@ -78,7 +80,7 @@ export const TableSkillStat = ({ skill }: Props) => {
                 {
                     (getSumMaterial(skill.consumes) ?? []).map((consume: ISkillConsume, index: number) => {
                         return (
-                            <div key={consume.Key + index + 'consume'} className="bg-[#1a3759] w-[calc(20%-10px)] min-w-[calc(20%-10px)] p-3 rounded-[20px] flex flex-col items-center justify-center cursor-pointer pointer-events-auto border border-[#617fa3d6]">
+                            <div key={consume.Key + index + 'consume'} className="bg-[#1a3759] w-[100px] p-3 rounded-[20px] flex flex-col items-center justify-center cursor-pointer pointer-events-auto border border-[#617fa3d6]">
                                 <div className="flex-1 bg-[#334d6c] w-full flex justify-center py-2 rounded-xl">
                                     <Image src={handleWrongURL(consume.Icon)} width={48} height={48} alt="consume" />
                                 </div>

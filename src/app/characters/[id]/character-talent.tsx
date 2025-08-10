@@ -53,10 +53,11 @@ interface PropsSkill {
 }
 function CharacterSkill({ skill }: PropsSkill) {
   const [showForeignBlazeTable, setShowForeignBlazeTable] = useState(false)
-
+  const [isShowSkillOnly, setIsShowSkillOnly] = useState(false);
   const handleDescription = (description: string) => {
     return description.replaceAll(`<br><br>`, '<br>').replaceAll('text-3xl', 'text-[17px]')
   }
+
 
   return (
     <div className={`bg-[#1a2234] border-[#374151] rounded-lg overflow-hidden border col-span-2`}>
@@ -72,11 +73,12 @@ function CharacterSkill({ skill }: PropsSkill) {
 
       {/* Talent Content */}
       {!showForeignBlazeTable ? (
-        <div className={`grid grid-cols-1 gap-4 p-4 bg-[#131620] border-[#1e2230] ${skill.attributes.length === 0 ? 'lg:grid-cols-1' : 'lg:grid-cols-2'}`}>
+        <div className={`grid grid-cols-1 gap-4 p-4 bg-[#131620] border-[#1e2230] ${skill.attributes.length === 0 || isShowSkillOnly ? 'lg:grid-cols-1' : 'lg:grid-cols-2'}`}>
           {/* Left Column - Talent Info */}
           <div>
-            <div className="bg-[#4d647e] rounded-full py-2 px-6 text-center mb-4">
-              <span className="font-bold">Forte Info</span>
+            <div className="bg-[#4d647e] rounded-full py-2 px-6 text-center mb-4 flex items-center relative">
+              <span className="font-bold absolute top-1/2 left-1/2 -translate-1/2">Thông Tin Kĩ Năng</span>
+              <button onClick={() => setIsShowSkillOnly(prev => !prev)} className={`cursor-pointer ml-auto ${isShowSkillOnly ? 'rotate-[180deg]' : ''}`}>{'>'}</button>
             </div>
 
             <div className="space-y-6">
@@ -88,7 +90,7 @@ function CharacterSkill({ skill }: PropsSkill) {
           </div>
 
           {
-            skill.attributes.length > 0 && <div>
+            !isShowSkillOnly && skill.attributes.length > 0 && <div>
               <SkillStat skill={skill} />
             </div>
           }
@@ -108,7 +110,7 @@ function CharacterSkill({ skill }: PropsSkill) {
               checked={showForeignBlazeTable}
               onChange={() => setShowForeignBlazeTable(!showForeignBlazeTable)}
             />
-            <span>Table</span>
+            <span>Bảng</span>
           </label>
         </div>
       }

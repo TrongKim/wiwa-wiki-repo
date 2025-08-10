@@ -15,15 +15,15 @@ type GuideProps = {
 const navigationItems = [
   { id: "overview", label: "Tổng Quan" },
   { id: "echo-sets", label: "Echo Sets" },
-  { id: "main-stats", label: "Chỉ số chính" },
-  { id: "sub-stats", label: "Dòng phụ hướng đến" },
-  { id: "target-stats", label: "Chỉ số hướng đến" },
+  { id: "main-stats", label: "Chỉ Số Chính" },
+  { id: "sub-stats", label: "Dòng Phụ Hướng Đến" },
+  { id: "target-stats", label: "Chỉ số Hướng Đến" },
   { id: "weapons", label: "Vũ khí đề xuất" },
   { id: "team-comps", label: "Đề xuất đội hình" },
   { id: "skills", label: "Kĩ năng ưu tiên" },
   { id: "rotation", label: "Combat Rotation" },
   { id: "advanced", label: "Kĩ năng nâng cao" },
-  { id: "summary", label: "tổng kết" },
+  { id: "summary", label: "Tổng kết" },
 ]
 
 export default function RocciaSinglePageGuide({ guide }: GuideProps) {
@@ -623,7 +623,7 @@ export default function RocciaSinglePageGuide({ guide }: GuideProps) {
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={`
-                  w-full text-left px-3 py-1 rounded-lg text-sm font-medium transition-all duration-200
+                  w-full text-left px-3 py-1 rounded-lg text-sm font-medium transition-all duration-200 capitalize
                   ${isActive ? "text-[#38bdf8]" : "text-[#94a3b8] hover:text-white"}
                 `}
                 >

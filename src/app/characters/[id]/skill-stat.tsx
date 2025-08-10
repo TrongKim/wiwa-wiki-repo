@@ -23,7 +23,7 @@ export const SkillStat = ({ skill }: Props) => {
     return (
         <div>
             <div className="bg-[#4d647e] rounded-full py-2 px-6 text-center mb-4">
-                <span className="font-bold">Skill Attributes (Lv. {skillLevelCap + 1})</span>
+                <span className="font-bold">Thông Số Kĩ Năng (Lv. {skillLevelCap + 1})</span>
             </div>
 
             <div className="mb-4">
@@ -50,7 +50,7 @@ export const SkillStat = ({ skill }: Props) => {
                 {
                     skill.consumes.length === 1 ? (
                         <div className="bg-[#1a3759] rounded-lg p-3 text-center">
-                            <span>No items needed to upgrade!</span>
+                            <span>Không thể nâng cấp!</span>
                         </div>
                     ) : (
                         <div className="flex items-center justify-start gap-[10px] flex-wrap max-[900px]:justify-center">
@@ -78,10 +78,13 @@ export const SkillStat = ({ skill }: Props) => {
 
 
 function AttributeRow({ label, value }: { readonly label: string; readonly value: string }) {
+    const createSpace = (value: string): string => {
+        return value.replaceAll('+', ' + ').replaceAll('*', ' * ');
+    }
     return (
         <div className="flex justify-between items-center py-1 px-2 bg-[#1a3759] rounded">
             <span className="text-yellow-200">{label}</span>
-            <span className="font-bold break-all">{value}</span>
+            <span className="font-bold">{createSpace(value)}</span>
         </div>
     )
 }
