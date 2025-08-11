@@ -1,15 +1,15 @@
 {
+  "/_not-found/page": "/_not-found",
   "/api/trpc/[trpc]/route": "/api/trpc/[trpc]",
   "/api/auth/[...nextauth]/route": "/api/auth/[...nextauth]",
-  "/_not-found/page": "/_not-found",
+  "/characters/[id]/page": "/characters/[id]",
   "/echos/[id]/page": "/echos/[id]",
   "/guide/[id]/page": "/guide/[id]",
-  "/characters/[id]/page": "/characters/[id]",
-  "/weapons/[id]/page": "/weapons/[id]",
   "/tribute/page": "/tribute",
-  "/page": "/",
+  "/weapons/[id]/page": "/weapons/[id]",
   "/echos/page": "/echos",
   "/characters/page": "/characters",
+  "/page": "/",
   "/guide/page": "/guide",
   "/weapons/page": "/weapons"
 }
