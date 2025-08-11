@@ -1,6 +1,30 @@
 {
   "version": 4,
   "routes": {
+    "/tribute": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/tribute",
+      "dataRoute": "/tribute.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/guide": {
       "experimentalBypassFor": [
         {
@@ -48,37 +72,13 @@
         "x-next-revalidated-tags",
         "x-next-revalidate-tag-token"
       ]
-    },
-    "/tribute": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/tribute",
-      "dataRoute": "/tribute.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
     }
   },
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "115535061b05d71543a7151becf83ad9",
-    "previewModeSigningKey": "a46c8291aaed612eb774df573584d444b2715ac7556bd3c2dfc271bb6fd71b6d",
-    "previewModeEncryptionKey": "910cabb5d65b32b7685b0eda57e5451ab9a709a54378b7740d6621fa21abd529"
+    "previewModeId": "1c7fef990469ac279db4aac46d92cd68",
+    "previewModeSigningKey": "3bc451add99dabe38ef9b072ccb283c31a282765d5b376b171a837a52f52ec52",
+    "previewModeEncryptionKey": "521000da0609b708ca90ea20f3adf83861b3f9efe25b1d75736d6a801985998e"
   }
 }
