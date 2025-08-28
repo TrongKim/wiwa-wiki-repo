@@ -10,15 +10,7 @@ export const metadata = {
     description: 'Tổng hợp các nhân vật trong Wuthering Waves.',
 };
 
-export async function generateStaticParams() {
-  const { data: resonators } = await supabase.from("resonators").select("id");
 
-  return (
-    resonators?.map((r) => ({
-      id: r.id.toString(),
-    })) || []
-  );
-}
 
 export default async function CharactersPage() {
     const { data: resonators }: PostgrestMaybeSingleResponse<ICharacter[]> = await supabase.from('resonators').select('id, name, card, rank, element, weapon_type, release_date').order('release_date', { ascending: false }).order('name', { ascending: false });

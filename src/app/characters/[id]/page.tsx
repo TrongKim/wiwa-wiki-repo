@@ -9,6 +9,16 @@ interface PageProps {
   readonly params: { id: string };
 }
 
+export async function generateStaticParams() {
+  const { data: resonators } = await supabase.from("resonators").select("id");
+
+  return (
+    resonators?.map((r) => ({
+      id: r.id.toString(),
+    })) || []
+  );
+}
+
 export default async function CharacterProfile({ params }: PageProps) {
   const { id } = await params;
   const { data: resonator_detail }: PostgrestMaybeSingleResponse<ICharacterDetail> = await supabase.from('resonators').select('*').eq('id', Number(id)).single();
