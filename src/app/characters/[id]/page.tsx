@@ -9,18 +9,9 @@ interface PageProps {
   readonly params: { id: string };
 }
 
-export async function generateStaticParams() {
-  const { data: resonators } = await supabase.from("resonators").select("id");
-
-  return (
-    resonators?.map((r) => ({
-      id: r.id.toString(),
-    })) || []
-  );
-}
-
 export default async function CharacterProfile({ params }: PageProps) {
   const { id } = await params;
+
   const { data: resonator_detail }: PostgrestMaybeSingleResponse<ICharacterDetail> = await supabase.from('resonators').select('*').eq('id', Number(id)).single();
   const { data: items }: PostgrestMaybeSingleResponse<IItem[]> = await supabase
     .from("items")
@@ -31,6 +22,7 @@ export default async function CharacterProfile({ params }: PageProps) {
       "Ascension Material",
       "Universal Currency",
     ]);
+  console.log(items);
   return (
     <div className="min-h-screen text-white font-sans pb-4 max-[600px]:bg-transparent">
       <Suspense>
