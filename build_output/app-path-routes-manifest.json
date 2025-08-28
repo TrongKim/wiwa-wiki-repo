@@ -3,13 +3,13 @@
   "/_not-found/page": "/_not-found",
   "/api/auth/[...nextauth]/route": "/api/auth/[...nextauth]",
   "/characters/[id]/page": "/characters/[id]",
-  "/guide/[id]/page": "/guide/[id]",
   "/echos/[id]/page": "/echos/[id]",
-  "/weapons/[id]/page": "/weapons/[id]",
   "/tribute/page": "/tribute",
+  "/guide/[id]/page": "/guide/[id]",
+  "/guide/page": "/guide",
   "/echos/page": "/echos",
   "/characters/page": "/characters",
+  "/page": "/",
   "/weapons/page": "/weapons",
-  "/guide/page": "/guide",
-  "/page": "/"
+  "/weapons/[id]/page": "/weapons/[id]"
 }
