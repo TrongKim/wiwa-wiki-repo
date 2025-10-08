@@ -25,30 +25,6 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/",
-      "dataRoute": "/index.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/guide": {
       "experimentalBypassFor": [
         {
@@ -72,13 +48,37 @@
         "x-next-revalidated-tags",
         "x-next-revalidate-tag-token"
       ]
+    },
+    "/": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/",
+      "dataRoute": "/index.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
     }
   },
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "323c3f83e716f51e65d507040eed2138",
-    "previewModeSigningKey": "91ff4bd9fc45eae0e92490299913d0bd1f123b44d29c58a365945c29d234e86c",
-    "previewModeEncryptionKey": "4550428728b6ca58872d92c6f4cbaf6a9ea0901a97b507f417fd07058e2abbe9"
+    "previewModeId": "7affc7f293699955cc585a00612c68d6",
+    "previewModeSigningKey": "b6ab86f4b8106153b860262cb7b271d110fd3a9f4cd03aabfc0b8e7cac270f3e",
+    "previewModeEncryptionKey": "dec65b268975ff8a15e3312ac77ae1c4aace1a0f69889fab99a8ea6caeb21929"
   }
 }
