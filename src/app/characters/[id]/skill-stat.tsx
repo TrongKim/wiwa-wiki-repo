@@ -83,7 +83,7 @@ function AttributeRow({ label, value }: { readonly label: string; readonly value
     }
     return (
         <div className="flex justify-between items-center py-1 px-2 bg-[#1a3759] rounded">
-            <span className="text-yellow-200">{label}</span>
+            <span className="text-yellow-200 max-w-[65%]">{label}</span>
             <span className="font-bold">{createSpace(value)}</span>
         </div>
     )
