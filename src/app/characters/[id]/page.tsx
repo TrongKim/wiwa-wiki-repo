@@ -21,7 +21,7 @@ export default async function CharacterProfile({ params }: PageProps) {
       "Weapon and Skill Material",
       "Ascension Material",
       "Universal Currency",
-    ]);w
+    ]);
   console.log(items);
   return (
     <div className="min-h-screen text-white font-sans pb-4 max-[600px]:bg-transparent">
