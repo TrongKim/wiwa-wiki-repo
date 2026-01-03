@@ -1,0 +1,27 @@
+[00:00:12.654] Server  LOG     
+[00:00:12.655] Server  LOG       We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+[00:00:12.655] Server  LOG       The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
+
+[00:00:12.656] Server  LOG       	- include was updated to add 'build_output/dev/types/**/*.ts'
+[00:00:12.659] Server  LOG     
+[00:00:12.663] Server  LOG       The following mandatory changes were made to your tsconfig.json:
+
+[00:00:12.664] Server  LOG       	- jsx was set to react-jsx (next.js uses the React automatic runtime)
+[00:00:12.664] Server  LOG     
+[00:00:27.380] Server  LOG     ✓ Ready in 24.6s
+[00:03:08.455] Server  LOG     ○ Compiling / ...
+[00:07:06.285] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:41.354] Browser WARN    Image with src "http://localhost:3000/weapons_icon/broadblade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:07:41.354] Browser WARN    Image with src "http://localhost:3000/elements_icon/Spectro.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:07:42.363] Browser WARN    Image with src "/banner-guide.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:07:42.578] Browser WARN    Image with src "http://localhost:3000/elements_icon/Havoc.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:07:42.578] Browser WARN    Image with src "http://localhost:3000/elements_icon/Aero.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:07:42.826] Browser WARN    Image with src "http://localhost:3000/elements_icon/Electro.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:07:42.826] Browser WARN    Image with src "http://localhost:3000/elements_icon/Fusion.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:07:42.826] Browser WARN    Image with src "http://localhost:3000/elements_icon/Glacio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:07:43.073] Browser WARN    Image with src "http://localhost:3000/weapons_icon/sword.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:07:43.290] Browser WARN    Image with src "http://localhost:3000/weapons_icon/gauntlets.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:07:43.290] Browser WARN    Image with src "http://localhost:3000/weapons_icon/rectifier.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:07:43.459] Browser WARN    Image with src "http://localhost:3000/weapons_icon/pistols.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:38:01.268] Server  LOG     ○ Compiling /guide/[id] ...

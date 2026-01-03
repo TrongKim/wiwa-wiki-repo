@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/VIP/OneDrive/Desktop/project/wiwa-wiki-repo/src/app/custom.css"],"sourcesContent":[".text-shadow-custom {\r\n  text-shadow: 1px 5px black;\r\n}\r\n\r\n.text-shadow-custom-min {\r\n  text-shadow: 1px 2px black;\r\n}"],"names":[],"mappings":"AAAA;;;;AAIA"}}]
+}
