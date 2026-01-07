@@ -34,6 +34,10 @@ jobs:
           source ~/.bashrc
 
           # Dùng Node ổn định
+          export FNM_PATH="$HOME/.local/share/fnm"
+          export PATH="$FNM_PATH:$PATH"
+          eval "$(fnm env)"
+
           fnm use 20
 
           node -v
