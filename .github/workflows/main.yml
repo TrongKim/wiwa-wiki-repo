@@ -31,6 +31,6 @@ jobs:
           node -v
           npm -v
           npm install
-          /root/.nvm/versions/node/v22.16.0/bin/pm2 reload wiwabeacon
+          /run/user/0/fnm_multishells/11068_1767781578403/bin/pm2 reload wiwabeacon
       env:
         GH_PAT: ${{ secrets.GH_PAT }}  # <== Gắn secret vào biến GH_PAT để truyền qua envs
