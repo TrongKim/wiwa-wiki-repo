@@ -38,6 +38,8 @@ jobs:
           export PATH="$FNM_PATH:$PATH"
           eval "$(fnm env)"
 
+          fnm install 20
+          fnm default 20
           fnm use 20
 
           node -v
